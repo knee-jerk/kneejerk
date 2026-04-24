@@ -1,1 +1,808 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KneeJerk — The football prediction game that lets you change your mind</title>
+<style>
+  :root {
+    --black: #1A1A1A;
+    --deep-black: #0D0D0D;
+    --yellow: #FFD100;
+    --yellow-dim: #E6BC00;
+    --red: #E63946;
+    --red-deep: #C1121F;
+    --cream: #F8F5EC;
+    --grey-row: #242424;
+    --grey-line: #333333;
+    --muted: #8A8A8A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--black); color: var(--cream); font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; line-height: 1.5; }
+  a { color: var(--yellow); text-decoration: none; }
+  a:hover { text-decoration: underline; }
 
+  /* ============ PASSWORD GATE ============ */
+  #gate {
+    position: fixed; inset: 0; background: var(--deep-black);
+    display: flex; align-items: center; justify-content: center; z-index: 9999;
+    padding: 20px;
+  }
+  #gate.hidden { display: none; }
+  .gate-card {
+    max-width: 440px; width: 100%;
+    background: var(--black); border: 2px solid var(--yellow);
+    padding: 40px 32px; text-align: center;
+  }
+  .gate-logo { margin-bottom: 24px; }
+  .gate-logo-wordmark {
+    font-family: 'Anton', 'Impact', 'Arial Black', sans-serif;
+    font-size: 56px; font-weight: 900; letter-spacing: -2px; line-height: 0.9;
+  }
+  .gate-logo-wordmark .knee { color: var(--cream); }
+  .gate-logo-wordmark .jerk { color: var(--yellow); }
+  .gate-tagline { color: var(--muted); font-size: 13px; font-style: italic; margin: 10px 0 28px; }
+  .gate-heading { font-family: 'Anton', 'Impact', sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--yellow); margin-bottom: 8px; text-transform: uppercase; }
+  .gate-instruction { color: var(--cream); font-size: 14px; margin-bottom: 24px; }
+  .gate-instruction strong { color: var(--yellow); }
+  #gate-input {
+    width: 100%; padding: 14px 16px; font-size: 16px;
+    background: var(--deep-black); border: 1px solid var(--grey-line);
+    color: var(--cream); text-align: center; letter-spacing: 3px;
+    font-family: 'Courier New', monospace; text-transform: lowercase;
+  }
+  #gate-input:focus { outline: none; border-color: var(--yellow); }
+  #gate-submit {
+    margin-top: 16px; width: 100%; padding: 14px;
+    background: var(--yellow); border: none; color: var(--black);
+    font-family: 'Anton', 'Impact', sans-serif; font-size: 18px;
+    letter-spacing: 2px; cursor: pointer; text-transform: uppercase;
+  }
+  #gate-submit:hover { background: var(--cream); }
+  #gate-error { color: var(--red); font-size: 13px; margin-top: 14px; min-height: 18px; }
+  .gate-footer { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--grey-line); font-size: 12px; color: var(--muted); }
+
+  /* ============ HEADER ============ */
+  header {
+    background: var(--deep-black); border-bottom: 3px solid var(--yellow);
+    padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand-mark {
+    width: 48px; height: 48px; background: var(--yellow);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Anton', 'Impact', sans-serif; font-size: 26px; font-weight: 900;
+    color: var(--red-deep); letter-spacing: -2px; border: 2px solid var(--black);
+  }
+  .brand-wordmark {
+    font-family: 'Anton', 'Impact', sans-serif; font-size: 32px; font-weight: 900;
+    letter-spacing: -1px; line-height: 1;
+  }
+  .brand-wordmark .knee { color: var(--cream); }
+  .brand-wordmark .jerk { color: var(--yellow); }
+  .brand-tag { font-size: 11px; color: var(--muted); font-style: italic; margin-top: 2px; }
+  .header-right { display: flex; align-items: center; gap: 16px; font-size: 13px; color: var(--muted); }
+  .live-dot {
+    display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+    background: var(--red); margin-right: 6px; animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .logout-link { color: var(--muted); cursor: pointer; font-size: 12px; }
+  .logout-link:hover { color: var(--yellow); }
+
+  /* ============ LAYOUT ============ */
+  main { max-width: 1280px; margin: 0 auto; padding: 24px; }
+  .hero-strip {
+    background: var(--yellow); color: var(--black);
+    padding: 16px 24px; margin-bottom: 24px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    border-left: 8px solid var(--red);
+  }
+  .hero-strip h1 {
+    font-family: 'Anton', 'Impact', sans-serif; font-size: 28px; letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .hero-strip .meta { font-size: 13px; font-weight: 600; }
+
+  /* ============ SECTION HEADERS ============ */
+  .section-head {
+    display: flex; align-items: center; gap: 12px;
+    margin: 32px 0 16px;
+    border-bottom: 2px solid var(--yellow); padding-bottom: 10px;
+  }
+  .section-head h2 {
+    font-family: 'Anton', 'Impact', sans-serif;
+    font-size: 24px; letter-spacing: 1px; color: var(--yellow);
+    text-transform: uppercase;
+  }
+  .section-head .pill {
+    background: var(--red); color: var(--cream);
+    padding: 3px 10px; font-size: 11px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  /* ============ LEADERBOARD TABLE ============ */
+  .leaderboard {
+    width: 100%; border-collapse: collapse;
+    background: var(--deep-black); border: 1px solid var(--grey-line);
+  }
+  .leaderboard thead th {
+    background: var(--black); color: var(--yellow);
+    font-family: 'Anton', 'Impact', sans-serif; font-size: 13px;
+    font-weight: 400; letter-spacing: 1px; text-transform: uppercase;
+    padding: 12px 10px; text-align: left;
+    border-bottom: 2px solid var(--yellow);
+  }
+  .leaderboard thead th.num, .leaderboard thead th.total { text-align: center; }
+  .leaderboard tbody tr {
+    border-bottom: 1px solid var(--grey-line);
+    transition: background 0.15s;
+  }
+  .leaderboard tbody tr:hover { background: var(--grey-row); }
+  .leaderboard tbody td {
+    padding: 14px 10px; font-size: 13px; vertical-align: middle;
+  }
+  .leaderboard .rank {
+    text-align: center; font-family: 'Anton', 'Impact', sans-serif;
+    font-size: 22px; color: var(--muted); width: 50px;
+  }
+  .leaderboard tr.top .rank { color: var(--yellow); }
+  .leaderboard tr.top td:first-child { border-left: 4px solid var(--yellow); }
+  .leaderboard tr.top td:nth-child(2) { position: relative; }
+  .leaderboard .player-name { font-weight: 600; color: var(--cream); }
+  .leaderboard .player-tag { font-size: 11px; color: var(--muted); font-style: italic; margin-top: 2px; }
+  .leaderboard .pick { color: var(--cream); font-size: 13px; }
+  .leaderboard .value { font-size: 11px; color: var(--yellow); font-weight: 700; margin-top: 2px; }
+  .leaderboard .no-pick { color: var(--muted); font-style: italic; font-size: 12px; }
+  .leaderboard .total {
+    text-align: center; width: 80px;
+  }
+  .leaderboard .total-box {
+    display: inline-block; padding: 6px 12px;
+    background: var(--yellow); color: var(--black);
+    font-family: 'Anton', 'Impact', sans-serif; font-size: 20px;
+    letter-spacing: 1px; min-width: 56px;
+  }
+  .leaderboard tr.top .total-box { background: var(--red); color: var(--cream); }
+
+  /* ============ TOURNAMENT CLOCK / CATEGORY VALUES ============ */
+  .clock-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px; margin-bottom: 32px;
+  }
+  .clock-card {
+    background: var(--deep-black); border: 1px solid var(--grey-line);
+    border-top: 3px solid var(--yellow); padding: 14px 16px;
+  }
+  .clock-card.decided { border-top-color: var(--red); opacity: 0.85; }
+  .clock-card .cat-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .clock-card .cat-name { font-size: 14px; font-weight: 600; color: var(--cream); margin: 4px 0 10px; }
+  .clock-card .cat-value {
+    font-family: 'Anton', 'Impact', sans-serif; font-size: 32px;
+    color: var(--yellow); letter-spacing: 1px; line-height: 1;
+  }
+  .clock-card .cat-value .pts { font-size: 14px; color: var(--muted); letter-spacing: 0; margin-left: 4px; }
+  .clock-card .cat-trend { font-size: 11px; color: var(--red); margin-top: 6px; }
+  .clock-card.decided .cat-value { color: var(--red); }
+  .clock-card.decided .cat-trend { color: var(--yellow); }
+
+  /* ============ CATEGORY PANELS ============ */
+  .cat-panel {
+    background: var(--deep-black); border: 1px solid var(--grey-line);
+    margin-bottom: 24px;
+  }
+  .cat-panel-head {
+    background: var(--black); padding: 14px 18px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+    border-bottom: 2px solid var(--yellow);
+  }
+  .cat-panel-head h3 {
+    font-family: 'Anton', 'Impact', sans-serif; font-size: 18px;
+    color: var(--yellow); letter-spacing: 1px; text-transform: uppercase;
+  }
+  .cat-panel-head .cat-status {
+    font-size: 11px; color: var(--muted); font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .cat-panel-head .cat-status.active { color: var(--yellow); }
+  .cat-panel-body { padding: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cat-panel-body { grid-template-columns: 1fr; } }
+
+  .distribution-chart { display: flex; flex-direction: column; gap: 6px; }
+  .dist-row { display: flex; align-items: center; gap: 10px; font-size: 12px; }
+  .dist-label { width: 90px; color: var(--cream); font-weight: 600; flex-shrink: 0; }
+  .dist-bar-wrap { flex: 1; background: var(--grey-row); height: 20px; position: relative; }
+  .dist-bar { height: 100%; background: var(--yellow); }
+  .dist-bar.rank2 { background: var(--yellow-dim); }
+  .dist-bar.rank3 { background: var(--red); }
+  .dist-count { width: 60px; text-align: right; color: var(--cream); font-weight: 600; font-size: 12px; flex-shrink: 0; }
+
+  .trend-list { display: flex; flex-direction: column; gap: 10px; }
+  .trend-item {
+    background: var(--grey-row); padding: 10px 12px; font-size: 12px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-left: 3px solid var(--yellow);
+  }
+  .trend-item.movement-in { border-left-color: var(--yellow); }
+  .trend-item.movement-out { border-left-color: var(--red); }
+  .trend-desc { color: var(--cream); }
+  .trend-desc strong { color: var(--yellow); }
+  .trend-time { color: var(--muted); font-size: 11px; }
+
+  /* ============ PUNDITS ============ */
+  .pundits {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .pundit-card {
+    background: var(--deep-black); border: 1px solid var(--grey-line);
+    padding: 20px; border-top: 3px solid var(--yellow);
+  }
+  .pundit-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+  .pundit-avatar {
+    width: 52px; height: 52px; background: var(--yellow); color: var(--black);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Anton', 'Impact', sans-serif; font-size: 22px; font-weight: 900;
+    letter-spacing: -1px; flex-shrink: 0;
+  }
+  .pundit-name { font-size: 15px; font-weight: 700; color: var(--cream); line-height: 1.2; }
+  .pundit-handle { font-size: 11px; color: var(--red); font-style: italic; margin-top: 3px; }
+  .pundit-bio { font-size: 13px; color: var(--cream); line-height: 1.6; }
+
+  /* ============ FOOTER ============ */
+  footer {
+    margin-top: 48px; padding: 24px; background: var(--deep-black);
+    border-top: 3px solid var(--yellow); text-align: center;
+    font-size: 12px; color: var(--muted);
+  }
+  footer .footer-brand {
+    font-family: 'Anton', 'Impact', sans-serif; font-size: 18px;
+    color: var(--yellow); letter-spacing: 1px; margin-bottom: 6px;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    .leaderboard { font-size: 11px; }
+    .leaderboard thead th:nth-child(n+4):nth-child(-n+8) { display: none; }
+    .leaderboard tbody td:nth-child(n+4):nth-child(-n+8) { display: none; }
+    .leaderboard thead th.mobile-note { display: table-cell; }
+    .mobile-note { display: none; }
+    .brand-wordmark { font-size: 24px; }
+    .brand-mark { width: 40px; height: 40px; font-size: 22px; }
+  }
+  @media (max-width: 600px) {
+    main { padding: 16px; }
+    .hero-strip h1 { font-size: 20px; }
+    header { padding: 12px 16px; gap: 12px; }
+    .header-right { font-size: 11px; gap: 10px; }
+    .gate-card { padding: 28px 20px; }
+    .gate-logo-wordmark { font-size: 44px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- =====================================================================
+     PASSWORD GATE
+     ===================================================================== -->
+<div id="gate">
+  <div class="gate-card">
+    <div class="gate-logo">
+      <div class="gate-logo-wordmark">
+        <span class="knee">KNEE</span><span class="jerk">JERK</span>
+      </div>
+      <div class="gate-tagline">The football prediction game that lets you change your mind</div>
+    </div>
+    <div class="gate-heading">League access</div>
+    <p class="gate-instruction">
+      Enter the league password to see predictions, standings and all the damage being done.<br><br>
+      <strong>Not sure of the password?</strong> Ask whoever invited you, it's the same word for every player in the league.
+    </p>
+    <input type="password" id="gate-input" placeholder="enter password" autocomplete="off" autofocus>
+    <button id="gate-submit">Enter League</button>
+    <div id="gate-error"></div>
+    <div class="gate-footer">
+      KneeJerk is a private league game for friends. No data is collected. Predictions are submitted to the league admin outside of the site.
+    </div>
+  </div>
+</div>
+
+<!-- =====================================================================
+     MAIN SITE
+     ===================================================================== -->
+<div id="site" style="display: none;">
+
+<header>
+  <div class="brand">
+    <div class="brand-mark">KJ</div>
+    <div>
+      <div class="brand-wordmark"><span class="knee">KNEE</span><span class="jerk">JERK</span></div>
+      <div class="brand-tag">The football prediction game that lets you change your mind</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <span><span class="live-dot"></span>WEEK 3 LIVE</span>
+    <span class="logout-link" onclick="logout()">lock site</span>
+  </div>
+</header>
+
+<main>
+
+  <div class="hero-strip">
+    <h1>The Boozer League — Week 3 Snapshot</h1>
+    <div class="meta">Day 14 of 38 &nbsp;•&nbsp; Last update: Sun 28 June, 09:00 BST &nbsp;•&nbsp; Next update: Sun 05 July</div>
+  </div>
+
+  <!-- ============ TOURNAMENT CLOCK ============ -->
+  <div class="section-head">
+    <h2>Today's Category Values</h2>
+    <span class="pill">Clock is ticking</span>
+  </div>
+  <div class="clock-grid">
+    <div class="clock-card">
+      <div class="cat-label">Category 1</div>
+      <div class="cat-name">Most GSP</div>
+      <div class="cat-value">3<span class="pts">pts</span></div>
+      <div class="cat-trend">Locks in 2 days (26 June)</div>
+    </div>
+    <div class="clock-card">
+      <div class="cat-label">Category 2</div>
+      <div class="cat-name">Least GSP</div>
+      <div class="cat-value">3<span class="pts">pts</span></div>
+      <div class="cat-trend">Locks in 2 days (26 June)</div>
+    </div>
+    <div class="clock-card">
+      <div class="cat-label">Category 3</div>
+      <div class="cat-name">Top Scoring Team</div>
+      <div class="cat-value">25<span class="pts">pts</span></div>
+      <div class="cat-trend">–1 pt per day until 18 July</div>
+    </div>
+    <div class="clock-card">
+      <div class="cat-label">Category 4</div>
+      <div class="cat-name">Most Assists</div>
+      <div class="cat-value">25<span class="pts">pts</span></div>
+      <div class="cat-trend">–1 pt per day until 18 July</div>
+    </div>
+    <div class="clock-card">
+      <div class="cat-label">Category 5</div>
+      <div class="cat-name">Golden Boot</div>
+      <div class="cat-value">25<span class="pts">pts</span></div>
+      <div class="cat-trend">–1 pt per day until 18 July</div>
+    </div>
+    <div class="clock-card">
+      <div class="cat-label">Category 6</div>
+      <div class="cat-name">World Cup Winner</div>
+      <div class="cat-value">50<span class="pts">pts</span></div>
+      <div class="cat-trend">–2 pts per day until 18 July</div>
+    </div>
+  </div>
+
+  <!-- ============ LEADERBOARD ============ -->
+  <div class="section-head">
+    <h2>League Leaderboard</h2>
+    <span class="pill">Potential Points</span>
+  </div>
+  <div style="overflow-x: auto;">
+  <table class="leaderboard">
+    <thead>
+      <tr>
+        <th class="num">Rank</th>
+        <th>Manager</th>
+        <th>Most GSP</th>
+        <th>Least GSP</th>
+        <th>Top Team</th>
+        <th>Assists</th>
+        <th>Golden Boot</th>
+        <th>WC Winner</th>
+        <th class="total">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="top">
+        <td class="rank">1</td>
+        <td><div class="player-name">Baz Fullerton</div><div class="player-tag">The Oracle of Aisle 3</div></td>
+        <td><div class="pick">England</div><div class="value">17 pts</div></td>
+        <td><div class="pick">Haiti</div><div class="value">17 pts</div></td>
+        <td><div class="pick">France</div><div class="value">39 pts</div></td>
+        <td><div class="pick">Mbappé</div><div class="value">39 pts</div></td>
+        <td><div class="pick">Haaland</div><div class="value">39 pts</div></td>
+        <td><div class="pick">Brazil</div><div class="value">78 pts</div></td>
+        <td class="total"><span class="total-box">229</span></td>
+      </tr>
+      <tr>
+        <td class="rank">2</td>
+        <td><div class="player-name">Shaz O'Connell</div><div class="player-tag">Never wrong, often cross</div></td>
+        <td><div class="pick">Brazil</div><div class="value">17 pts</div></td>
+        <td><div class="pick">Cape Verde</div><div class="value">17 pts</div></td>
+        <td><div class="pick">Brazil</div><div class="value">39 pts</div></td>
+        <td><div class="pick">De Bruyne</div><div class="value">39 pts</div></td>
+        <td><div class="pick">Kane</div><div class="value">39 pts</div></td>
+        <td><div class="pick">France</div><div class="value">50 pts</div></td>
+        <td class="total"><span class="total-box">201</span></td>
+      </tr>
+      <tr>
+        <td class="rank">3</td>
+        <td><div class="player-name">Jonno Pritchard</div><div class="player-tag">Has a formula for this</div></td>
+        <td><div class="pick">Spain</div><div class="value">12 pts</div></td>
+        <td><div class="pick">Wales</div><div class="value">15 pts</div></td>
+        <td><div class="pick">England</div><div class="value">30 pts</div></td>
+        <td><div class="pick">Bellingham</div><div class="value">30 pts</div></td>
+        <td><div class="pick">Mbappé</div><div class="value">30 pts</div></td>
+        <td><div class="pick">Argentina</div><div class="value">70 pts</div></td>
+        <td class="total"><span class="total-box">187</span></td>
+      </tr>
+      <tr>
+        <td class="rank">4</td>
+        <td><div class="player-name">Rosie 'Gaffer' Henshaw</div><div class="player-tag">Tactical genius, allegedly</div></td>
+        <td><div class="pick">Argentina</div><div class="value">14 pts</div></td>
+        <td><div class="pick">Jordan</div><div class="value">17 pts</div></td>
+        <td><div class="pick">Germany</div><div class="value">35 pts</div></td>
+        <td><div class="pick">Musiala</div><div class="value">28 pts</div></td>
+        <td><div class="pick">Lautaro</div><div class="value">28 pts</div></td>
+        <td><div class="pick">Germany</div><div class="value">60 pts</div></td>
+        <td class="total"><span class="total-box">182</span></td>
+      </tr>
+      <tr>
+        <td class="rank">5</td>
+        <td><div class="player-name">Kev 'Two Pints' Dawkins</div><div class="player-tag">Picks after last orders</div></td>
+        <td><div class="pick">Portugal</div><div class="value">17 pts</div></td>
+        <td><div class="pick">Haiti</div><div class="value">17 pts</div></td>
+        <td><div class="pick">Spain</div><div class="value">25 pts</div></td>
+        <td><div class="pick">Pedri</div><div class="value">25 pts</div></td>
+        <td><div class="pick">Ronaldo</div><div class="value">39 pts</div></td>
+        <td><div class="pick">England</div><div class="value">50 pts</div></td>
+        <td class="total"><span class="total-box">173</span></td>
+      </tr>
+      <tr>
+        <td class="rank">6</td>
+        <td><div class="player-name">Trev Shackleton</div><div class="player-tag">Middle of the road, middle of the table</div></td>
+        <td><div class="pick">France</div><div class="value">17 pts</div></td>
+        <td><div class="pick">Cape Verde</div><div class="value">17 pts</div></td>
+        <td><div class="pick">Portugal</div><div class="value">25 pts</div></td>
+        <td><div class="pick">Bruno Fernandes</div><div class="value">25 pts</div></td>
+        <td><div class="pick">Ronaldo</div><div class="value">25 pts</div></td>
+        <td><div class="pick">Spain</div><div class="value">60 pts</div></td>
+        <td class="total"><span class="total-box">169</span></td>
+      </tr>
+      <tr>
+        <td class="rank">7</td>
+        <td><div class="player-name">Dot 'The Dossier' Fairweather</div><div class="player-tag">Watches the youth games</div></td>
+        <td><div class="pick">Netherlands</div><div class="value">10 pts</div></td>
+        <td><div class="pick">New Zealand</div><div class="value">12 pts</div></td>
+        <td><div class="pick">Brazil</div><div class="value">25 pts</div></td>
+        <td><div class="pick">Vinícius Jr</div><div class="value">25 pts</div></td>
+        <td><div class="pick">Vinícius Jr</div><div class="value">25 pts</div></td>
+        <td><div class="pick">Portugal</div><div class="value">60 pts</div></td>
+        <td class="total"><span class="total-box">157</span></td>
+      </tr>
+      <tr>
+        <td class="rank">8</td>
+        <td><div class="player-name">Big Nige Wickersham</div><div class="player-tag">Been predicting since '78</div></td>
+        <td><div class="pick">Germany</div><div class="value">17 pts</div></td>
+        <td><div class="pick"><span class="no-pick">No pick</span></div></td>
+        <td><div class="pick">Argentina</div><div class="value">25 pts</div></td>
+        <td><div class="pick">Messi</div><div class="value">39 pts</div></td>
+        <td><div class="pick">Messi</div><div class="value">25 pts</div></td>
+        <td><div class="pick">Argentina</div><div class="value">50 pts</div></td>
+        <td class="total"><span class="total-box">156</span></td>
+      </tr>
+      <tr>
+        <td class="rank">9</td>
+        <td><div class="player-name">Moz Greenhalgh</div><div class="player-tag">Changes pick every Tuesday</div></td>
+        <td><div class="pick">Italy</div><div class="value">8 pts</div></td>
+        <td><div class="pick">Scotland</div><div class="value">9 pts</div></td>
+        <td><div class="pick">Belgium</div><div class="value">25 pts</div></td>
+        <td><div class="pick">De Bruyne</div><div class="value">25 pts</div></td>
+        <td><div class="pick">Lukaku</div><div class="value">25 pts</div></td>
+        <td><div class="pick">Brazil</div><div class="value">50 pts</div></td>
+        <td class="total"><span class="total-box">142</span></td>
+      </tr>
+      <tr>
+        <td class="rank">10</td>
+        <td><div class="player-name">Linz 'The Lurker' Carmichael</div><div class="player-tag">Quiet until the final</div></td>
+        <td><div class="pick"><span class="no-pick">No pick</span></div></td>
+        <td><div class="pick">Haiti</div><div class="value">14 pts</div></td>
+        <td><div class="pick">France</div><div class="value">25 pts</div></td>
+        <td><div class="pick">Mbappé</div><div class="value">25 pts</div></td>
+        <td><div class="pick">Haaland</div><div class="value">25 pts</div></td>
+        <td><div class="pick">France</div><div class="value">50 pts</div></td>
+        <td class="total"><span class="total-box">139</span></td>
+      </tr>
+      <tr>
+        <td class="rank">11</td>
+        <td><div class="player-name">Reg 'Three Pies' Mottershead</div><div class="player-tag">Eats through the uncertainty</div></td>
+        <td><div class="pick">Japan</div><div class="value">8 pts</div></td>
+        <td><div class="pick">Panama</div><div class="value">10 pts</div></td>
+        <td><div class="pick">Spain</div><div class="value">25 pts</div></td>
+        <td><div class="pick"><span class="no-pick">No pick</span></div></td>
+        <td><div class="pick">Harry Kane</div><div class="value">25 pts</div></td>
+        <td><div class="pick">England</div><div class="value">50 pts</div></td>
+        <td class="total"><span class="total-box">118</span></td>
+      </tr>
+      <tr>
+        <td class="rank">12</td>
+        <td><div class="player-name">Doc Finnegan</div><div class="player-tag">Joined late, doomed early</div></td>
+        <td><div class="pick">Saudi Arabia</div><div class="value">5 pts</div></td>
+        <td><div class="pick">Haiti</div><div class="value">8 pts</div></td>
+        <td><div class="pick">Uruguay</div><div class="value">25 pts</div></td>
+        <td><div class="pick">Valverde</div><div class="value">25 pts</div></td>
+        <td><div class="pick">Núñez</div><div class="value">25 pts</div></td>
+        <td><div class="pick">Uruguay</div><div class="value">25 pts</div></td>
+        <td class="total"><span class="total-box">113</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size: 11px; color: var(--muted); margin-top: 10px; font-style: italic;">
+    Values shown are the points locked in at the time of the last prediction change. Actual scoring begins when categories are decided.
+    To change a prediction, contact the league admin — the dashboard updates each Sunday at 09:00 BST.
+  </p>
+
+  <!-- ============ CATEGORY 6: WORLD CUP WINNER ============ -->
+  <div class="section-head">
+    <h2>Category 6 — World Cup Winner</h2>
+    <span class="pill">78 → 2 pts</span>
+  </div>
+  <div class="cat-panel">
+    <div class="cat-panel-head">
+      <h3>Who the league is backing</h3>
+      <div class="cat-status active">Active • 50 pts today</div>
+    </div>
+    <div class="cat-panel-body">
+      <div>
+        <div style="font-size: 12px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Pick distribution</div>
+        <div class="distribution-chart">
+          <div class="dist-row">
+            <div class="dist-label">Brazil</div>
+            <div class="dist-bar-wrap"><div class="dist-bar" style="width: 25%;"></div></div>
+            <div class="dist-count">3 picks</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-label">France</div>
+            <div class="dist-bar-wrap"><div class="dist-bar rank2" style="width: 16.7%;"></div></div>
+            <div class="dist-count">2 picks</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-label">England</div>
+            <div class="dist-bar-wrap"><div class="dist-bar rank2" style="width: 16.7%;"></div></div>
+            <div class="dist-count">2 picks</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-label">Argentina</div>
+            <div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 16.7%;"></div></div>
+            <div class="dist-count">2 picks</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-label">Germany</div>
+            <div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div>
+            <div class="dist-count">1 pick</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-label">Portugal</div>
+            <div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div>
+            <div class="dist-count">1 pick</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-label">Spain</div>
+            <div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div>
+            <div class="dist-count">1 pick</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-label">Uruguay</div>
+            <div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div>
+            <div class="dist-count">1 pick</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size: 12px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Recent movement</div>
+        <div class="trend-list">
+          <div class="trend-item movement-out">
+            <div class="trend-desc"><strong>Moz Greenhalgh</strong> jumped off Argentina, onto <strong>Brazil</strong></div>
+            <div class="trend-time">Last Thu • locked at 52 pts</div>
+          </div>
+          <div class="trend-item movement-in">
+            <div class="trend-desc"><strong>Linz Carmichael</strong> switched from Spain to <strong>France</strong></div>
+            <div class="trend-time">Last Wed • locked at 54 pts</div>
+          </div>
+          <div class="trend-item movement-out">
+            <div class="trend-desc"><strong>Doc Finnegan</strong> dropped Brazil for <strong>Uruguay</strong> (bold)</div>
+            <div class="trend-time">Last Tue • locked at 56 pts</div>
+          </div>
+          <div class="trend-item movement-in">
+            <div class="trend-desc"><strong>Shaz O'Connell</strong> swapped Brazil for <strong>France</strong></div>
+            <div class="trend-time">Last Mon • locked at 50 pts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CATEGORY 5: GOLDEN BOOT ============ -->
+  <div class="section-head">
+    <h2>Category 5 — Golden Boot</h2>
+    <span class="pill">39 → 1 pts</span>
+  </div>
+  <div class="cat-panel">
+    <div class="cat-panel-head">
+      <h3>Top scorer picks</h3>
+      <div class="cat-status active">Active • 25 pts today</div>
+    </div>
+    <div class="cat-panel-body">
+      <div>
+        <div style="font-size: 12px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Pick distribution</div>
+        <div class="distribution-chart">
+          <div class="dist-row">
+            <div class="dist-label">Haaland</div>
+            <div class="dist-bar-wrap"><div class="dist-bar" style="width: 25%;"></div></div>
+            <div class="dist-count">3 picks</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-label">Mbappé</div>
+            <div class="dist-bar-wrap"><div class="dist-bar rank2" style="width: 16.7%;"></div></div>
+            <div class="dist-count">2 picks</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-label">Kane</div>
+            <div class="dist-bar-wrap"><div class="dist-bar rank2" style="width: 16.7%;"></div></div>
+            <div class="dist-count">2 picks</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-label">Ronaldo</div>
+            <div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 16.7%;"></div></div>
+            <div class="dist-count">2 picks</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-label">Messi</div>
+            <div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div>
+            <div class="dist-count">1 pick</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-label">Lautaro</div>
+            <div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div>
+            <div class="dist-count">1 pick</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-label">Núñez</div>
+            <div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div>
+            <div class="dist-count">1 pick</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size: 12px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Recent movement</div>
+        <div class="trend-list">
+          <div class="trend-item movement-in">
+            <div class="trend-desc"><strong>Big Nige</strong> switched to <strong>Messi</strong> after that hat-trick</div>
+            <div class="trend-time">Last Fri • locked at 25 pts</div>
+          </div>
+          <div class="trend-item movement-out">
+            <div class="trend-desc"><strong>Reg Mottershead</strong> bailed on Ronaldo, went to <strong>Kane</strong></div>
+            <div class="trend-time">Last Thu • locked at 27 pts</div>
+          </div>
+          <div class="trend-item movement-in">
+            <div class="trend-desc"><strong>Dot Fairweather</strong> doubled down on <strong>Vinícius Jr</strong></div>
+            <div class="trend-time">Last Wed • locked at 25 pts</div>
+          </div>
+          <div class="trend-item movement-out">
+            <div class="trend-desc"><strong>Trev Shackleton</strong> stuck with Ronaldo, fortune favours the bold</div>
+            <div class="trend-time">No change since pre-tournament • 25 pts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PUNDITS ============ -->
+  <div class="section-head">
+    <h2>Meet the Pundits</h2>
+    <span class="pill">Week 3 Verdicts</span>
+  </div>
+  <div class="pundits">
+    <div class="pundit-card">
+      <div class="pundit-head">
+        <div class="pundit-avatar">PM</div>
+        <div>
+          <div class="pundit-name">Paul "The Gaffer" Meyers</div>
+          <div class="pundit-handle">Effortlessly correct</div>
+        </div>
+      </div>
+      <div class="pundit-bio">
+        A man so ridiculously good looking, so effortlessly successful and so unnervingly competent at absolutely everything he attempts, that scientists are genuinely stumped. Legend has it he predicted the 2014 World Cup winner while simultaneously closing a seven-figure deal, restoring a classic car and fixing next door's lawnmower. Paul's predictions are considered so accurate that bookmakers have banned him from three continents. He is here to grudgingly share his wisdom with mere mortals.
+      </div>
+    </div>
+    <div class="pundit-card">
+      <div class="pundit-head">
+        <div class="pundit-avatar">DH</div>
+        <div>
+          <div class="pundit-name">Dave "YNWA" Hodgson</div>
+          <div class="pundit-handle">Slot sceptic in chief</div>
+        </div>
+      </div>
+      <div class="pundit-bio">
+        Liverpool obsessive, Slot sceptic, and the only man on Merseyside who can turn a 3-0 home win into a 40-minute rant about tactical rigidity. Dave's predictions are 60% football analysis and 40% veiled complaint about whichever Liverpool manager currently isn't Jürgen Klopp. If England are playing, expect tactical breakdowns. If Liverpool are playing, expect a lecture on how it would all be better under someone, anyone, else.
+      </div>
+    </div>
+    <div class="pundit-card">
+      <div class="pundit-head">
+        <div class="pundit-avatar">DB</div>
+        <div>
+          <div class="pundit-name">Dave "Two Flags" Broome</div>
+          <div class="pundit-handle">Nationality varies</div>
+        </div>
+      </div>
+      <div class="pundit-bio">
+        Staunch Boro fan, proud Teessider, and a man whose nationality depends entirely on how the Three Lions or the Tartan Army are getting on. Loses on penalties to Germany? Always been Scottish, nan was from Oban. Scotland crash out in the group stage? English through and through, pass the flag. His World Cup predictions are famously hedged, famously contradictory, and famously wrong, but always delivered with total conviction in whichever accent feels appropriate on the day.
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-brand">KNEEJERK</div>
+  <div>The football prediction game that lets you change your mind</div>
+  <div style="margin-top: 10px;">Private league • Predictions submitted via the league admin • Dashboard refreshed weekly on Sundays at 09:00 BST</div>
+</footer>
+
+</div>
+
+<script>
+  // =====================================================================
+  // PASSWORD GATE LOGIC
+  // =====================================================================
+  // Note: this is NOT real security. The password is visible in the page
+  // source to anyone who knows how to view it. Fine for a friends-only
+  // game; do not use KneeJerk to protect anything serious.
+  // =====================================================================
+  const PASSWORD = "kneejerk";
+  const STORAGE_KEY = "kneejerk_access_granted";
+
+  const gateEl = document.getElementById("gate");
+  const siteEl = document.getElementById("site");
+  const inputEl = document.getElementById("gate-input");
+  const submitEl = document.getElementById("gate-submit");
+  const errorEl = document.getElementById("gate-error");
+
+  function unlock() {
+    try { localStorage.setItem(STORAGE_KEY, "1"); } catch (e) { /* private mode */ }
+    gateEl.classList.add("hidden");
+    siteEl.style.display = "block";
+  }
+
+  function lock() {
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+    siteEl.style.display = "none";
+    gateEl.classList.remove("hidden");
+    inputEl.value = "";
+    errorEl.textContent = "";
+    inputEl.focus();
+  }
+
+  function checkPassword() {
+    const entered = (inputEl.value || "").trim().toLowerCase();
+    if (entered === PASSWORD) {
+      errorEl.textContent = "";
+      unlock();
+    } else {
+      errorEl.textContent = "Wrong password. Ask whoever invited you.";
+      inputEl.value = "";
+      inputEl.focus();
+    }
+  }
+
+  submitEl.addEventListener("click", checkPassword);
+  inputEl.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") checkPassword();
+  });
+
+  function logout() { lock(); }
+
+  // Auto-unlock if the user has entered the password before in this browser
+  try {
+    if (localStorage.getItem(STORAGE_KEY) === "1") { unlock(); }
+  } catch (e) { /* ignore */ }
+</script>
+
+</body>
+</html>
