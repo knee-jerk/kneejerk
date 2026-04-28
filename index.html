@@ -5,1110 +5,1036 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KneeJerk — The football prediction game that lets you change your mind</title>
 <style>
-  :root {
-    --black: #1A1A1A;
-    --deep-black: #0D0D0D;
-    --yellow: #FFD100;
-    --yellow-dim: #E6BC00;
-    --red: #E63946;
-    --red-deep: #C1121F;
-    --cream: #F8F5EC;
-    --grey-row: #242424;
-    --grey-row-alt: #1F1F1F;
-    --grey-line: #333333;
-    --muted: #8A8A8A;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: var(--black); color: var(--cream); font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; line-height: 1.5; }
-  a { color: var(--yellow); text-decoration: none; }
-  a:hover { text-decoration: underline; }
+:root {
+  --black: #0F0F0F;
+  --black2: #161616;
+  --black3: #1E1E1E;
+  --black4: #272727;
+  --yellow: #FFD100;
+  --yellow2: #E6BC00;
+  --red: #E63946;
+  --red2: #C1121F;
+  --cream: #F0EDE4;
+  --muted: #7A7A7A;
+  --border: #2A2A2A;
+  --border2: #333;
+  --cyan: #4DD0E1;
+  --orange: #FF6F00;
+  --purple: #C77DFF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--cream);font-family:'Inter','Helvetica Neue',Arial,sans-serif;line-height:1.5;min-height:100vh}
 
-  /* ============ PASSWORD GATE ============ */
-  #gate {
-    position: fixed; inset: 0; background: var(--deep-black);
-    display: flex; align-items: center; justify-content: center; z-index: 9999;
-    padding: 20px;
-  }
-  #gate.hidden { display: none; }
-  .gate-card {
-    max-width: 440px; width: 100%;
-    background: var(--black); border: 2px solid var(--yellow);
-    padding: 40px 32px; text-align: center;
-  }
-  .gate-logo { margin-bottom: 24px; }
-  .gate-logo-wordmark {
-    font-family: 'Anton', 'Impact', 'Arial Black', sans-serif;
-    font-size: 56px; font-weight: 900; letter-spacing: -2px; line-height: 0.9;
-  }
-  .gate-logo-wordmark .knee { color: var(--cream); }
-  .gate-logo-wordmark .jerk { color: var(--yellow); }
-  .gate-tagline { color: var(--muted); font-size: 13px; font-style: italic; margin: 10px 0 28px; }
-  .gate-heading { font-family: 'Anton', 'Impact', sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--yellow); margin-bottom: 8px; text-transform: uppercase; }
-  .gate-instruction { color: var(--cream); font-size: 14px; margin-bottom: 24px; }
-  .gate-instruction strong { color: var(--yellow); }
-  #gate-input {
-    width: 100%; padding: 14px 16px; font-size: 16px;
-    background: var(--deep-black); border: 1px solid var(--grey-line);
-    color: var(--cream); text-align: center; letter-spacing: 3px;
-    font-family: 'Courier New', monospace; text-transform: lowercase;
-  }
-  #gate-input:focus { outline: none; border-color: var(--yellow); }
-  #gate-submit {
-    margin-top: 16px; width: 100%; padding: 14px;
-    background: var(--yellow); border: none; color: var(--black);
-    font-family: 'Anton', 'Impact', sans-serif; font-size: 18px;
-    letter-spacing: 2px; cursor: pointer; text-transform: uppercase;
-  }
-  #gate-submit:hover { background: var(--cream); }
-  #gate-error { color: var(--red); font-size: 13px; margin-top: 14px; min-height: 18px; }
-  .gate-footer { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--grey-line); font-size: 12px; color: var(--muted); }
+/* ======= GATE ======= */
+#gate{position:fixed;inset:0;background:var(--black);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
+#gate.hidden{display:none}
+.gate-card{max-width:420px;width:100%;padding:48px 36px;border:1px solid var(--border2);background:var(--black2);position:relative;overflow:hidden}
+.gate-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--yellow)}
+.gate-logo-wrap{text-align:center;margin-bottom:32px}
+.gate-wordmark{font-family:'Anton','Impact','Arial Black',sans-serif;font-size:64px;letter-spacing:-3px;line-height:0.9}
+.gate-wordmark .k{color:var(--cream)}.gate-wordmark .j{color:var(--yellow)}
+.gate-sub{font-size:12px;color:var(--muted);font-style:italic;margin-top:10px;letter-spacing:0.3px}
+.gate-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+#gate-input{width:100%;padding:14px 16px;font-size:15px;background:var(--black);border:1px solid var(--border2);color:var(--cream);text-align:center;letter-spacing:4px;font-family:'Courier New',monospace;transition:border-color .2s}
+#gate-input:focus{outline:none;border-color:var(--yellow)}
+#gate-btn{margin-top:12px;width:100%;padding:15px;background:var(--yellow);border:none;color:var(--black);font-family:'Anton','Impact',sans-serif;font-size:17px;letter-spacing:2px;cursor:pointer;text-transform:uppercase;transition:background .15s}
+#gate-btn:hover{background:var(--cream)}
+#gate-err{color:var(--red);font-size:12px;margin-top:12px;min-height:16px;text-align:center}
+.gate-footer{margin-top:28px;padding-top:20px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
 
-  /* ============ HEADER + NAV ============ */
-  header {
-    background: var(--deep-black); border-bottom: 3px solid var(--yellow);
-    padding: 14px 24px;
-    display: flex; align-items: center; justify-content: space-between; gap: 16px;
-    flex-wrap: wrap;
-  }
-  .brand { display: flex; align-items: center; gap: 14px; }
-  .brand-mark {
-    width: 44px; height: 44px; background: var(--yellow);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Anton', 'Impact', sans-serif; font-size: 24px; font-weight: 900;
-    color: var(--red-deep); letter-spacing: -2px; border: 2px solid var(--black);
-    flex-shrink: 0;
-  }
-  .brand-wordmark {
-    font-family: 'Anton', 'Impact', sans-serif; font-size: 28px; font-weight: 900;
-    letter-spacing: -1px; line-height: 1;
-  }
-  .brand-wordmark .knee { color: var(--cream); }
-  .brand-wordmark .jerk { color: var(--yellow); }
-  .brand-tag { font-size: 11px; color: var(--muted); font-style: italic; margin-top: 2px; }
+/* ======= HEADER ======= */
+header{background:var(--black);border-bottom:1px solid var(--border);padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.brand{display:flex;align-items:center;gap:12px;cursor:pointer}
+.brand-kj{width:36px;height:36px;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-family:'Anton','Impact',sans-serif;font-size:18px;color:var(--red2);letter-spacing:-1px;flex-shrink:0}
+.brand-name{font-family:'Anton','Impact',sans-serif;font-size:24px;letter-spacing:-1px;line-height:1}
+.brand-name .k{color:var(--cream)}.brand-name .j{color:var(--yellow)}
+.header-right{display:flex;align-items:center;gap:20px}
+.live-badge{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--red);animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.lock-btn{font-size:11px;color:var(--muted);cursor:pointer;letter-spacing:0.5px;border:none;background:none;font-family:inherit;transition:color .15s}
+.lock-btn:hover{color:var(--yellow)}
 
-  nav { display: flex; align-items: center; gap: 22px; }
-  nav a {
-    color: var(--cream); font-size: 13px; font-weight: 600;
-    letter-spacing: 0.5px; text-transform: uppercase;
-    border-bottom: 2px solid transparent; padding-bottom: 4px;
-    transition: all 0.2s;
-  }
-  nav a:hover, nav a.active {
-    color: var(--yellow); border-bottom-color: var(--yellow); text-decoration: none;
-  }
-  .header-meta { display: flex; align-items: center; gap: 14px; font-size: 12px; color: var(--muted); }
-  .live-dot {
-    display: inline-block; width: 9px; height: 9px; border-radius: 50%;
-    background: var(--red); margin-right: 6px; animation: pulse 1.5s infinite;
-  }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-  .logout-link { color: var(--muted); cursor: pointer; font-size: 11px; }
-  .logout-link:hover { color: var(--yellow); }
+/* ======= PAGES ======= */
+#site{display:none}
+.page{display:none;animation:fadeIn .25s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-  /* ============ LAYOUT ============ */
-  main { max-width: 1320px; margin: 0 auto; padding: 24px; }
-  .hero-strip {
-    background: var(--yellow); color: var(--black);
-    padding: 14px 22px; margin-bottom: 24px;
-    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-    border-left: 8px solid var(--red);
-  }
-  .hero-strip h1 {
-    font-family: 'Anton', 'Impact', sans-serif; font-size: 26px; letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-  .hero-strip .meta { font-size: 12px; font-weight: 600; }
+/* ======= HOME PAGE ======= */
+.hero{padding:64px 24px 48px;text-align:center;position:relative;border-bottom:1px solid var(--border)}
+.hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 39px,var(--border) 39px,var(--border) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,var(--border) 39px,var(--border) 40px);opacity:.18;pointer-events:none}
+.hero-inner{position:relative;z-index:1}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:20px}
+.hero-title{font-family:'Anton','Impact','Arial Black',sans-serif;font-size:clamp(52px,8vw,96px);letter-spacing:-3px;line-height:.92;color:var(--cream);margin-bottom:24px}
+.hero-title span{color:var(--yellow)}
+.hero-tagline{font-size:clamp(16px,2.5vw,20px);color:var(--muted);max-width:520px;margin:0 auto 36px;font-style:italic;line-height:1.5}
+.hero-tagline em{color:var(--cream);font-style:normal}
+.hero-meta{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+.hero-badge{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.hero-badge::before{content:'';display:block;width:4px;height:4px;border-radius:50%;background:var(--yellow)}
+.how-btn{padding:10px 22px;border:1px solid var(--border2);background:transparent;color:var(--cream);font-size:13px;font-family:inherit;cursor:pointer;letter-spacing:0.5px;transition:all .2s}
+.how-btn:hover{border-color:var(--yellow);color:var(--yellow)}
 
-  /* ============ SECTION HEADERS ============ */
-  .section-head {
-    margin: 32px 0 16px;
-    border-bottom: 2px solid var(--yellow); padding-bottom: 10px;
-    white-space: nowrap; overflow: hidden;
-  }
-  .section-head h2 {
-    font-family: 'Anton', 'Impact', sans-serif;
-    font-size: 22px; letter-spacing: 1.5px; color: var(--yellow);
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
+/* ======= CATEGORY CARDS (home) ======= */
+.home-section{max-width:1320px;margin:0 auto;padding:40px 24px}
+.section-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.cat-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+@media(max-width:900px){.cat-cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.cat-cards{grid-template-columns:1fr}}
+.cat-card{background:var(--black2);border:1px solid var(--border);padding:24px 20px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:16px}
+.cat-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--yellow);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.cat-card:hover{background:var(--black3);border-color:var(--border2)}
+.cat-card:hover::after{transform:scaleX(1)}
+.cat-card:hover .cat-card-arrow{opacity:1;transform:translateX(0)}
+.cat-card-top{display:flex;align-items:flex-start;justify-content:space-between}
+.cat-card-icon{width:40px;height:40px;background:var(--black4);display:flex;align-items:center;justify-content:center;color:var(--yellow);flex-shrink:0}
+.cat-card-arrow{color:var(--yellow);opacity:0;transform:translateX(-4px);transition:all .2s;font-size:18px;margin-top:4px}
+.cat-card-name{font-size:13px;font-weight:600;color:var(--cream);line-height:1.3}
+.cat-card-value{display:flex;align-items:baseline;gap:4px}
+.cat-card-pts{font-family:'Anton','Impact',sans-serif;font-size:40px;color:var(--yellow);letter-spacing:-1px;line-height:1}
+.cat-card-ptslabel{font-size:12px;color:var(--muted)}
+.cat-card-hint{font-size:11px;color:var(--muted);letter-spacing:0.5px}
 
-  /* ============ PREDICTION VALUE CARDS (was clock) ============ */
-  .values-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 12px; margin-bottom: 32px;
-  }
-  .value-card {
-    background: var(--deep-black); border: 1px solid var(--grey-line);
-    border-top: 3px solid var(--yellow); padding: 16px;
-    display: flex; flex-direction: column; gap: 10px;
-  }
-  .value-card-top { display: flex; align-items: center; gap: 10px; }
-  .value-icon {
-    width: 36px; height: 36px; flex-shrink: 0;
-    background: var(--black); border: 1px solid var(--grey-line);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--yellow);
-  }
-  .value-card .cat-name {
-    font-size: 13px; font-weight: 600; color: var(--cream); line-height: 1.25;
-  }
-  .value-card .cat-value {
-    font-family: 'Anton', 'Impact', sans-serif; font-size: 36px;
-    color: var(--yellow); letter-spacing: 1px; line-height: 1;
-  }
-  .value-card .cat-value .pts { font-size: 14px; color: var(--muted); letter-spacing: 0; margin-left: 4px; font-family: 'Inter', Arial, sans-serif; }
+/* ======= DASHBOARD TABLE ======= */
+.dash-wrap{overflow-x:auto;border:1px solid var(--border)}
+table.dashboard{width:100%;border-collapse:collapse;background:var(--black2);min-width:860px}
+table.dashboard thead th{background:var(--black);color:var(--yellow);font-family:'Anton','Impact',sans-serif;font-size:11px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;padding:11px 10px;text-align:center;border-bottom:1px solid var(--border2);white-space:nowrap}
+table.dashboard thead th.l{text-align:left;padding-left:14px}
+table.dashboard tbody tr{border-bottom:1px solid var(--border);transition:background .12s}
+table.dashboard tbody tr:hover{background:var(--black3)}
+table.dashboard tbody td{padding:9px 10px;font-size:12px;vertical-align:middle;text-align:center}
+td.rank{font-family:'Anton','Impact',sans-serif;font-size:20px;color:var(--muted);width:44px}
+tr.p1 td.rank{color:var(--yellow)}
+tr.p1 td:first-child{border-left:3px solid var(--yellow)}
+td.player{text-align:left;padding-left:14px;font-size:12px;font-weight:500;color:var(--cream);white-space:nowrap}
+.pick-cell{line-height:1.2}
+.pick-name{font-size:12px;color:var(--cream);font-weight:500}
+.pick-val{font-size:10px;color:var(--yellow);font-weight:700;margin-top:2px;font-family:'Anton','Impact',sans-serif;letter-spacing:.5px}
+.no-pick{color:var(--muted);font-style:italic;font-size:11px}
+.pot-box{display:inline-block;padding:5px 10px;min-width:48px;background:var(--yellow);color:var(--black);font-family:'Anton','Impact',sans-serif;font-size:15px;letter-spacing:1px}
+tr.p1 .pot-box{background:var(--red);color:var(--cream)}
+.scored-box{display:inline-block;padding:5px 10px;min-width:48px;background:var(--black4);color:var(--muted);font-family:'Anton','Impact',sans-serif;font-size:15px;border:1px solid var(--border2)}
+.dash-note{font-size:11px;color:var(--muted);margin-top:10px;font-style:italic}
 
-  /* ============ DASHBOARD TABLE ============ */
-  .dashboard-wrap { overflow-x: auto; border: 1px solid var(--grey-line); }
-  .dashboard {
-    width: 100%; border-collapse: collapse;
-    background: var(--deep-black);
-    min-width: 880px;
-  }
-  .dashboard thead th {
-    background: var(--black); color: var(--yellow);
-    font-family: 'Anton', 'Impact', sans-serif; font-size: 12px;
-    font-weight: 400; letter-spacing: 1px; text-transform: uppercase;
-    padding: 11px 8px; text-align: center;
-    border-bottom: 2px solid var(--yellow);
-    white-space: nowrap;
-  }
-  .dashboard thead th.player { text-align: left; padding-left: 12px; }
-  .dashboard tbody tr {
-    border-bottom: 1px solid var(--grey-line);
-    transition: background 0.15s;
-  }
-  .dashboard tbody tr:hover { background: var(--grey-row); }
-  .dashboard tbody tr:nth-child(even) { background: var(--grey-row-alt); }
-  .dashboard tbody tr:nth-child(even):hover { background: var(--grey-row); }
-  .dashboard tbody td {
-    padding: 8px 8px; font-size: 12px; vertical-align: middle;
-    text-align: center;
-  }
-  .dashboard .rank {
-    font-family: 'Anton', 'Impact', sans-serif;
-    font-size: 18px; color: var(--muted); width: 42px;
-  }
-  .dashboard tr.top .rank { color: var(--yellow); }
-  .dashboard tr.top td:first-child { border-left: 3px solid var(--yellow); }
-  .dashboard td.player {
-    text-align: left; padding-left: 12px;
-    font-size: 12px; font-weight: 500; color: var(--cream);
-    white-space: nowrap;
-  }
-  .dashboard .pick-cell { line-height: 1.2; }
-  .dashboard .pick-name {
-    font-size: 12px; color: var(--cream); font-weight: 500;
-  }
-  .dashboard .pick-value {
-    font-size: 10px; color: var(--yellow); font-weight: 700; margin-top: 2px;
-    font-family: 'Anton', 'Impact', sans-serif; letter-spacing: 0.5px;
-  }
-  .dashboard .no-pick { color: var(--muted); font-style: italic; font-size: 11px; }
-  .dashboard td.totals { width: 70px; }
-  .dashboard .total-box {
-    display: inline-block; padding: 5px 10px; min-width: 50px;
-    background: var(--yellow); color: var(--black);
-    font-family: 'Anton', 'Impact', sans-serif; font-size: 16px;
-    letter-spacing: 1px;
-  }
-  .dashboard .scored-box {
-    display: inline-block; padding: 5px 10px; min-width: 50px;
-    background: var(--grey-row); color: var(--muted);
-    font-family: 'Anton', 'Impact', sans-serif; font-size: 16px;
-    letter-spacing: 1px; border: 1px solid var(--grey-line);
-  }
-  .dashboard tr.top .total-box { background: var(--red); color: var(--cream); }
+/* ======= HOW IT WORKS (home) ======= */
+.how-section{background:var(--black2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:56px 24px}
+.how-inner{max-width:1000px;margin:0 auto}
+.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+@media(max-width:720px){.how-grid{grid-template-columns:1fr}}
+.how-left h2{font-family:'Anton','Impact',sans-serif;font-size:clamp(36px,5vw,60px);letter-spacing:-2px;line-height:.95;color:var(--cream);margin-bottom:20px}
+.how-left h2 span{color:var(--yellow)}
+.how-left p{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:16px}
+.how-left p strong{color:var(--cream)}
+.how-steps{display:flex;flex-direction:column;gap:0}
+.how-step{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--border)}
+.how-step:last-child{border-bottom:none}
+.how-step-num{font-family:'Anton','Impact',sans-serif;font-size:32px;color:var(--yellow);opacity:.4;width:36px;flex-shrink:0;line-height:1}
+.how-step-body h4{font-size:13px;font-weight:700;color:var(--cream);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px}
+.how-step-body p{font-size:13px;color:var(--muted);line-height:1.6}
+.how-step-body p strong{color:var(--yellow)}
+.pts-table{width:100%;border-collapse:collapse;margin-top:20px;font-size:12px}
+.pts-table th,.pts-table td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.pts-table th{color:var(--yellow);font-weight:700;letter-spacing:0.5px;text-transform:uppercase;font-size:10px;background:var(--black3)}
+.pts-table td{color:var(--muted)}
+.pts-table td:first-child{color:var(--cream)}
 
-  .dashboard-note {
-    font-size: 11px; color: var(--muted); margin-top: 10px; font-style: italic;
-  }
+/* ======= CATEGORY DETAIL PAGE ======= */
+.cat-page-hero{padding:36px 24px 28px;border-bottom:1px solid var(--border);background:var(--black2)}
+.cat-page-hero-inner{max-width:1320px;margin:0 auto}
+.back-btn{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);cursor:pointer;border:none;background:none;font-family:inherit;margin-bottom:20px;transition:color .15s;letter-spacing:0.5px;text-transform:uppercase}
+.back-btn:hover{color:var(--yellow)}
+.back-btn::before{content:'←'}
+.cat-page-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.cat-page-icon{width:56px;height:56px;background:var(--black4);display:flex;align-items:center;justify-content:center;color:var(--yellow);flex-shrink:0;border:1px solid var(--border2)}
+.cat-page-title-wrap{display:flex;align-items:center;gap:16px}
+.cat-page-title{font-family:'Anton','Impact',sans-serif;font-size:clamp(28px,4vw,48px);letter-spacing:-1px;color:var(--cream);line-height:1}
+.cat-page-subtitle{font-size:13px;color:var(--muted);margin-top:6px}
+.cat-page-value{text-align:right}
+.cat-page-pts{font-family:'Anton','Impact',sans-serif;font-size:56px;color:var(--yellow);letter-spacing:-2px;line-height:1}
+.cat-page-ptslabel{font-size:12px;color:var(--muted);text-align:right}
 
-  /* ============ CATEGORY PANELS ============ */
-  .cat-panel {
-    background: var(--deep-black); border: 1px solid var(--grey-line);
-    margin-bottom: 20px;
-  }
-  .cat-panel-head {
-    background: var(--black); padding: 14px 18px;
-    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
-    border-bottom: 2px solid var(--yellow);
-  }
-  .cat-panel-head .head-left { display: flex; align-items: center; gap: 12px; }
-  .cat-panel-head h3 {
-    font-family: 'Anton', 'Impact', sans-serif; font-size: 17px;
-    color: var(--yellow); letter-spacing: 1px; text-transform: uppercase;
-  }
-  .cat-panel-head .panel-icon {
-    width: 30px; height: 30px;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--yellow);
-  }
-  .cat-panel-head .cat-status {
-    font-size: 11px; color: var(--muted); font-weight: 600;
-    letter-spacing: 1px; text-transform: uppercase;
-  }
-  .cat-panel-head .cat-status.active { color: var(--yellow); }
+.cat-page-body{max-width:1320px;margin:0 auto;padding:32px 24px}
+.cat-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+@media(max-width:800px){.cat-detail-grid{grid-template-columns:1fr}}
+.cat-panel{background:var(--black2);border:1px solid var(--border);padding:24px}
+.cat-panel h3{font-family:'Anton','Impact',sans-serif;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--yellow);margin-bottom:20px}
 
-  .cat-panel-body { padding: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  @media (max-width: 760px) { .cat-panel-body { grid-template-columns: 1fr; } }
+/* Distribution */
+.dist-chart{display:flex;flex-direction:column;gap:8px}
+.dist-row{display:flex;align-items:center;gap:10px;font-size:12px}
+.dist-lbl{width:110px;color:var(--cream);font-weight:600;flex-shrink:0;font-size:12px}
+.dist-bar-wrap{flex:1;background:var(--black4);height:20px;position:relative;overflow:hidden}
+.dist-bar{height:100%;background:var(--yellow);transition:width .4s ease}
+.dist-bar.b2{background:var(--yellow2)}
+.dist-bar.b3{background:var(--red)}
+.dist-bar.b4{background:var(--muted)}
+.dist-count{width:58px;text-align:right;color:var(--muted);font-size:11px;flex-shrink:0}
 
-  .panel-subhead {
-    font-size: 11px; color: var(--muted); margin-bottom: 10px;
-    text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
-  }
+/* Trend graph */
+.trend-wrap{background:var(--black4);border:1px solid var(--border);padding:16px;height:200px;position:relative}
+.trend-wrap svg{width:100%;height:100%;display:block}
+.trend-legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted)}
+.legend-swatch{width:12px;height:3px;flex-shrink:0}
 
-  /* Distribution chart */
-  .distribution-chart { display: flex; flex-direction: column; gap: 6px; }
-  .dist-row { display: flex; align-items: center; gap: 10px; font-size: 12px; }
-  .dist-label { width: 100px; color: var(--cream); font-weight: 600; flex-shrink: 0; font-size: 12px; }
-  .dist-bar-wrap { flex: 1; background: var(--grey-row); height: 18px; position: relative; }
-  .dist-bar { height: 100%; background: var(--yellow); }
-  .dist-bar.rank2 { background: var(--yellow-dim); }
-  .dist-bar.rank3 { background: var(--red); }
-  .dist-count { width: 56px; text-align: right; color: var(--cream); font-weight: 600; font-size: 11px; flex-shrink: 0; }
+/* Picks table */
+.picks-table{width:100%;border-collapse:collapse;font-size:13px}
+.picks-table th{padding:9px 12px;text-align:left;border-bottom:1px solid var(--border2);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);background:var(--black3)}
+.picks-table td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--cream);vertical-align:middle}
+.picks-table tbody tr:hover{background:var(--black3)}
+.picks-table td.pick{color:var(--cream);font-weight:600}
+.picks-table td.pts{color:var(--yellow);font-family:'Anton','Impact',sans-serif;font-size:15px}
+.picks-table td.rank-num{font-family:'Anton','Impact',sans-serif;font-size:18px;color:var(--muted);width:40px}
+.picks-table tr.top td.rank-num{color:var(--yellow)}
 
-  /* Trend graph (sparkline / simple multi-line) */
-  .trend-graph {
-    background: var(--grey-row-alt); border: 1px solid var(--grey-line);
-    padding: 12px; height: 180px; position: relative;
-  }
-  .trend-graph svg { width: 100%; height: 100%; display: block; }
-  .trend-legend {
-    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; font-size: 10px;
-  }
-  .trend-legend .legend-item { display: flex; align-items: center; gap: 5px; color: var(--cream); }
-  .trend-legend .legend-swatch { width: 10px; height: 10px; flex-shrink: 0; }
+/* ======= FOOTER ======= */
+footer{padding:28px 24px;background:var(--black);border-top:1px solid var(--border);text-align:center;font-size:11px;color:var(--muted);letter-spacing:0.5px}
+footer strong{color:var(--yellow);font-family:'Anton','Impact',sans-serif;font-size:14px;letter-spacing:1px;font-weight:400}
 
-  /* ============ HOW IT WORKS PAGE ============ */
-  .how-content {
-    background: var(--deep-black); border: 1px solid var(--grey-line);
-    padding: 28px;
-  }
-  .how-content h3 {
-    font-family: 'Anton', 'Impact', sans-serif; color: var(--yellow);
-    font-size: 18px; letter-spacing: 1px; text-transform: uppercase;
-    margin-top: 24px; margin-bottom: 10px;
-  }
-  .how-content h3:first-child { margin-top: 0; }
-  .how-content p { font-size: 14px; line-height: 1.7; margin-bottom: 12px; color: var(--cream); }
-  .how-content ul { margin-left: 22px; margin-bottom: 14px; }
-  .how-content li { font-size: 14px; line-height: 1.7; margin-bottom: 6px; }
-  .how-content strong { color: var(--yellow); }
-  .how-content .pts-table {
-    width: 100%; border-collapse: collapse; margin: 14px 0;
-    background: var(--black); border: 1px solid var(--grey-line);
-  }
-  .how-content .pts-table th, .how-content .pts-table td {
-    padding: 8px 12px; text-align: left; font-size: 13px;
-    border-bottom: 1px solid var(--grey-line);
-  }
-  .how-content .pts-table th {
-    background: var(--grey-row); color: var(--yellow);
-    font-family: 'Anton', 'Impact', sans-serif; font-weight: 400; letter-spacing: 0.5px;
-    text-transform: uppercase; font-size: 12px;
-  }
-
-  /* ============ FOOTER ============ */
-  footer {
-    margin-top: 48px; padding: 24px; background: var(--deep-black);
-    border-top: 3px solid var(--yellow); text-align: center;
-    font-size: 12px; color: var(--muted);
-  }
-  footer .footer-brand {
-    font-family: 'Anton', 'Impact', sans-serif; font-size: 18px;
-    color: var(--yellow); letter-spacing: 1px; margin-bottom: 6px;
-  }
-
-  /* ============ RESPONSIVE ============ */
-  @media (max-width: 700px) {
-    main { padding: 16px; }
-    .hero-strip h1 { font-size: 20px; }
-    header { padding: 12px 16px; gap: 10px; }
-    nav { gap: 14px; }
-    nav a { font-size: 11px; }
-    .header-meta { font-size: 11px; gap: 10px; }
-    .brand-wordmark { font-size: 24px; }
-    .brand-mark { width: 38px; height: 38px; font-size: 20px; }
-    .brand-tag { display: none; }
-    .gate-card { padding: 28px 20px; }
-    .gate-logo-wordmark { font-size: 44px; }
-    .section-head h2 { font-size: 18px; }
-  }
+/* ======= RESPONSIVE ======= */
+@media(max-width:700px){
+  header{padding:0 16px}
+  .hero{padding:44px 16px 36px}
+  .home-section{padding:28px 16px}
+  .how-section{padding:40px 16px}
+  .cat-page-body{padding:24px 16px}
+  .cat-page-hero{padding:24px 16px 20px}
+  .brand-name{font-size:20px}
+  .hero-title{letter-spacing:-2px}
+}
 </style>
 </head>
 <body>
 
-<!-- =====================================================================
-     PASSWORD GATE
-     ===================================================================== -->
+<!-- ===== GATE ===== -->
 <div id="gate">
   <div class="gate-card">
-    <div class="gate-logo">
-      <div class="gate-logo-wordmark">
-        <span class="knee">KNEE</span><span class="jerk">JERK</span>
-      </div>
-      <div class="gate-tagline">The football prediction game that lets you change your mind</div>
+    <div class="gate-logo-wrap">
+      <div class="gate-wordmark"><span class="k">KNEE</span><span class="j">JERK</span></div>
+      <div class="gate-sub">The football prediction game that lets you change your mind</div>
     </div>
-    <div class="gate-heading">League access</div>
-    <p class="gate-instruction">
-      Enter the league password to see predictions, standings and all the damage being done.<br><br>
-      <strong>Not sure of the password?</strong> Ask whoever invited you, it's the same word for every player in the league.
-    </p>
+    <div class="gate-label">League password</div>
     <input type="password" id="gate-input" placeholder="enter password" autocomplete="off" autofocus>
-    <button id="gate-submit">Enter League</button>
-    <div id="gate-error"></div>
-    <div class="gate-footer">
-      KneeJerk is a private league game for friends. No data is collected. Predictions are submitted to the league admin outside of the site.
-    </div>
+    <button id="gate-btn">Enter League</button>
+    <div id="gate-err"></div>
+    <div class="gate-footer">Private league · Predictions submitted via the league admin<br>Dashboard refreshes every Sunday at 09:00 BST</div>
   </div>
 </div>
 
-<!-- =====================================================================
-     MAIN SITE
-     ===================================================================== -->
-<div id="site" style="display: none;">
+<!-- ===== SITE ===== -->
+<div id="site">
 
 <header>
-  <div class="brand">
-    <div class="brand-mark">KJ</div>
-    <div>
-      <div class="brand-wordmark"><span class="knee">KNEE</span><span class="jerk">JERK</span></div>
-      <div class="brand-tag">The football prediction game that lets you change your mind</div>
-    </div>
+  <div class="brand" onclick="showPage('home')">
+    <div class="brand-kj">KJ</div>
+    <div class="brand-name"><span class="k">KNEE</span><span class="j">JERK</span></div>
   </div>
-  <nav>
-    <a href="#dashboard" class="nav-link active" data-page="dashboard">Dashboard</a>
-    <a href="#how" class="nav-link" data-page="how">How it Works</a>
-  </nav>
-  <div class="header-meta">
-    <span><span class="live-dot"></span>LIVE</span>
-    <span class="logout-link" onclick="logout()">lock site</span>
+  <div class="header-right">
+    <div class="live-badge"><span class="live-dot"></span>Live</div>
+    <button class="lock-btn" onclick="logout()">Lock site</button>
   </div>
 </header>
 
-<main>
+<!-- ===== HOME PAGE ===== -->
+<div id="page-home" class="page active">
 
-  <!-- =================================================================
-       DASHBOARD PAGE
-       ================================================================= -->
-  <div id="page-dashboard">
-
-  <div class="hero-strip">
-    <h1>World Cup 2026</h1>
-    <div class="meta">Last update: Sun 28 June, 09:00 BST &nbsp;•&nbsp; Next update: Sun 5 July, 09:00 BST</div>
-  </div>
-
-  <!-- ============ TODAY'S PREDICTION VALUES ============ -->
-  <div class="section-head"><h2>Today's Prediction Values</h2></div>
-  <div class="values-grid">
-    <div class="value-card">
-      <div class="value-card-top">
-        <div class="value-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"/><path d="M9 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10"/><path d="M15 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14"/><path d="M4 20h14"/></svg>
-        </div>
-        <div class="cat-name">Most Group Stage Points</div>
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">World Cup 2026 · The Boozer League</div>
+      <h1 class="hero-title">The prediction<br>game that lets you<br><span>change your mind</span></h1>
+      <p class="hero-tagline">Pick early, score big. Every day you wait costs you points — but <em>getting it right</em> makes it worth it.</p>
+      <div class="hero-meta">
+        <span class="hero-badge">Last update: Sun 28 June, 09:00 BST</span>
+        <span class="hero-badge">Next update: Sun 5 July, 09:00 BST</span>
+        <button class="how-btn" onclick="scrollToHow()">How it works ↓</button>
       </div>
-      <div class="cat-value">3<span class="pts">pts</span></div>
-    </div>
-    <div class="value-card">
-      <div class="value-card-top">
-        <div class="value-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7l6 6l4 -4l8 8"/><path d="M21 10l0 7l-7 0"/></svg>
-        </div>
-        <div class="cat-name">Least Group Stage Points</div>
-      </div>
-      <div class="cat-value">3<span class="pts">pts</span></div>
-    </div>
-    <div class="value-card">
-      <div class="value-card-top">
-        <div class="value-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M12 7l4.76 3.45l-1.76 5.55h-6l-1.76 -5.55l4.76 -3.45"/><path d="M12 7v-4m3 13l2.5 3m-.74 -8.55l3.74 -1.45m-11.44 7.05l-2.56 2.95m.74 -8.55l-3.74 -1.45"/></svg>
-        </div>
-        <div class="cat-name">Top Scoring Team</div>
-      </div>
-      <div class="cat-value">25<span class="pts">pts</span></div>
-    </div>
-    <div class="value-card">
-      <div class="value-card-top">
-        <div class="value-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 4a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"/><path d="M3 17l5 1l.75 -1.5"/><path d="M14 21v-4l-4 -3l1 -6"/><path d="M6 12v-3l5 -1l3 3l3 1"/><path d="M19.5 20a.5 .5 0 1 0 0 -1a.5 .5 0 0 0 0 1" fill="currentColor"/></svg>
-        </div>
-        <div class="cat-name">Most Assists</div>
-      </div>
-      <div class="cat-value">25<span class="pts">pts</span></div>
-    </div>
-    <div class="value-card">
-      <div class="value-card-top">
-        <div class="value-icon">
-          <svg width="28" height="28" viewBox="0 0 256 256" fill="currentColor"><path d="M192,104H164V56a20,20,0,0,0-20-20H32A12,12,0,0,0,20.8,52.3c10.88,28.39,8.3,78.36-.33,108.38A12,12,0,0,0,20,164v36a20,20,0,0,0,20,20H66.11a20.16,20.16,0,0,0,9-2.11L86.83,212h14.34l11.77,5.89a20.16,20.16,0,0,0,9,2.11h28.22a20.16,20.16,0,0,0,8.95-2.11L170.83,212h14.34l11.77,5.89a20.16,20.16,0,0,0,8.95,2.11H232a20,20,0,0,0,20-20V164A60.07,60.07,0,0,0,192,104ZM48,60h92v44H116a12,12,0,0,0,0,24h76a36.07,36.07,0,0,1,33.94,24H47.21C52.75,124.08,54.23,88.41,48,60ZM228,196H206.83l-11.77-5.89a20.16,20.16,0,0,0-8.95-2.11H169.89a20.16,20.16,0,0,0-8.95,2.11L149.17,196H122.83l-11.77-5.89a20.16,20.16,0,0,0-9-2.11H85.89a20.16,20.16,0,0,0-9,2.11L65.17,196H44V176H228Z"/></svg>
-        </div>
-        <div class="cat-name">Golden Boot</div>
-      </div>
-      <div class="cat-value">25<span class="pts">pts</span></div>
-    </div>
-    <div class="value-card">
-      <div class="value-card-top">
-        <div class="value-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 21l8 0"/><path d="M12 17l0 4"/><path d="M7 4l10 0"/><path d="M17 4v8a5 5 0 0 1 -10 0v-8"/><path d="M3 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M17 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/></svg>
-        </div>
-        <div class="cat-name">World Cup Winners</div>
-      </div>
-      <div class="cat-value">50<span class="pts">pts</span></div>
     </div>
   </div>
 
-  <!-- ============ LEAGUE DASHBOARD ============ -->
-  <div class="section-head"><h2>League Dashboard</h2></div>
-  <div class="dashboard-wrap">
-  <table class="dashboard">
-    <thead>
-      <tr>
-        <th>Rank</th>
-        <th class="player">Manager</th>
-        <th>Most GS Pts</th>
-        <th>Least GS Pts</th>
-        <th>Top Team</th>
-        <th>Assists</th>
-        <th>Golden Boot</th>
-        <th>WC Winners</th>
-        <th>Potential Pts</th>
-        <th>Scored Pts</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="top">
-        <td class="rank">1</td>
-        <td class="player">Paul Meyers</td>
-        <td><div class="pick-cell"><div class="pick-name">ENG</div><div class="pick-value">17 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">HAI</div><div class="pick-value">17 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">FRA</div><div class="pick-value">39 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Mbappé</div><div class="pick-value">39 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Haaland</div><div class="pick-value">39 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">BRA</div><div class="pick-value">78 PTS</div></div></td>
-        <td class="totals"><span class="total-box">229</span></td>
-        <td class="totals"><span class="scored-box">0</span></td>
-      </tr>
-      <tr>
-        <td class="rank">2</td>
-        <td class="player">Dave Hodgson</td>
-        <td><div class="pick-cell"><div class="pick-name">BRA</div><div class="pick-value">17 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">CPV</div><div class="pick-value">17 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">BRA</div><div class="pick-value">39 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">De Bruyne</div><div class="pick-value">39 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Kane</div><div class="pick-value">39 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">FRA</div><div class="pick-value">50 PTS</div></div></td>
-        <td class="totals"><span class="total-box">201</span></td>
-        <td class="totals"><span class="scored-box">0</span></td>
-      </tr>
-      <tr>
-        <td class="rank">3</td>
-        <td class="player">David Broome</td>
-        <td><div class="pick-cell"><div class="pick-name">ESP</div><div class="pick-value">12 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">WAL</div><div class="pick-value">15 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">ENG</div><div class="pick-value">30 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Bellingham</div><div class="pick-value">30 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Mbappé</div><div class="pick-value">30 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">ARG</div><div class="pick-value">70 PTS</div></div></td>
-        <td class="totals"><span class="total-box">187</span></td>
-        <td class="totals"><span class="scored-box">0</span></td>
-      </tr>
-      <tr>
-        <td class="rank">4</td>
-        <td class="player">Ian Holt</td>
-        <td><div class="pick-cell"><div class="pick-name">ARG</div><div class="pick-value">14 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">JOR</div><div class="pick-value">17 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">GER</div><div class="pick-value">35 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Musiala</div><div class="pick-value">28 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Lautaro</div><div class="pick-value">28 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">GER</div><div class="pick-value">60 PTS</div></div></td>
-        <td class="totals"><span class="total-box">182</span></td>
-        <td class="totals"><span class="scored-box">0</span></td>
-      </tr>
-      <tr>
-        <td class="rank">5</td>
-        <td class="player">James Hall</td>
-        <td><div class="pick-cell"><div class="pick-name">POR</div><div class="pick-value">17 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">HAI</div><div class="pick-value">17 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">ESP</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Pedri</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Ronaldo</div><div class="pick-value">39 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">ENG</div><div class="pick-value">50 PTS</div></div></td>
-        <td class="totals"><span class="total-box">173</span></td>
-        <td class="totals"><span class="scored-box">0</span></td>
-      </tr>
-      <tr>
-        <td class="rank">6</td>
-        <td class="player">Matt Bareham</td>
-        <td><div class="pick-cell"><div class="pick-name">FRA</div><div class="pick-value">17 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">CPV</div><div class="pick-value">17 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">POR</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">B. Fernandes</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Ronaldo</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">ESP</div><div class="pick-value">60 PTS</div></div></td>
-        <td class="totals"><span class="total-box">169</span></td>
-        <td class="totals"><span class="scored-box">0</span></td>
-      </tr>
-      <tr>
-        <td class="rank">7</td>
-        <td class="player">Fabio Kellett</td>
-        <td><div class="pick-cell"><div class="pick-name">NED</div><div class="pick-value">10 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">NZL</div><div class="pick-value">12 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">BRA</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Vinícius</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Haaland</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">POR</div><div class="pick-value">60 PTS</div></div></td>
-        <td class="totals"><span class="total-box">157</span></td>
-        <td class="totals"><span class="scored-box">0</span></td>
-      </tr>
-      <tr>
-        <td class="rank">8</td>
-        <td class="player">Mark Harvey</td>
-        <td><div class="pick-cell"><div class="pick-name">GER</div><div class="pick-value">17 PTS</div></div></td>
-        <td><div class="pick-cell"><span class="no-pick">No pick</span></div></td>
-        <td><div class="pick-cell"><div class="pick-name">ARG</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Messi</div><div class="pick-value">39 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Messi</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">ARG</div><div class="pick-value">50 PTS</div></div></td>
-        <td class="totals"><span class="total-box">156</span></td>
-        <td class="totals"><span class="scored-box">0</span></td>
-      </tr>
-      <tr>
-        <td class="rank">9</td>
-        <td class="player">Tom Masterman</td>
-        <td><div class="pick-cell"><div class="pick-name">ITA</div><div class="pick-value">8 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">SCO</div><div class="pick-value">9 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">BEL</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">De Bruyne</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Lukaku</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">BRA</div><div class="pick-value">50 PTS</div></div></td>
-        <td class="totals"><span class="total-box">142</span></td>
-        <td class="totals"><span class="scored-box">0</span></td>
-      </tr>
-      <tr>
-        <td class="rank">10</td>
-        <td class="player">Andy Kerr</td>
-        <td><div class="pick-cell"><span class="no-pick">No pick</span></div></td>
-        <td><div class="pick-cell"><div class="pick-name">HAI</div><div class="pick-value">14 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">FRA</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Mbappé</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Haaland</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">FRA</div><div class="pick-value">50 PTS</div></div></td>
-        <td class="totals"><span class="total-box">139</span></td>
-        <td class="totals"><span class="scored-box">0</span></td>
-      </tr>
-      <tr>
-        <td class="rank">11</td>
-        <td class="player">Arne Slot</td>
-        <td><div class="pick-cell"><div class="pick-name">ENG</div><div class="pick-value">8 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">PAN</div><div class="pick-value">10 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">ESP</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><span class="no-pick">No pick</span></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Kane</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">ENG</div><div class="pick-value">50 PTS</div></div></td>
-        <td class="totals"><span class="total-box">118</span></td>
-        <td class="totals"><span class="scored-box">0</span></td>
-      </tr>
-      <tr>
-        <td class="rank">12</td>
-        <td class="player">Gary Breen</td>
-        <td><div class="pick-cell"><div class="pick-name">BRA</div><div class="pick-value">5 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">HAI</div><div class="pick-value">8 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">BRA</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Valverde</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">Núñez</div><div class="pick-value">25 PTS</div></div></td>
-        <td><div class="pick-cell"><div class="pick-name">BRA</div><div class="pick-value">25 PTS</div></div></td>
-        <td class="totals"><span class="total-box">113</span></td>
-        <td class="totals"><span class="scored-box">0</span></td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="dashboard-note">
-    Three-letter codes used for teams. Values shown are the points locked in at the time of the last prediction change. Actual scoring begins when categories are decided. Predictions are submitted via the league admin and the dashboard refreshes each Sunday at 09:00 BST.
-  </p>
+  <div class="home-section">
+    <div class="section-label">Today's prediction values — click a category to explore</div>
+    <div class="cat-cards">
 
-  <!-- ============ CATEGORY 1: MOST GROUP STAGE POINTS ============ -->
-  <div class="section-head"><h2>Most Group Stage Points</h2></div>
-  <div class="cat-panel">
-    <div class="cat-panel-head">
-      <div class="head-left">
-        <div class="panel-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"/><path d="M9 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10"/><path d="M15 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14"/><path d="M4 20h14"/></svg>
+      <div class="cat-card" onclick="showCatPage('mgsp')">
+        <div class="cat-card-top">
+          <div class="cat-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"/><path d="M9 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10"/><path d="M15 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14"/><path d="M4 20h14"/></svg>
+          </div>
+          <span class="cat-card-arrow">→</span>
         </div>
-        <h3>Who the league is backing</h3>
+        <div class="cat-card-name">Most Group Stage Points</div>
+        <div class="cat-card-value"><span class="cat-card-pts">3</span><span class="cat-card-ptslabel">pts today</span></div>
+        <div class="cat-card-hint">Locks 26 June · England & Brazil lead</div>
       </div>
-      <div class="cat-status active">Today's value: 3 pts</div>
+
+      <div class="cat-card" onclick="showCatPage('lgsp')">
+        <div class="cat-card-top">
+          <div class="cat-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7l6 6l4 -4l8 8"/><path d="M21 10l0 7l-7 0"/></svg>
+          </div>
+          <span class="cat-card-arrow">→</span>
+        </div>
+        <div class="cat-card-name">Least Group Stage Points</div>
+        <div class="cat-card-value"><span class="cat-card-pts">3</span><span class="cat-card-ptslabel">pts today</span></div>
+        <div class="cat-card-hint">Locks 26 June · Haiti dominates picks</div>
+      </div>
+
+      <div class="cat-card" onclick="showCatPage('tst')">
+        <div class="cat-card-top">
+          <div class="cat-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M12 7l4.76 3.45l-1.76 5.55h-6l-1.76 -5.55l4.76 -3.45"/><path d="M12 7v-4m3 13l2.5 3m-.74 -8.55l3.74 -1.45m-11.44 7.05l-2.56 2.95m.74 -8.55l-3.74 -1.45"/></svg>
+          </div>
+          <span class="cat-card-arrow">→</span>
+        </div>
+        <div class="cat-card-name">Top Scoring Team</div>
+        <div class="cat-card-value"><span class="cat-card-pts">25</span><span class="cat-card-ptslabel">pts today</span></div>
+        <div class="cat-card-hint">Locks 18 July · Brazil favourite</div>
+      </div>
+
+      <div class="cat-card" onclick="showCatPage('ast')">
+        <div class="cat-card-top">
+          <div class="cat-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 4a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"/><path d="M3 17l5 1l.75 -1.5"/><path d="M14 21v-4l-4 -3l1 -6"/><path d="M6 12v-3l5 -1l3 3l3 1"/><path d="M19.5 20a.5 .5 0 1 0 0 -1a.5 .5 0 0 0 0 1" fill="currentColor"/></svg>
+          </div>
+          <span class="cat-card-arrow">→</span>
+        </div>
+        <div class="cat-card-name">Most Assists</div>
+        <div class="cat-card-value"><span class="cat-card-pts">25</span><span class="cat-card-ptslabel">pts today</span></div>
+        <div class="cat-card-hint">Locks 18 July · Split between De Bruyne & Mbappé</div>
+      </div>
+
+      <div class="cat-card" onclick="showCatPage('gbt')">
+        <div class="cat-card-top">
+          <div class="cat-card-icon">
+            <svg width="26" height="26" viewBox="0 0 256 256" fill="currentColor"><path d="M192,104H164V56a20,20,0,0,0-20-20H32A12,12,0,0,0,20.8,52.3c10.88,28.39,8.3,78.36-.33,108.38A12,12,0,0,0,20,164v36a20,20,0,0,0,20,20H66.11a20.16,20.16,0,0,0,9-2.11L86.83,212h14.34l11.77,5.89a20.16,20.16,0,0,0,9,2.11h28.22a20.16,20.16,0,0,0,8.95-2.11L170.83,212h14.34l11.77,5.89a20.16,20.16,0,0,0,8.95,2.11H232a20,20,0,0,0,20-20V164A60.07,60.07,0,0,0,192,104ZM48,60h92v44H116a12,12,0,0,0,0,24h76a36.07,36.07,0,0,1,33.94,24H47.21C52.75,124.08,54.23,88.41,48,60ZM228,196H206.83l-11.77-5.89a20.16,20.16,0,0,0-8.95-2.11H169.89a20.16,20.16,0,0,0-8.95,2.11L149.17,196H122.83l-11.77-5.89a20.16,20.16,0,0,0-9-2.11H85.89a20.16,20.16,0,0,0-9,2.11L65.17,196H44V176H228Z"/></svg>
+          </div>
+          <span class="cat-card-arrow">→</span>
+        </div>
+        <div class="cat-card-name">Golden Boot</div>
+        <div class="cat-card-value"><span class="cat-card-pts">25</span><span class="cat-card-ptslabel">pts today</span></div>
+        <div class="cat-card-hint">Locks 18 July · Haaland leads with 3 picks</div>
+      </div>
+
+      <div class="cat-card" onclick="showCatPage('wcw')">
+        <div class="cat-card-top">
+          <div class="cat-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 21l8 0"/><path d="M12 17l0 4"/><path d="M7 4l10 0"/><path d="M17 4v8a5 5 0 0 1 -10 0v-8"/><path d="M3 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M17 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/></svg>
+          </div>
+          <span class="cat-card-arrow">→</span>
+        </div>
+        <div class="cat-card-name">World Cup Winners</div>
+        <div class="cat-card-value"><span class="cat-card-pts">50</span><span class="cat-card-ptslabel">pts today</span></div>
+        <div class="cat-card-hint">Locks 18 July · Brazil leads with 3 picks</div>
+      </div>
+
     </div>
-    <div class="cat-panel-body">
-      <div>
-        <div class="panel-subhead">Pick distribution</div>
-        <div class="distribution-chart">
-          <div class="dist-row"><div class="dist-label">England</div><div class="dist-bar-wrap"><div class="dist-bar" style="width: 16.7%;"></div></div><div class="dist-count">2 picks</div></div>
-          <div class="dist-row"><div class="dist-label">Brazil</div><div class="dist-bar-wrap"><div class="dist-bar" style="width: 16.7%;"></div></div><div class="dist-count">2 picks</div></div>
-          <div class="dist-row"><div class="dist-label">Spain</div><div class="dist-bar-wrap"><div class="dist-bar rank2" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Argentina</div><div class="dist-bar-wrap"><div class="dist-bar rank2" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Portugal</div><div class="dist-bar-wrap"><div class="dist-bar rank2" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">France</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Netherlands</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Germany</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Italy</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">No pick</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="home-section" style="padding-top:0">
+    <div class="section-label">League dashboard</div>
+    <div class="dash-wrap">
+    <table class="dashboard">
+      <thead><tr>
+        <th>Rank</th><th class="l">Manager</th>
+        <th>Most GS Pts</th><th>Least GS Pts</th><th>Top Team</th>
+        <th>Assists</th><th>Golden Boot</th><th>WC Winners</th>
+        <th>Potential</th><th>Scored</th>
+      </tr></thead>
+      <tbody>
+        <tr class="p1">
+          <td class="rank">1</td><td class="player">Paul Meyers</td>
+          <td><div class="pick-cell"><div class="pick-name">ENG</div><div class="pick-val">17 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">HAI</div><div class="pick-val">17 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">FRA</div><div class="pick-val">39 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Mbappé</div><div class="pick-val">39 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Haaland</div><div class="pick-val">39 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">BRA</div><div class="pick-val">78 PTS</div></div></td>
+          <td><span class="pot-box">229</span></td><td><span class="scored-box">0</span></td>
+        </tr>
+        <tr>
+          <td class="rank">2</td><td class="player">Dave Hodgson</td>
+          <td><div class="pick-cell"><div class="pick-name">BRA</div><div class="pick-val">17 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">CPV</div><div class="pick-val">17 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">BRA</div><div class="pick-val">39 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">De Bruyne</div><div class="pick-val">39 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Kane</div><div class="pick-val">39 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">FRA</div><div class="pick-val">50 PTS</div></div></td>
+          <td><span class="pot-box">201</span></td><td><span class="scored-box">0</span></td>
+        </tr>
+        <tr>
+          <td class="rank">3</td><td class="player">David Broome</td>
+          <td><div class="pick-cell"><div class="pick-name">ESP</div><div class="pick-val">12 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">WAL</div><div class="pick-val">15 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">ENG</div><div class="pick-val">30 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Bellingham</div><div class="pick-val">30 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Mbappé</div><div class="pick-val">30 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">ARG</div><div class="pick-val">70 PTS</div></div></td>
+          <td><span class="pot-box">187</span></td><td><span class="scored-box">0</span></td>
+        </tr>
+        <tr>
+          <td class="rank">4</td><td class="player">Ian Holt</td>
+          <td><div class="pick-cell"><div class="pick-name">ARG</div><div class="pick-val">14 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">JOR</div><div class="pick-val">17 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">GER</div><div class="pick-val">35 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Musiala</div><div class="pick-val">28 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Lautaro</div><div class="pick-val">28 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">GER</div><div class="pick-val">60 PTS</div></div></td>
+          <td><span class="pot-box">182</span></td><td><span class="scored-box">0</span></td>
+        </tr>
+        <tr>
+          <td class="rank">5</td><td class="player">James Hall</td>
+          <td><div class="pick-cell"><div class="pick-name">POR</div><div class="pick-val">17 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">HAI</div><div class="pick-val">17 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">ESP</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Pedri</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Ronaldo</div><div class="pick-val">39 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">ENG</div><div class="pick-val">50 PTS</div></div></td>
+          <td><span class="pot-box">173</span></td><td><span class="scored-box">0</span></td>
+        </tr>
+        <tr>
+          <td class="rank">6</td><td class="player">Matt Bareham</td>
+          <td><div class="pick-cell"><div class="pick-name">FRA</div><div class="pick-val">17 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">CPV</div><div class="pick-val">17 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">POR</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">B. Fernandes</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Ronaldo</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">ESP</div><div class="pick-val">60 PTS</div></div></td>
+          <td><span class="pot-box">169</span></td><td><span class="scored-box">0</span></td>
+        </tr>
+        <tr>
+          <td class="rank">7</td><td class="player">Fabio Kellett</td>
+          <td><div class="pick-cell"><div class="pick-name">NED</div><div class="pick-val">10 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">NZL</div><div class="pick-val">12 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">BRA</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Vinícius</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Haaland</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">POR</div><div class="pick-val">60 PTS</div></div></td>
+          <td><span class="pot-box">157</span></td><td><span class="scored-box">0</span></td>
+        </tr>
+        <tr>
+          <td class="rank">8</td><td class="player">Mark Harvey</td>
+          <td><div class="pick-cell"><div class="pick-name">GER</div><div class="pick-val">17 PTS</div></div></td>
+          <td><div class="pick-cell"><span class="no-pick">No pick</span></div></td>
+          <td><div class="pick-cell"><div class="pick-name">ARG</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Messi</div><div class="pick-val">39 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Messi</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">ARG</div><div class="pick-val">50 PTS</div></div></td>
+          <td><span class="pot-box">156</span></td><td><span class="scored-box">0</span></td>
+        </tr>
+        <tr>
+          <td class="rank">9</td><td class="player">Tom Masterman</td>
+          <td><div class="pick-cell"><div class="pick-name">ITA</div><div class="pick-val">8 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">SCO</div><div class="pick-val">9 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">BEL</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">De Bruyne</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Lukaku</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">BRA</div><div class="pick-val">50 PTS</div></div></td>
+          <td><span class="pot-box">142</span></td><td><span class="scored-box">0</span></td>
+        </tr>
+        <tr>
+          <td class="rank">10</td><td class="player">Andy Kerr</td>
+          <td><div class="pick-cell"><span class="no-pick">No pick</span></div></td>
+          <td><div class="pick-cell"><div class="pick-name">HAI</div><div class="pick-val">14 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">FRA</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Mbappé</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Haaland</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">FRA</div><div class="pick-val">50 PTS</div></div></td>
+          <td><span class="pot-box">139</span></td><td><span class="scored-box">0</span></td>
+        </tr>
+        <tr>
+          <td class="rank">11</td><td class="player">Arne Slot</td>
+          <td><div class="pick-cell"><div class="pick-name">ENG</div><div class="pick-val">8 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">PAN</div><div class="pick-val">10 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">ESP</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><span class="no-pick">No pick</span></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Kane</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">ENG</div><div class="pick-val">50 PTS</div></div></td>
+          <td><span class="pot-box">118</span></td><td><span class="scored-box">0</span></td>
+        </tr>
+        <tr>
+          <td class="rank">12</td><td class="player">Gary Breen</td>
+          <td><div class="pick-cell"><div class="pick-name">BRA</div><div class="pick-val">5 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">HAI</div><div class="pick-val">8 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">BRA</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Valverde</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">Núñez</div><div class="pick-val">25 PTS</div></div></td>
+          <td><div class="pick-cell"><div class="pick-name">BRA</div><div class="pick-val">25 PTS</div></div></td>
+          <td><span class="pot-box">113</span></td><td><span class="scored-box">0</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="dash-note">Three-letter codes used for teams. Values shown are points locked in at time of last pick change. Dashboard refreshes every Sunday 09:00 BST.</p>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how-section" id="how-section">
+    <div class="how-inner">
+      <div class="how-grid">
+        <div class="how-left">
+          <h2>How does<br><span>KneeJerk</span><br>work?</h2>
+          <p>Six prediction categories. Pick early and you score <strong>more points</strong> if you're right. Wait and see how things play out, but every day costs you.</p>
+          <p>You can change your mind as many times as you like — but each change locks in that day's lower value. The game rewards <strong>confidence and conviction</strong>.</p>
+          <table class="pts-table">
+            <thead><tr><th>Category</th><th>Max</th><th>Drop</th><th>Min</th></tr></thead>
+            <tbody>
+              <tr><td>Most Group Stage Points</td><td>17 pts</td><td>−1/day</td><td>1 pt</td></tr>
+              <tr><td>Least Group Stage Points</td><td>17 pts</td><td>−1/day</td><td>1 pt</td></tr>
+              <tr><td>Top Scoring Team</td><td>39 pts</td><td>−1/day</td><td>1 pt</td></tr>
+              <tr><td>Most Assists</td><td>39 pts</td><td>−1/day</td><td>1 pt</td></tr>
+              <tr><td>Golden Boot</td><td>39 pts</td><td>−1/day</td><td>1 pt</td></tr>
+              <tr><td>World Cup Winners</td><td>78 pts</td><td>−2/day</td><td>2 pts</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="how-steps">
+          <div class="how-step">
+            <div class="how-step-num">1</div>
+            <div class="how-step-body">
+              <h4>Make your picks</h4>
+              <p>Send your predictions to the league admin before the tournament starts. The earlier you pick, the <strong>more points</strong> a correct answer is worth.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="how-step-num">2</div>
+            <div class="how-step-body">
+              <h4>Change your mind</h4>
+              <p>You can update any pick right up to the day before it resolves. Just tell the admin. But the value drops every day — so changing late costs you.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="how-step-num">3</div>
+            <div class="how-step-body">
+              <h4>Sunday updates</h4>
+              <p>The dashboard refreshes every Sunday at <strong>09:00 BST</strong>. Changes made during the week don't show until Sunday — so nobody can copy your last-minute thinking.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="how-step-num">4</div>
+            <div class="how-step-body">
+              <h4>Score when categories resolve</h4>
+              <p>Group stage categories resolve 27 June. Everything else resolves after the final, 19 July. Ties pay <strong>full value to everyone</strong> who picked correctly.</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div>
-        <div class="panel-subhead">Recent trends &amp; fluctuations</div>
-        <div class="trend-graph">
+    </div>
+  </div>
+
+</div><!-- /page-home -->
+
+<!-- ===== CATEGORY PAGES ===== -->
+
+<!-- Most Group Stage Points -->
+<div id="page-mgsp" class="page">
+  <div class="cat-page-hero">
+    <div class="cat-page-hero-inner">
+      <button class="back-btn" onclick="showPage('home')">Back to dashboard</button>
+      <div class="cat-page-header">
+        <div class="cat-page-title-wrap">
+          <div class="cat-page-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"/><path d="M9 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10"/><path d="M15 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14"/><path d="M4 20h14"/></svg></div>
+          <div><div class="cat-page-title">Most Group Stage Points</div><div class="cat-page-subtitle">Which team finishes the group stage with the most points? · Locks 26 June</div></div>
+        </div>
+        <div class="cat-page-value"><div class="cat-page-pts">3</div><div class="cat-page-ptslabel">pts today</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cat-page-body">
+    <div class="cat-detail-grid">
+      <div class="cat-panel">
+        <h3>Pick distribution</h3>
+        <div class="dist-chart">
+          <div class="dist-row"><div class="dist-lbl">England</div><div class="dist-bar-wrap"><div class="dist-bar" style="width:100%"></div></div><div class="dist-count">2 picks</div></div>
+          <div class="dist-row"><div class="dist-lbl">Brazil</div><div class="dist-bar-wrap"><div class="dist-bar" style="width:100%"></div></div><div class="dist-count">2 picks</div></div>
+          <div class="dist-row"><div class="dist-lbl">Spain</div><div class="dist-bar-wrap"><div class="dist-bar b2" style="width:50%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Argentina</div><div class="dist-bar-wrap"><div class="dist-bar b2" style="width:50%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Portugal</div><div class="dist-bar-wrap"><div class="dist-bar b2" style="width:50%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">France</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:50%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Netherlands</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:50%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Germany</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:50%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Italy</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:50%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">No pick</div><div class="dist-bar-wrap"><div class="dist-bar b4" style="width:50%"></div></div><div class="dist-count">1 pick</div></div>
+        </div>
+      </div>
+      <div class="cat-panel">
+        <h3>Recent trends</h3>
+        <div class="trend-wrap">
           <svg viewBox="0 0 300 150" preserveAspectRatio="none">
-            <line x1="0" y1="120" x2="300" y2="120" stroke="#333" stroke-width="1"/>
-            <line x1="0" y1="80" x2="300" y2="80" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="0" y1="40" x2="300" y2="40" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
-            <!-- England line -->
+            <line x1="0" y1="120" x2="300" y2="120" stroke="#2A2A2A" stroke-width="1"/>
+            <line x1="0" y1="80" x2="300" y2="80" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
+            <line x1="0" y1="40" x2="300" y2="40" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
             <polyline points="20,80 80,80 140,60 200,40 260,40" fill="none" stroke="#4DD0E1" stroke-width="2.5"/>
-            <!-- Brazil line -->
-            <polyline points="20,90 80,80 140,90 200,100 260,100" fill="none" stroke="#C77DFF" stroke-width="2.5"/>
-            <!-- Spain line -->
-            <polyline points="20,60 80,70 140,90 200,100 260,100" fill="none" stroke="#FF6F00" stroke-width="2.5"/>
-            <!-- x-axis labels -->
-            <text x="20" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
-            <text x="80" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
-            <text x="140" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Wk 2</text>
-            <text x="200" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Wk 3</text>
-            <text x="260" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Now</text>
+            <polyline points="20,90 80,80 140,90 200,100 260,100" fill="none" stroke="#FF6F00" stroke-width="2.5"/>
+            <polyline points="20,60 80,70 140,90 200,100 260,100" fill="none" stroke="#C77DFF" stroke-width="2.5"/>
+            <text x="20" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
+            <text x="80" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
+            <text x="140" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 2</text>
+            <text x="200" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 3</text>
+            <text x="260" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Now</text>
           </svg>
         </div>
         <div class="trend-legend">
-          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1;"></span>England</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF;"></span>Brazil</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00;"></span>Spain</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>England</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>Brazil</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>Spain</div>
         </div>
+      </div>
+    </div>
+    <div class="cat-panel">
+      <h3>All picks</h3>
+      <table class="picks-table">
+        <thead><tr><th>Rank</th><th>Manager</th><th>Pick</th><th>Pts locked in</th></tr></thead>
+        <tbody>
+          <tr class="top"><td class="rank-num">1</td><td>Paul Meyers</td><td class="pick">England</td><td class="pts">17</td></tr>
+          <tr class="top"><td class="rank-num">2</td><td>Dave Hodgson</td><td class="pick">Brazil</td><td class="pts">17</td></tr>
+          <tr><td class="rank-num">5</td><td>James Hall</td><td class="pick">Portugal</td><td class="pts">17</td></tr>
+          <tr><td class="rank-num">6</td><td>Matt Bareham</td><td class="pick">France</td><td class="pts">17</td></tr>
+          <tr><td class="rank-num">8</td><td>Mark Harvey</td><td class="pick">Germany</td><td class="pts">17</td></tr>
+          <tr><td class="rank-num">4</td><td>Ian Holt</td><td class="pick">Argentina</td><td class="pts">14</td></tr>
+          <tr><td class="rank-num">3</td><td>David Broome</td><td class="pick">Spain</td><td class="pts">12</td></tr>
+          <tr><td class="rank-num">7</td><td>Fabio Kellett</td><td class="pick">Netherlands</td><td class="pts">10</td></tr>
+          <tr><td class="rank-num">9</td><td>Tom Masterman</td><td class="pick">Italy</td><td class="pts">8</td></tr>
+          <tr><td class="rank-num">11</td><td>Arne Slot</td><td class="pick">England</td><td class="pts">8</td></tr>
+          <tr><td class="rank-num">12</td><td>Gary Breen</td><td class="pick">Brazil</td><td class="pts">5</td></tr>
+          <tr><td class="rank-num">10</td><td>Andy Kerr</td><td class="pick" style="color:var(--muted);font-style:italic">No pick</td><td class="pts" style="color:var(--muted)">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Least Group Stage Points -->
+<div id="page-lgsp" class="page">
+  <div class="cat-page-hero">
+    <div class="cat-page-hero-inner">
+      <button class="back-btn" onclick="showPage('home')">Back to dashboard</button>
+      <div class="cat-page-header">
+        <div class="cat-page-title-wrap">
+          <div class="cat-page-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7l6 6l4 -4l8 8"/><path d="M21 10l0 7l-7 0"/></svg></div>
+          <div><div class="cat-page-title">Least Group Stage Points</div><div class="cat-page-subtitle">Which team finishes bottom of the group stage? · Locks 26 June</div></div>
+        </div>
+        <div class="cat-page-value"><div class="cat-page-pts">3</div><div class="cat-page-ptslabel">pts today</div></div>
       </div>
     </div>
   </div>
-
-  <!-- ============ CATEGORY 2: LEAST GROUP STAGE POINTS ============ -->
-  <div class="section-head"><h2>Least Group Stage Points</h2></div>
-  <div class="cat-panel">
-    <div class="cat-panel-head">
-      <div class="head-left">
-        <div class="panel-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7l6 6l4 -4l8 8"/><path d="M21 10l0 7l-7 0"/></svg>
-        </div>
-        <h3>The wooden spoon picks</h3>
-      </div>
-      <div class="cat-status active">Today's value: 3 pts</div>
-    </div>
-    <div class="cat-panel-body">
-      <div>
-        <div class="panel-subhead">Pick distribution</div>
-        <div class="distribution-chart">
-          <div class="dist-row"><div class="dist-label">Haiti</div><div class="dist-bar-wrap"><div class="dist-bar" style="width: 33.3%;"></div></div><div class="dist-count">4 picks</div></div>
-          <div class="dist-row"><div class="dist-label">Cape Verde</div><div class="dist-bar-wrap"><div class="dist-bar rank2" style="width: 16.7%;"></div></div><div class="dist-count">2 picks</div></div>
-          <div class="dist-row"><div class="dist-label">Wales</div><div class="dist-bar-wrap"><div class="dist-bar rank2" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Jordan</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">New Zealand</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Scotland</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Panama</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">No pick</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
+  <div class="cat-page-body">
+    <div class="cat-detail-grid">
+      <div class="cat-panel">
+        <h3>Pick distribution</h3>
+        <div class="dist-chart">
+          <div class="dist-row"><div class="dist-lbl">Haiti</div><div class="dist-bar-wrap"><div class="dist-bar" style="width:100%"></div></div><div class="dist-count">4 picks</div></div>
+          <div class="dist-row"><div class="dist-lbl">Cape Verde</div><div class="dist-bar-wrap"><div class="dist-bar b2" style="width:50%"></div></div><div class="dist-count">2 picks</div></div>
+          <div class="dist-row"><div class="dist-lbl">Wales</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:25%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Jordan</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:25%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">New Zealand</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:25%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Scotland</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:25%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Panama</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:25%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">No pick</div><div class="dist-bar-wrap"><div class="dist-bar b4" style="width:25%"></div></div><div class="dist-count">1 pick</div></div>
         </div>
       </div>
-      <div>
-        <div class="panel-subhead">Recent trends &amp; fluctuations</div>
-        <div class="trend-graph">
+      <div class="cat-panel">
+        <h3>Recent trends</h3>
+        <div class="trend-wrap">
           <svg viewBox="0 0 300 150" preserveAspectRatio="none">
-            <line x1="0" y1="120" x2="300" y2="120" stroke="#333" stroke-width="1"/>
-            <line x1="0" y1="80" x2="300" y2="80" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="0" y1="40" x2="300" y2="40" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+            <line x1="0" y1="120" x2="300" y2="120" stroke="#2A2A2A" stroke-width="1"/>
+            <line x1="0" y1="80" x2="300" y2="80" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
+            <line x1="0" y1="40" x2="300" y2="40" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
             <polyline points="20,90 80,80 140,60 200,30 260,20" fill="none" stroke="#4DD0E1" stroke-width="2.5"/>
             <polyline points="20,80 80,80 140,80 200,75 260,70" fill="none" stroke="#FF6F00" stroke-width="2.5"/>
             <polyline points="20,100 80,95 140,100 200,110 260,110" fill="none" stroke="#C77DFF" stroke-width="2.5"/>
-            <text x="20" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
-            <text x="80" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
-            <text x="140" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Wk 2</text>
-            <text x="200" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Wk 3</text>
-            <text x="260" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Now</text>
+            <text x="20" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
+            <text x="80" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
+            <text x="140" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 2</text>
+            <text x="200" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 3</text>
+            <text x="260" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Now</text>
           </svg>
         </div>
         <div class="trend-legend">
-          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1;"></span>Haiti</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00;"></span>Cape Verde</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF;"></span>Wales</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>Haiti</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>Cape Verde</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>Wales</div>
         </div>
+      </div>
+    </div>
+    <div class="cat-panel">
+      <h3>All picks</h3>
+      <table class="picks-table">
+        <thead><tr><th>Rank</th><th>Manager</th><th>Pick</th><th>Pts locked in</th></tr></thead>
+        <tbody>
+          <tr class="top"><td class="rank-num">1</td><td>Paul Meyers</td><td class="pick">Haiti</td><td class="pts">17</td></tr>
+          <tr class="top"><td class="rank-num">4</td><td>Ian Holt</td><td class="pick">Jordan</td><td class="pts">17</td></tr>
+          <tr class="top"><td class="rank-num">5</td><td>James Hall</td><td class="pick">Haiti</td><td class="pts">17</td></tr>
+          <tr><td class="rank-num">2</td><td>Dave Hodgson</td><td class="pick">Cape Verde</td><td class="pts">17</td></tr>
+          <tr><td class="rank-num">6</td><td>Matt Bareham</td><td class="pick">Cape Verde</td><td class="pts">17</td></tr>
+          <tr><td class="rank-num">10</td><td>Andy Kerr</td><td class="pick">Haiti</td><td class="pts">14</td></tr>
+          <tr><td class="rank-num">3</td><td>David Broome</td><td class="pick">Wales</td><td class="pts">15</td></tr>
+          <tr><td class="rank-num">7</td><td>Fabio Kellett</td><td class="pick">New Zealand</td><td class="pts">12</td></tr>
+          <tr><td class="rank-num">9</td><td>Tom Masterman</td><td class="pick">Scotland</td><td class="pts">9</td></tr>
+          <tr><td class="rank-num">11</td><td>Arne Slot</td><td class="pick">Panama</td><td class="pts">10</td></tr>
+          <tr><td class="rank-num">12</td><td>Gary Breen</td><td class="pick">Haiti</td><td class="pts">8</td></tr>
+          <tr><td class="rank-num">8</td><td>Mark Harvey</td><td class="pick" style="color:var(--muted);font-style:italic">No pick</td><td class="pts" style="color:var(--muted)">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Top Scoring Team -->
+<div id="page-tst" class="page">
+  <div class="cat-page-hero">
+    <div class="cat-page-hero-inner">
+      <button class="back-btn" onclick="showPage('home')">Back to dashboard</button>
+      <div class="cat-page-header">
+        <div class="cat-page-title-wrap">
+          <div class="cat-page-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M12 7l4.76 3.45l-1.76 5.55h-6l-1.76 -5.55l4.76 -3.45"/><path d="M12 7v-4m3 13l2.5 3m-.74 -8.55l3.74 -1.45m-11.44 7.05l-2.56 2.95m.74 -8.55l-3.74 -1.45"/></svg></div>
+          <div><div class="cat-page-title">Top Scoring Team</div><div class="cat-page-subtitle">Most goals scored across the whole tournament · Locks 18 July</div></div>
+        </div>
+        <div class="cat-page-value"><div class="cat-page-pts">25</div><div class="cat-page-ptslabel">pts today</div></div>
       </div>
     </div>
   </div>
-
-  <!-- ============ CATEGORY 3: TOP SCORING TEAM ============ -->
-  <div class="section-head"><h2>Top Scoring Team</h2></div>
-  <div class="cat-panel">
-    <div class="cat-panel-head">
-      <div class="head-left">
-        <div class="panel-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M12 7l4.76 3.45l-1.76 5.55h-6l-1.76 -5.55l4.76 -3.45"/><path d="M12 7v-4m3 13l2.5 3m-.74 -8.55l3.74 -1.45m-11.44 7.05l-2.56 2.95m.74 -8.55l-3.74 -1.45"/></svg>
-        </div>
-        <h3>Picks for the goal-fest</h3>
-      </div>
-      <div class="cat-status active">Today's value: 25 pts</div>
-    </div>
-    <div class="cat-panel-body">
-      <div>
-        <div class="panel-subhead">Pick distribution</div>
-        <div class="distribution-chart">
-          <div class="dist-row"><div class="dist-label">Brazil</div><div class="dist-bar-wrap"><div class="dist-bar" style="width: 25%;"></div></div><div class="dist-count">3 picks</div></div>
-          <div class="dist-row"><div class="dist-label">Spain</div><div class="dist-bar-wrap"><div class="dist-bar rank2" style="width: 16.7%;"></div></div><div class="dist-count">2 picks</div></div>
-          <div class="dist-row"><div class="dist-label">France</div><div class="dist-bar-wrap"><div class="dist-bar rank2" style="width: 16.7%;"></div></div><div class="dist-count">2 picks</div></div>
-          <div class="dist-row"><div class="dist-label">England</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Germany</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Portugal</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Argentina</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Belgium</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
+  <div class="cat-page-body">
+    <div class="cat-detail-grid">
+      <div class="cat-panel">
+        <h3>Pick distribution</h3>
+        <div class="dist-chart">
+          <div class="dist-row"><div class="dist-lbl">Brazil</div><div class="dist-bar-wrap"><div class="dist-bar" style="width:100%"></div></div><div class="dist-count">3 picks</div></div>
+          <div class="dist-row"><div class="dist-lbl">Spain</div><div class="dist-bar-wrap"><div class="dist-bar b2" style="width:66%"></div></div><div class="dist-count">2 picks</div></div>
+          <div class="dist-row"><div class="dist-lbl">France</div><div class="dist-bar-wrap"><div class="dist-bar b2" style="width:66%"></div></div><div class="dist-count">2 picks</div></div>
+          <div class="dist-row"><div class="dist-lbl">England</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:33%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Germany</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:33%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Portugal</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:33%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Argentina</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:33%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Belgium</div><div class="dist-bar-wrap"><div class="dist-bar b4" style="width:33%"></div></div><div class="dist-count">1 pick</div></div>
         </div>
       </div>
-      <div>
-        <div class="panel-subhead">Recent trends &amp; fluctuations</div>
-        <div class="trend-graph">
+      <div class="cat-panel">
+        <h3>Recent trends</h3>
+        <div class="trend-wrap">
           <svg viewBox="0 0 300 150" preserveAspectRatio="none">
-            <line x1="0" y1="120" x2="300" y2="120" stroke="#333" stroke-width="1"/>
-            <line x1="0" y1="80" x2="300" y2="80" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="0" y1="40" x2="300" y2="40" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+            <line x1="0" y1="120" x2="300" y2="120" stroke="#2A2A2A" stroke-width="1"/>
+            <line x1="0" y1="80" x2="300" y2="80" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
+            <line x1="0" y1="40" x2="300" y2="40" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
             <polyline points="20,70 80,60 140,50 200,40 260,30" fill="none" stroke="#4DD0E1" stroke-width="2.5"/>
             <polyline points="20,90 80,80 140,70 200,60 260,55" fill="none" stroke="#FF6F00" stroke-width="2.5"/>
             <polyline points="20,80 80,85 140,90 200,95 260,100" fill="none" stroke="#C77DFF" stroke-width="2.5"/>
-            <text x="20" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
-            <text x="80" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
-            <text x="140" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Wk 2</text>
-            <text x="200" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Wk 3</text>
-            <text x="260" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Now</text>
+            <text x="20" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
+            <text x="80" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
+            <text x="140" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 2</text>
+            <text x="200" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 3</text>
+            <text x="260" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Now</text>
           </svg>
         </div>
         <div class="trend-legend">
-          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1;"></span>Brazil</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00;"></span>Spain</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF;"></span>England</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>Brazil</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>Spain</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>England</div>
         </div>
+      </div>
+    </div>
+    <div class="cat-panel">
+      <h3>All picks</h3>
+      <table class="picks-table">
+        <thead><tr><th>Rank</th><th>Manager</th><th>Pick</th><th>Pts locked in</th></tr></thead>
+        <tbody>
+          <tr class="top"><td class="rank-num">1</td><td>Paul Meyers</td><td class="pick">France</td><td class="pts">39</td></tr>
+          <tr class="top"><td class="rank-num">2</td><td>Dave Hodgson</td><td class="pick">Brazil</td><td class="pts">39</td></tr>
+          <tr><td class="rank-num">3</td><td>David Broome</td><td class="pick">England</td><td class="pts">30</td></tr>
+          <tr><td class="rank-num">4</td><td>Ian Holt</td><td class="pick">Germany</td><td class="pts">35</td></tr>
+          <tr><td class="rank-num">5</td><td>James Hall</td><td class="pick">Spain</td><td class="pts">25</td></tr>
+          <tr><td class="rank-num">6</td><td>Matt Bareham</td><td class="pick">Portugal</td><td class="pts">25</td></tr>
+          <tr><td class="rank-num">7</td><td>Fabio Kellett</td><td class="pick">Brazil</td><td class="pts">25</td></tr>
+          <tr><td class="rank-num">8</td><td>Mark Harvey</td><td class="pick">Argentina</td><td class="pts">25</td></tr>
+          <tr><td class="rank-num">9</td><td>Tom Masterman</td><td class="pick">Belgium</td><td class="pts">25</td></tr>
+          <tr><td class="rank-num">10</td><td>Andy Kerr</td><td class="pick">France</td><td class="pts">25</td></tr>
+          <tr><td class="rank-num">11</td><td>Arne Slot</td><td class="pick">Spain</td><td class="pts">25</td></tr>
+          <tr><td class="rank-num">12</td><td>Gary Breen</td><td class="pick">Brazil</td><td class="pts">25</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Most Assists -->
+<div id="page-ast" class="page">
+  <div class="cat-page-hero">
+    <div class="cat-page-hero-inner">
+      <button class="back-btn" onclick="showPage('home')">Back to dashboard</button>
+      <div class="cat-page-header">
+        <div class="cat-page-title-wrap">
+          <div class="cat-page-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 4a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"/><path d="M3 17l5 1l.75 -1.5"/><path d="M14 21v-4l-4 -3l1 -6"/><path d="M6 12v-3l5 -1l3 3l3 1"/><path d="M19.5 20a.5 .5 0 1 0 0 -1a.5 .5 0 0 0 0 1" fill="currentColor"/></svg></div>
+          <div><div class="cat-page-title">Most Assists</div><div class="cat-page-subtitle">Most goal assists across the whole tournament · Locks 18 July</div></div>
+        </div>
+        <div class="cat-page-value"><div class="cat-page-pts">25</div><div class="cat-page-ptslabel">pts today</div></div>
       </div>
     </div>
   </div>
-
-  <!-- ============ CATEGORY 4: MOST ASSISTS ============ -->
-  <div class="section-head"><h2>Most Assists</h2></div>
-  <div class="cat-panel">
-    <div class="cat-panel-head">
-      <div class="head-left">
-        <div class="panel-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 4a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"/><path d="M3 17l5 1l.75 -1.5"/><path d="M14 21v-4l-4 -3l1 -6"/><path d="M6 12v-3l5 -1l3 3l3 1"/><path d="M19.5 20a.5 .5 0 1 0 0 -1a.5 .5 0 0 0 0 1" fill="currentColor"/></svg>
-        </div>
-        <h3>The playmakers in play</h3>
-      </div>
-      <div class="cat-status active">Today's value: 25 pts</div>
-    </div>
-    <div class="cat-panel-body">
-      <div>
-        <div class="panel-subhead">Pick distribution</div>
-        <div class="distribution-chart">
-          <div class="dist-row"><div class="dist-label">De Bruyne</div><div class="dist-bar-wrap"><div class="dist-bar" style="width: 16.7%;"></div></div><div class="dist-count">2 picks</div></div>
-          <div class="dist-row"><div class="dist-label">Mbappé</div><div class="dist-bar-wrap"><div class="dist-bar" style="width: 16.7%;"></div></div><div class="dist-count">2 picks</div></div>
-          <div class="dist-row"><div class="dist-label">Bellingham</div><div class="dist-bar-wrap"><div class="dist-bar rank2" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Musiala</div><div class="dist-bar-wrap"><div class="dist-bar rank2" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Pedri</div><div class="dist-bar-wrap"><div class="dist-bar rank2" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">B. Fernandes</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Vinícius</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Messi</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Valverde</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">No pick</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
+  <div class="cat-page-body">
+    <div class="cat-detail-grid">
+      <div class="cat-panel">
+        <h3>Pick distribution</h3>
+        <div class="dist-chart">
+          <div class="dist-row"><div class="dist-lbl">De Bruyne</div><div class="dist-bar-wrap"><div class="dist-bar" style="width:100%"></div></div><div class="dist-count">2 picks</div></div>
+          <div class="dist-row"><div class="dist-lbl">Mbappé</div><div class="dist-bar-wrap"><div class="dist-bar" style="width:100%"></div></div><div class="dist-count">2 picks</div></div>
+          <div class="dist-row"><div class="dist-lbl">Bellingham</div><div class="dist-bar-wrap"><div class="dist-bar b2" style="width:50%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Musiala</div><div class="dist-bar-wrap"><div class="dist-bar b2" style="width:50%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Pedri</div><div class="dist-bar-wrap"><div class="dist-bar b2" style="width:50%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">B. Fernandes</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:50%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Vinícius</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:50%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Messi</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:50%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Valverde</div><div class="dist-bar-wrap"><div class="dist-bar b4" style="width:50%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">No pick</div><div class="dist-bar-wrap"><div class="dist-bar b4" style="width:50%"></div></div><div class="dist-count">1 pick</div></div>
         </div>
       </div>
-      <div>
-        <div class="panel-subhead">Recent trends &amp; fluctuations</div>
-        <div class="trend-graph">
+      <div class="cat-panel">
+        <h3>Recent trends</h3>
+        <div class="trend-wrap">
           <svg viewBox="0 0 300 150" preserveAspectRatio="none">
-            <line x1="0" y1="120" x2="300" y2="120" stroke="#333" stroke-width="1"/>
-            <line x1="0" y1="80" x2="300" y2="80" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="0" y1="40" x2="300" y2="40" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+            <line x1="0" y1="120" x2="300" y2="120" stroke="#2A2A2A" stroke-width="1"/>
+            <line x1="0" y1="80" x2="300" y2="80" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
+            <line x1="0" y1="40" x2="300" y2="40" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
             <polyline points="20,80 80,75 140,70 200,65 260,60" fill="none" stroke="#4DD0E1" stroke-width="2.5"/>
             <polyline points="20,90 80,85 140,75 200,65 260,55" fill="none" stroke="#FF6F00" stroke-width="2.5"/>
             <polyline points="20,60 80,70 140,80 200,90 260,95" fill="none" stroke="#C77DFF" stroke-width="2.5"/>
-            <text x="20" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
-            <text x="80" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
-            <text x="140" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Wk 2</text>
-            <text x="200" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Wk 3</text>
-            <text x="260" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Now</text>
+            <text x="20" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
+            <text x="80" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
+            <text x="140" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 2</text>
+            <text x="200" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 3</text>
+            <text x="260" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Now</text>
           </svg>
         </div>
         <div class="trend-legend">
-          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1;"></span>De Bruyne</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00;"></span>Mbappé</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF;"></span>Bellingham</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>De Bruyne</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>Mbappé</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>Bellingham</div>
         </div>
+      </div>
+    </div>
+    <div class="cat-panel">
+      <h3>All picks</h3>
+      <table class="picks-table">
+        <thead><tr><th>Rank</th><th>Manager</th><th>Pick</th><th>Pts locked in</th></tr></thead>
+        <tbody>
+          <tr class="top"><td class="rank-num">1</td><td>Paul Meyers</td><td class="pick">Mbappé</td><td class="pts">39</td></tr>
+          <tr class="top"><td class="rank-num">2</td><td>Dave Hodgson</td><td class="pick">De Bruyne</td><td class="pts">39</td></tr>
+          <tr><td class="rank-num">8</td><td>Mark Harvey</td><td class="pick">Messi</td><td class="pts">39</td></tr>
+          <tr><td class="rank-num">3</td><td>David Broome</td><td class="pick">Bellingham</td><td class="pts">30</td></tr>
+          <tr><td class="rank-num">4</td><td>Ian Holt</td><td class="pick">Musiala</td><td class="pts">28</td></tr>
+          <tr><td class="rank-num">5</td><td>James Hall</td><td class="pick">Pedri</td><td class="pts">25</td></tr>
+          <tr><td class="rank-num">6</td><td>Matt Bareham</td><td class="pick">B. Fernandes</td><td class="pts">25</td></tr>
+          <tr><td class="rank-num">7</td><td>Fabio Kellett</td><td class="pick">Vinícius</td><td class="pts">25</td></tr>
+          <tr><td class="rank-num">9</td><td>Tom Masterman</td><td class="pick">De Bruyne</td><td class="pts">25</td></tr>
+          <tr><td class="rank-num">10</td><td>Andy Kerr</td><td class="pick">Mbappé</td><td class="pts">25</td></tr>
+          <tr><td class="rank-num">12</td><td>Gary Breen</td><td class="pick">Valverde</td><td class="pts">25</td></tr>
+          <tr><td class="rank-num">11</td><td>Arne Slot</td><td class="pick" style="color:var(--muted);font-style:italic">No pick</td><td class="pts" style="color:var(--muted)">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Golden Boot -->
+<div id="page-gbt" class="page">
+  <div class="cat-page-hero">
+    <div class="cat-page-hero-inner">
+      <button class="back-btn" onclick="showPage('home')">Back to dashboard</button>
+      <div class="cat-page-header">
+        <div class="cat-page-title-wrap">
+          <div class="cat-page-icon"><svg width="30" height="30" viewBox="0 0 256 256" fill="currentColor"><path d="M192,104H164V56a20,20,0,0,0-20-20H32A12,12,0,0,0,20.8,52.3c10.88,28.39,8.3,78.36-.33,108.38A12,12,0,0,0,20,164v36a20,20,0,0,0,20,20H66.11a20.16,20.16,0,0,0,9-2.11L86.83,212h14.34l11.77,5.89a20.16,20.16,0,0,0,9,2.11h28.22a20.16,20.16,0,0,0,8.95-2.11L170.83,212h14.34l11.77,5.89a20.16,20.16,0,0,0,8.95,2.11H232a20,20,0,0,0,20-20V164A60.07,60.07,0,0,0,192,104ZM48,60h92v44H116a12,12,0,0,0,0,24h76a36.07,36.07,0,0,1,33.94,24H47.21C52.75,124.08,54.23,88.41,48,60ZM228,196H206.83l-11.77-5.89a20.16,20.16,0,0,0-8.95-2.11H169.89a20.16,20.16,0,0,0-8.95,2.11L149.17,196H122.83l-11.77-5.89a20.16,20.16,0,0,0-9-2.11H85.89a20.16,20.16,0,0,0-9,2.11L65.17,196H44V176H228Z"/></svg></div>
+          <div><div class="cat-page-title">Golden Boot</div><div class="cat-page-subtitle">Top goalscorer of the tournament · Locks 18 July</div></div>
+        </div>
+        <div class="cat-page-value"><div class="cat-page-pts">25</div><div class="cat-page-ptslabel">pts today</div></div>
       </div>
     </div>
   </div>
-
-  <!-- ============ CATEGORY 5: GOLDEN BOOT ============ -->
-  <div class="section-head"><h2>Golden Boot</h2></div>
-  <div class="cat-panel">
-    <div class="cat-panel-head">
-      <div class="head-left">
-        <div class="panel-icon">
-          <svg width="28" height="28" viewBox="0 0 256 256" fill="currentColor"><path d="M192,104H164V56a20,20,0,0,0-20-20H32A12,12,0,0,0,20.8,52.3c10.88,28.39,8.3,78.36-.33,108.38A12,12,0,0,0,20,164v36a20,20,0,0,0,20,20H66.11a20.16,20.16,0,0,0,9-2.11L86.83,212h14.34l11.77,5.89a20.16,20.16,0,0,0,9,2.11h28.22a20.16,20.16,0,0,0,8.95-2.11L170.83,212h14.34l11.77,5.89a20.16,20.16,0,0,0,8.95,2.11H232a20,20,0,0,0,20-20V164A60.07,60.07,0,0,0,192,104ZM48,60h92v44H116a12,12,0,0,0,0,24h76a36.07,36.07,0,0,1,33.94,24H47.21C52.75,124.08,54.23,88.41,48,60ZM228,196H206.83l-11.77-5.89a20.16,20.16,0,0,0-8.95-2.11H169.89a20.16,20.16,0,0,0-8.95,2.11L149.17,196H122.83l-11.77-5.89a20.16,20.16,0,0,0-9-2.11H85.89a20.16,20.16,0,0,0-9,2.11L65.17,196H44V176H228Z"/></svg>
-        </div>
-        <h3>Top scorer picks</h3>
-      </div>
-      <div class="cat-status active">Today's value: 25 pts</div>
-    </div>
-    <div class="cat-panel-body">
-      <div>
-        <div class="panel-subhead">Pick distribution</div>
-        <div class="distribution-chart">
-          <div class="dist-row"><div class="dist-label">Haaland</div><div class="dist-bar-wrap"><div class="dist-bar" style="width: 25%;"></div></div><div class="dist-count">3 picks</div></div>
-          <div class="dist-row"><div class="dist-label">Mbappé</div><div class="dist-bar-wrap"><div class="dist-bar rank2" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Kane</div><div class="dist-bar-wrap"><div class="dist-bar rank2" style="width: 16.7%;"></div></div><div class="dist-count">2 picks</div></div>
-          <div class="dist-row"><div class="dist-label">Ronaldo</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 16.7%;"></div></div><div class="dist-count">2 picks</div></div>
-          <div class="dist-row"><div class="dist-label">Messi</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Lautaro</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Lukaku</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Núñez</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
+  <div class="cat-page-body">
+    <div class="cat-detail-grid">
+      <div class="cat-panel">
+        <h3>Pick distribution</h3>
+        <div class="dist-chart">
+          <div class="dist-row"><div class="dist-lbl">Haaland</div><div class="dist-bar-wrap"><div class="dist-bar" style="width:100%"></div></div><div class="dist-count">3 picks</div></div>
+          <div class="dist-row"><div class="dist-lbl">Kane</div><div class="dist-bar-wrap"><div class="dist-bar b2" style="width:66%"></div></div><div class="dist-count">2 picks</div></div>
+          <div class="dist-row"><div class="dist-lbl">Ronaldo</div><div class="dist-bar-wrap"><div class="dist-bar b2" style="width:66%"></div></div><div class="dist-count">2 picks</div></div>
+          <div class="dist-row"><div class="dist-lbl">Mbappé</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:33%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Messi</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:33%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Lautaro</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:33%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Lukaku</div><div class="dist-bar-wrap"><div class="dist-bar b4" style="width:33%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Núñez</div><div class="dist-bar-wrap"><div class="dist-bar b4" style="width:33%"></div></div><div class="dist-count">1 pick</div></div>
         </div>
       </div>
-      <div>
-        <div class="panel-subhead">Recent trends &amp; fluctuations</div>
-        <div class="trend-graph">
+      <div class="cat-panel">
+        <h3>Recent trends</h3>
+        <div class="trend-wrap">
           <svg viewBox="0 0 300 150" preserveAspectRatio="none">
-            <line x1="0" y1="120" x2="300" y2="120" stroke="#333" stroke-width="1"/>
-            <line x1="0" y1="80" x2="300" y2="80" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="0" y1="40" x2="300" y2="40" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+            <line x1="0" y1="120" x2="300" y2="120" stroke="#2A2A2A" stroke-width="1"/>
+            <line x1="0" y1="80" x2="300" y2="80" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
+            <line x1="0" y1="40" x2="300" y2="40" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
             <polyline points="20,70 80,60 140,55 200,45 260,40" fill="none" stroke="#4DD0E1" stroke-width="2.5"/>
             <polyline points="20,90 80,85 140,80 200,75 260,75" fill="none" stroke="#FF6F00" stroke-width="2.5"/>
             <polyline points="20,60 80,70 140,80 200,90 260,100" fill="none" stroke="#C77DFF" stroke-width="2.5"/>
-            <text x="20" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
-            <text x="80" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
-            <text x="140" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Wk 2</text>
-            <text x="200" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Wk 3</text>
-            <text x="260" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Now</text>
+            <text x="20" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
+            <text x="80" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
+            <text x="140" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 2</text>
+            <text x="200" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 3</text>
+            <text x="260" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Now</text>
           </svg>
         </div>
         <div class="trend-legend">
-          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1;"></span>Haaland</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00;"></span>Kane</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF;"></span>Ronaldo</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>Haaland</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>Kane</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>Ronaldo</div>
         </div>
+      </div>
+    </div>
+    <div class="cat-panel">
+      <h3>All picks</h3>
+      <table class="picks-table">
+        <thead><tr><th>Rank</th><th>Manager</th><th>Pick</th><th>Pts locked in</th></tr></thead>
+        <tbody>
+          <tr class="top"><td class="rank-num">1</td><td>Paul Meyers</td><td class="pick">Haaland</td><td class="pts">39</td></tr>
+          <tr class="top"><td class="rank-num">2</td><td>Dave Hodgson</td><td class="pick">Kane</td><td class="pts">39</td></tr>
+          <tr><td class="rank-num">5</td><td>James Hall</td><td class="pick">Ronaldo</td><td class="pts">39</td></tr>
+          <tr><td class="rank-num">3</td><td>David Broome</td><td class="pick">Mbappé</td><td class="pts">30</td></tr>
+          <tr><td class="rank-num">4</td><td>Ian Holt</td><td class="pick">Lautaro</td><td class="pts">28</td></tr>
+          <tr><td class="rank-num">6</td><td>Matt Bareham</td><td class="pick">Ronaldo</td><td class="pts">25</td></tr>
+          <tr><td class="rank-num">7</td><td>Fabio Kellett</td><td class="pick">Haaland</td><td class="pts">25</td></tr>
+          <tr><td class="rank-num">8</td><td>Mark Harvey</td><td class="pick">Messi</td><td class="pts">25</td></tr>
+          <tr><td class="rank-num">9</td><td>Tom Masterman</td><td class="pick">Lukaku</td><td class="pts">25</td></tr>
+          <tr><td class="rank-num">10</td><td>Andy Kerr</td><td class="pick">Haaland</td><td class="pts">25</td></tr>
+          <tr><td class="rank-num">11</td><td>Arne Slot</td><td class="pick">Kane</td><td class="pts">25</td></tr>
+          <tr><td class="rank-num">12</td><td>Gary Breen</td><td class="pick">Núñez</td><td class="pts">25</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- World Cup Winners -->
+<div id="page-wcw" class="page">
+  <div class="cat-page-hero">
+    <div class="cat-page-hero-inner">
+      <button class="back-btn" onclick="showPage('home')">Back to dashboard</button>
+      <div class="cat-page-header">
+        <div class="cat-page-title-wrap">
+          <div class="cat-page-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 21l8 0"/><path d="M12 17l0 4"/><path d="M7 4l10 0"/><path d="M17 4v8a5 5 0 0 1 -10 0v-8"/><path d="M3 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M17 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/></svg></div>
+          <div><div class="cat-page-title">World Cup Winners</div><div class="cat-page-subtitle">Who lifts the trophy on 19 July? · Locks 18 July</div></div>
+        </div>
+        <div class="cat-page-value"><div class="cat-page-pts">50</div><div class="cat-page-ptslabel">pts today</div></div>
       </div>
     </div>
   </div>
-
-  <!-- ============ CATEGORY 6: WORLD CUP WINNERS ============ -->
-  <div class="section-head"><h2>World Cup Winners</h2></div>
-  <div class="cat-panel">
-    <div class="cat-panel-head">
-      <div class="head-left">
-        <div class="panel-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 21l8 0"/><path d="M12 17l0 4"/><path d="M7 4l10 0"/><path d="M17 4v8a5 5 0 0 1 -10 0v-8"/><path d="M3 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M17 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/></svg>
-        </div>
-        <h3>Who lifts the trophy?</h3>
-      </div>
-      <div class="cat-status active">Today's value: 50 pts</div>
-    </div>
-    <div class="cat-panel-body">
-      <div>
-        <div class="panel-subhead">Pick distribution</div>
-        <div class="distribution-chart">
-          <div class="dist-row"><div class="dist-label">Brazil</div><div class="dist-bar-wrap"><div class="dist-bar" style="width: 25%;"></div></div><div class="dist-count">3 picks</div></div>
-          <div class="dist-row"><div class="dist-label">France</div><div class="dist-bar-wrap"><div class="dist-bar rank2" style="width: 16.7%;"></div></div><div class="dist-count">2 picks</div></div>
-          <div class="dist-row"><div class="dist-label">England</div><div class="dist-bar-wrap"><div class="dist-bar rank2" style="width: 16.7%;"></div></div><div class="dist-count">2 picks</div></div>
-          <div class="dist-row"><div class="dist-label">Argentina</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 16.7%;"></div></div><div class="dist-count">2 picks</div></div>
-          <div class="dist-row"><div class="dist-label">Germany</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Portugal</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
-          <div class="dist-row"><div class="dist-label">Spain</div><div class="dist-bar-wrap"><div class="dist-bar rank3" style="width: 8.3%;"></div></div><div class="dist-count">1 pick</div></div>
+  <div class="cat-page-body">
+    <div class="cat-detail-grid">
+      <div class="cat-panel">
+        <h3>Pick distribution</h3>
+        <div class="dist-chart">
+          <div class="dist-row"><div class="dist-lbl">Brazil</div><div class="dist-bar-wrap"><div class="dist-bar" style="width:100%"></div></div><div class="dist-count">3 picks</div></div>
+          <div class="dist-row"><div class="dist-lbl">France</div><div class="dist-bar-wrap"><div class="dist-bar b2" style="width:66%"></div></div><div class="dist-count">2 picks</div></div>
+          <div class="dist-row"><div class="dist-lbl">England</div><div class="dist-bar-wrap"><div class="dist-bar b2" style="width:66%"></div></div><div class="dist-count">2 picks</div></div>
+          <div class="dist-row"><div class="dist-lbl">Argentina</div><div class="dist-bar-wrap"><div class="dist-bar b2" style="width:66%"></div></div><div class="dist-count">2 picks</div></div>
+          <div class="dist-row"><div class="dist-lbl">Germany</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:33%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Portugal</div><div class="dist-bar-wrap"><div class="dist-bar b3" style="width:33%"></div></div><div class="dist-count">1 pick</div></div>
+          <div class="dist-row"><div class="dist-lbl">Spain</div><div class="dist-bar-wrap"><div class="dist-bar b4" style="width:33%"></div></div><div class="dist-count">1 pick</div></div>
         </div>
       </div>
-      <div>
-        <div class="panel-subhead">Recent trends &amp; fluctuations</div>
-        <div class="trend-graph">
+      <div class="cat-panel">
+        <h3>Recent trends</h3>
+        <div class="trend-wrap">
           <svg viewBox="0 0 300 150" preserveAspectRatio="none">
-            <line x1="0" y1="120" x2="300" y2="120" stroke="#333" stroke-width="1"/>
-            <line x1="0" y1="80" x2="300" y2="80" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="0" y1="40" x2="300" y2="40" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+            <line x1="0" y1="120" x2="300" y2="120" stroke="#2A2A2A" stroke-width="1"/>
+            <line x1="0" y1="80" x2="300" y2="80" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
+            <line x1="0" y1="40" x2="300" y2="40" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
             <polyline points="20,80 80,75 140,60 200,50 260,40" fill="none" stroke="#4DD0E1" stroke-width="2.5"/>
             <polyline points="20,100 80,95 140,80 200,70 260,60" fill="none" stroke="#FF6F00" stroke-width="2.5"/>
             <polyline points="20,60 80,65 140,75 200,80 260,85" fill="none" stroke="#C77DFF" stroke-width="2.5"/>
-            <text x="20" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
-            <text x="80" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
-            <text x="140" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Wk 2</text>
-            <text x="200" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Wk 3</text>
-            <text x="260" y="142" fill="#8A8A8A" font-size="9" font-family="Arial" text-anchor="middle">Now</text>
+            <text x="20" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
+            <text x="80" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
+            <text x="140" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 2</text>
+            <text x="200" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 3</text>
+            <text x="260" y="142" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Now</text>
           </svg>
         </div>
         <div class="trend-legend">
-          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1;"></span>Brazil</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00;"></span>France</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF;"></span>England</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>Brazil</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>France</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>England</div>
         </div>
       </div>
     </div>
+    <div class="cat-panel">
+      <h3>All picks</h3>
+      <table class="picks-table">
+        <thead><tr><th>Rank</th><th>Manager</th><th>Pick</th><th>Pts locked in</th></tr></thead>
+        <tbody>
+          <tr class="top"><td class="rank-num">3</td><td>David Broome</td><td class="pick">Argentina</td><td class="pts">70</td></tr>
+          <tr class="top"><td class="rank-num">1</td><td>Paul Meyers</td><td class="pick">Brazil</td><td class="pts">78</td></tr>
+          <tr><td class="rank-num">4</td><td>Ian Holt</td><td class="pick">Germany</td><td class="pts">60</td></tr>
+          <tr><td class="rank-num">6</td><td>Matt Bareham</td><td class="pick">Spain</td><td class="pts">60</td></tr>
+          <tr><td class="rank-num">7</td><td>Fabio Kellett</td><td class="pick">Portugal</td><td class="pts">60</td></tr>
+          <tr><td class="rank-num">2</td><td>Dave Hodgson</td><td class="pick">France</td><td class="pts">50</td></tr>
+          <tr><td class="rank-num">5</td><td>James Hall</td><td class="pick">England</td><td class="pts">50</td></tr>
+          <tr><td class="rank-num">8</td><td>Mark Harvey</td><td class="pick">Argentina</td><td class="pts">50</td></tr>
+          <tr><td class="rank-num">9</td><td>Tom Masterman</td><td class="pick">Brazil</td><td class="pts">50</td></tr>
+          <tr><td class="rank-num">10</td><td>Andy Kerr</td><td class="pick">France</td><td class="pts">50</td></tr>
+          <tr><td class="rank-num">11</td><td>Arne Slot</td><td class="pick">England</td><td class="pts">50</td></tr>
+          <tr><td class="rank-num">12</td><td>Gary Breen</td><td class="pick">Brazil</td><td class="pts">25</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-
-  </div><!-- /page-dashboard -->
-
-  <!-- =================================================================
-       HOW IT WORKS PAGE
-       ================================================================= -->
-  <div id="page-how" style="display: none;">
-
-  <div class="hero-strip">
-    <h1>How it Works</h1>
-    <div class="meta">A quick guide to KneeJerk</div>
-  </div>
-
-  <div class="how-content">
-
-    <h3>The idea</h3>
-    <p>KneeJerk is a private prediction game for the FIFA World Cup 2026. You compete with the rest of your league across six prediction categories. The more confident and the earlier you commit, the more points you can score, but the more brutal it is when you get it wrong.</p>
-
-    <h3>The six categories</h3>
-    <ul>
-      <li><strong>Most Group Stage Points</strong> — pick the team with the highest group stage points total</li>
-      <li><strong>Least Group Stage Points</strong> — pick the team with the lowest group stage points total</li>
-      <li><strong>Top Scoring Team</strong> — pick the team that scores the most goals across the tournament</li>
-      <li><strong>Most Assists</strong> — pick the player with the most assists</li>
-      <li><strong>Golden Boot</strong> — pick the tournament's top goalscorer</li>
-      <li><strong>World Cup Winners</strong> — pick the team that lifts the trophy</li>
-    </ul>
-
-    <h3>The scoring</h3>
-    <p>Before the tournament begins, every category has its maximum points value. Every day from kick-off (11 June 2026), the value drops. The points you score for a correct prediction are the points that were available the day you locked that pick in. Change your mind later and you're locking in fewer points, even if you turn out to be right.</p>
-
-    <table class="pts-table">
-      <thead><tr><th>Category</th><th>Max value</th><th>Daily drop</th><th>Final value</th></tr></thead>
-      <tbody>
-        <tr><td>Most Group Stage Points</td><td>17 pts</td><td>-1 / day</td><td>1 pt on 26 June</td></tr>
-        <tr><td>Least Group Stage Points</td><td>17 pts</td><td>-1 / day</td><td>1 pt on 26 June</td></tr>
-        <tr><td>Top Scoring Team</td><td>39 pts</td><td>-1 / day</td><td>1 pt on 18 July</td></tr>
-        <tr><td>Most Assists</td><td>39 pts</td><td>-1 / day</td><td>1 pt on 18 July</td></tr>
-        <tr><td>Golden Boot</td><td>39 pts</td><td>-1 / day</td><td>1 pt on 18 July</td></tr>
-        <tr><td>World Cup Winners</td><td>78 pts</td><td>-2 / day</td><td>2 pts on 18 July</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Changing your predictions</h3>
-    <p>You can change any prediction as many times as you like, right up to the day before that category resolves. Each change overwrites the previous pick and locks in that day's lower points value. The Group Stage categories lock when the group stage finishes (26 June). All other categories lock the day before the final (18 July).</p>
-
-    <h3>Submitting a change</h3>
-    <p>Predictions are submitted to the league admin outside of this site. To make or change a pick, message the admin directly. The dashboard refreshes every Sunday at 09:00 BST, so changes you make during the week appear on Sunday morning. This stops anyone copying late-week reactions.</p>
-
-    <h3>Ties and edge cases</h3>
-    <ul>
-      <li>If multiple teams or players tie for the top spot in a category (for example, three teams sharing the same group stage points total), anyone who picked any of the tied options scores their full locked-in value. No splits.</li>
-      <li>If you don't pick anything for a category, you score 0 for that category. The dashboard will show "No pick".</li>
-      <li>World Cup Winners cannot tie. There's only one trophy.</li>
-    </ul>
-
-    <h3>How the league is won</h3>
-    <p>At the end of the tournament, when all six categories have resolved, the player with the highest total of <strong>actual scored points</strong> wins the league. While the tournament is running, the dashboard shows your <strong>potential points</strong> (the sum of your locked-in values, before resolution) alongside the <strong>scored points</strong> for any categories that have already been decided.</p>
-
-  </div>
-
-  </div><!-- /page-how -->
-
-</main>
-
-<footer>
-  <div class="footer-brand">KNEEJERK</div>
-  <div>The football prediction game that lets you change your mind</div>
-  <div style="margin-top: 10px;">Private league • Predictions submitted via the league admin • Dashboard refreshed weekly on Sundays at 09:00 BST</div>
-</footer>
-
 </div>
 
+<footer>
+  <strong>KNEEJERK</strong><br>
+  <span>The football prediction game that lets you change your mind · Private league · Dashboard refreshes Sunday 09:00 BST</span>
+</footer>
+
+</div><!-- /site -->
+
 <script>
-  // =====================================================================
-  // PASSWORD GATE LOGIC
-  // =====================================================================
-  // Note: this is NOT real security. The password is visible in the page
-  // source to anyone who knows how to view it. Fine for a friends-only
-  // game; do not use KneeJerk to protect anything serious.
-  // =====================================================================
-  const PASSWORD = "kneejerk";
-  const STORAGE_KEY = "kneejerk_access_granted";
+const PW = "kneejerk";
+const KEY = "kj_access";
+const gate = document.getElementById("gate");
+const site = document.getElementById("site");
 
-  const gateEl = document.getElementById("gate");
-  const siteEl = document.getElementById("site");
-  const inputEl = document.getElementById("gate-input");
-  const submitEl = document.getElementById("gate-submit");
-  const errorEl = document.getElementById("gate-error");
+function unlock() {
+  try { localStorage.setItem(KEY, "1"); } catch(e) {}
+  gate.classList.add("hidden");
+  site.style.display = "block";
+}
+function logout() {
+  try { localStorage.removeItem(KEY); } catch(e) {}
+  site.style.display = "none";
+  gate.classList.remove("hidden");
+  document.getElementById("gate-input").value = "";
+  document.getElementById("gate-err").textContent = "";
+}
+function tryPw() {
+  const v = (document.getElementById("gate-input").value || "").trim().toLowerCase();
+  if (v === PW) { unlock(); }
+  else { document.getElementById("gate-err").textContent = "Wrong password — ask whoever invited you."; document.getElementById("gate-input").value = ""; }
+}
+document.getElementById("gate-btn").addEventListener("click", tryPw);
+document.getElementById("gate-input").addEventListener("keydown", e => { if (e.key === "Enter") tryPw(); });
+try { if (localStorage.getItem(KEY) === "1") unlock(); } catch(e) {}
 
-  function unlock() {
-    try { localStorage.setItem(STORAGE_KEY, "1"); } catch (e) {}
-    gateEl.classList.add("hidden");
-    siteEl.style.display = "block";
-  }
-
-  function lock() {
-    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
-    siteEl.style.display = "none";
-    gateEl.classList.remove("hidden");
-    inputEl.value = "";
-    errorEl.textContent = "";
-    inputEl.focus();
-  }
-
-  function checkPassword() {
-    const entered = (inputEl.value || "").trim().toLowerCase();
-    if (entered === PASSWORD) {
-      errorEl.textContent = "";
-      unlock();
-    } else {
-      errorEl.textContent = "Wrong password. Ask whoever invited you.";
-      inputEl.value = "";
-      inputEl.focus();
-    }
-  }
-
-  submitEl.addEventListener("click", checkPassword);
-  inputEl.addEventListener("keydown", function (e) {
-    if (e.key === "Enter") checkPassword();
-  });
-
-  function logout() { lock(); }
-
-  try {
-    if (localStorage.getItem(STORAGE_KEY) === "1") { unlock(); }
-  } catch (e) {}
-
-  // =====================================================================
-  // PAGE NAVIGATION (Dashboard / How it Works)
-  // =====================================================================
-  const navLinks = document.querySelectorAll(".nav-link");
-  const pageDashboard = document.getElementById("page-dashboard");
-  const pageHow = document.getElementById("page-how");
-
-  function showPage(name) {
-    if (name === "how") {
-      pageDashboard.style.display = "none";
-      pageHow.style.display = "block";
-    } else {
-      pageDashboard.style.display = "block";
-      pageHow.style.display = "none";
-    }
-    navLinks.forEach(a => {
-      a.classList.toggle("active", a.dataset.page === name);
-    });
-    window.scrollTo(0, 0);
-  }
-
-  navLinks.forEach(a => {
-    a.addEventListener("click", function (e) {
-      e.preventDefault();
-      showPage(a.dataset.page);
-      history.replaceState(null, "", "#" + a.dataset.page);
-    });
-  });
-
-  if (window.location.hash === "#how") {
-    showPage("how");
-  } else {
-    showPage("dashboard");
-  }
+function showPage(id) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  const target = document.getElementById("page-" + id);
+  if (target) { target.classList.add("active"); window.scrollTo(0, 0); }
+}
+function showCatPage(id) { showPage(id); }
+function scrollToHow() {
+  showPage("home");
+  setTimeout(() => {
+    const el = document.getElementById("how-section");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, 50);
+}
 </script>
-
 </body>
 </html>
