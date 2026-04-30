@@ -63,47 +63,47 @@ header{background:var(--black);border-bottom:1px solid var(--border);padding:0 2
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
 /* ======= HOME PAGE ======= */
-.hero{padding:64px 24px 48px;text-align:center;position:relative;border-bottom:1px solid var(--border)}
-.hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 39px,var(--border) 39px,var(--border) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,var(--border) 39px,var(--border) 40px);opacity:.18;pointer-events:none}
-.hero-inner{position:relative;z-index:1}
-.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:20px}
-.hero-title{font-family:Impact,'Arial Black',sans-serif;font-size:clamp(52px,8vw,96px);letter-spacing:-3px;line-height:.92;color:var(--cream);margin-bottom:24px}
+.hero{padding:28px 24px 22px;text-align:left;position:relative;border-bottom:1px solid var(--border);background:var(--black2)}
+.hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 19px,var(--border) 19px,var(--border) 20px),repeating-linear-gradient(90deg,transparent,transparent 19px,var(--border) 19px,var(--border) 20px);opacity:.22;pointer-events:none}
+.hero-inner{position:relative;z-index:1;max-width:1320px;margin:0 auto}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:14px;opacity:.8}
+.hero-title{font-family:Impact,'Arial Black',sans-serif;font-size:clamp(36px,5vw,64px);letter-spacing:-1px;line-height:1.0;color:var(--cream);margin-bottom:14px}
 .hero-title span{color:var(--yellow)}
-.hero-tagline{font-size:clamp(16px,2.5vw,20px);color:var(--muted);max-width:520px;margin:0 auto 36px;font-style:italic;line-height:1.5}
+.hero-tagline{font-size:14px;color:var(--muted);max-width:480px;margin:0 0 16px;font-style:italic;line-height:1.6}
 .hero-tagline em{color:var(--cream);font-style:normal}
-.hero-meta{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+.hero-meta{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
 .hero-badge{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:6px}
-.hero-badge::before{content:'';display:block;width:4px;height:4px;border-radius:50%;background:var(--yellow)}
-.how-btn{padding:10px 22px;border:1px solid var(--border2);background:transparent;color:var(--cream);font-size:13px;font-family:inherit;cursor:pointer;letter-spacing:0.5px;transition:all .2s}
+.hero-badge::before{content:'•';opacity:.5}
+.how-btn{padding:8px 18px;border:1px solid var(--border2);background:transparent;color:var(--cream);font-size:12px;font-family:inherit;cursor:pointer;letter-spacing:0.5px;transition:all .2s}
 .how-btn:hover{border-color:var(--yellow);color:var(--yellow)}
 
 /* ======= CATEGORY CARDS (home) ======= */
-.home-section{max-width:1320px;margin:0 auto;padding:40px 24px}
-.section-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.home-section{max-width:1320px;margin:0 auto;padding:24px 24px}
+.section-label{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);padding:8px 0;margin-bottom:16px;display:flex;align-items:center;gap:12px;opacity:.55}
 .section-label::after{content:'';flex:1;height:1px;background:var(--border)}
-.cat-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.cat-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
 @media(max-width:900px){.cat-cards{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.cat-cards{grid-template-columns:1fr}}
-.cat-card{background:var(--black2);border:1px solid var(--border);padding:24px 20px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:16px}
+.cat-card{background:var(--black3);padding:16px 14px;cursor:pointer;transition:background .15s;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:8px}
 .cat-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--yellow);transform:scaleX(0);transform-origin:left;transition:transform .25s}
-.cat-card:hover{background:var(--black3);border-color:var(--border2)}
+.cat-card:hover{background:var(--black4)}
 .cat-card:hover::after{transform:scaleX(1)}
-.cat-card:hover .cat-card-arrow{opacity:1;transform:translateX(0)}
+.cat-card:hover .cat-card-arrow{opacity:.7}
 .cat-card-top{display:flex;align-items:flex-start;justify-content:space-between}
-.cat-card-icon{width:40px;height:40px;background:var(--black4);display:flex;align-items:center;justify-content:center;color:var(--yellow);flex-shrink:0}
-.cat-card-arrow{color:var(--yellow);opacity:0;transform:translateX(-4px);transition:all .2s;font-size:18px;margin-top:4px}
-.cat-card-name{font-size:13px;font-weight:600;color:var(--cream);line-height:1.3}
-.cat-card-value{display:flex;align-items:baseline;gap:4px}
-.cat-card-pts{font-family:Impact,'Arial Black',sans-serif;font-size:40px;color:var(--yellow);letter-spacing:-1px;line-height:1}
-.cat-card-ptslabel{font-size:12px;color:var(--muted)}
-.cat-card-hint{font-size:11px;color:var(--muted);letter-spacing:0.5px}
+.cat-card-icon{width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:var(--yellow);flex-shrink:0;opacity:.9}
+.cat-card-arrow{color:var(--yellow);opacity:.25;font-size:14px}
+.cat-card-name{font-size:12px;font-weight:600;color:var(--cream);line-height:1.3}
+.cat-card-value{display:flex;align-items:baseline;gap:3px}
+.cat-card-pts{font-family:Impact,'Arial Black',sans-serif;font-size:32px;color:var(--yellow);letter-spacing:-0.5px;line-height:1}
+.cat-card-ptslabel{font-size:11px;color:var(--muted)}
+.cat-card-hint{font-size:11px;color:var(--muted);opacity:.6;letter-spacing:0.3px}
 
 /* ======= DASHBOARD TABLE ======= */
 .dash-wrap{overflow-x:auto;border:1px solid var(--border)}
 table.dashboard{width:100%;border-collapse:collapse;background:var(--black2);min-width:860px}
-table.dashboard thead th{background:var(--black);color:var(--yellow);font-family:Impact,'Arial Black',sans-serif;font-size:11px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;padding:11px 10px;text-align:center;border-bottom:1px solid var(--border2);white-space:nowrap}
+table.dashboard thead th{background:#0A0A0A;color:var(--yellow);font-family:Impact,'Arial Black',sans-serif;font-size:11px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;padding:11px 10px;text-align:center;border-bottom:1px solid var(--border2);white-space:nowrap}
 table.dashboard thead th.l{text-align:left;padding-left:14px}
-table.dashboard tbody tr{border-bottom:1px solid var(--border);transition:background .12s}
+table.dashboard tbody tr{border-bottom:1px solid var(--border);transition:background .12s}table.dashboard tbody tr:nth-child(even){background:#141414}
 table.dashboard tbody tr:hover{background:var(--black3)}
 table.dashboard tbody td{padding:9px 10px;font-size:12px;vertical-align:middle;text-align:center}
 td.rank{font-family:Impact,'Arial Black',sans-serif;font-size:20px;color:var(--muted);width:44px}
@@ -249,13 +249,13 @@ footer strong{color:var(--yellow);font-family:Impact,'Arial Black',sans-serif;fo
       <div class="hero-meta">
         <span class="hero-badge">Last update: Sun 28 June, 09:00 BST</span>
         <span class="hero-badge">Next update: Sun 5 July, 09:00 BST</span>
-        <button class="how-btn" onclick="scrollToHow()">How it works ↓</button>
+
       </div>
     </div>
   </div>
 
   <div class="home-section">
-    <div class="section-label">Today's prediction values — click a category to explore</div>
+    <div style="background:var(--black);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:8px 24px;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);opacity:.55;margin-bottom:0">Today's prediction values — click a category to explore</div>
     <div class="cat-cards">
 
       <div class="cat-card" onclick="showCatPage('mgsp')">
