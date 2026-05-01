@@ -250,6 +250,10 @@ footer strong{color:var(--yellow);font-family:Impact,'Arial Black',sans-serif;fo
 </svg></div>
     <div class="brand-name"><span class="k">KNEE</span><span class="j">JERK</span></div>
   </div>
+  <nav style="display:flex;align-items:center;gap:28px">
+    <a href="#" onclick="showPage('home');return false;" style="color:var(--muted);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;transition:color .15s" onmouseover="this.style.color='#F0C020'" onmouseout="this.style.color=''">Dashboard</a>
+    <a href="#" onclick="scrollToHow();return false;" style="color:var(--muted);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;transition:color .15s" onmouseover="this.style.color='#F0C020'" onmouseout="this.style.color=''">How it Works</a>
+  </nav>
   <div class="header-right">
     <div class="live-badge"><span class="live-dot"></span>Live</div>
     <button class="lock-btn" onclick="logout()">Lock site</button>
@@ -288,7 +292,7 @@ footer strong{color:var(--yellow);font-family:Impact,'Arial Black',sans-serif;fo
 
       <div class="cat-card" onclick="showCatPage('lgsp')">
         <div class="cat-card-top">
-          <div class="cat-card-icon" style="background:transparent;border:none;display:flex;align-items:center;justify-content:center"><svg width="52" height="52" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="13" height="52" fill="#F0C020" rx="1"/><rect x="20" y="16" width="13" height="38" fill="#F0C020" rx="1"/><rect x="38" y="30" width="13" height="24" fill="#F0C020" rx="1"/><path d="M28,40 L44,52 M36,52 L44,52 L44,44" fill="none" stroke="#F0C020" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cat-card-icon" style="background:transparent;border:none;display:flex;align-items:center;justify-content:center"><svg width="52" height="52" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="12" height="52" fill="#F0C020" rx="1"/><rect x="18" y="14" width="12" height="40" fill="#F0C020" rx="1"/><rect x="34" y="28" width="12" height="26" fill="#F0C020" rx="1"/><path d="M38,8 L52,22 M44,22 L52,22 L52,14" fill="none" stroke="#F0C020" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <span class="cat-card-arrow">→</span>
         </div>
         <div class="cat-card-name">Least Group Stage Points</div>
@@ -628,7 +632,7 @@ footer strong{color:var(--yellow);font-family:Impact,'Arial Black',sans-serif;fo
       <button class="back-btn" onclick="showPage('home')">Back to dashboard</button>
       <div class="cat-page-header">
         <div class="cat-page-title-wrap">
-          <div class="cat-page-icon" style="background:transparent;border:none;display:flex;align-items:center;justify-content:center"><svg width="44" height="44" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="13" height="52" fill="#F0C020" rx="1"/><rect x="20" y="16" width="13" height="38" fill="#F0C020" rx="1"/><rect x="38" y="30" width="13" height="24" fill="#F0C020" rx="1"/><path d="M28,40 L44,52 M36,52 L44,52 L44,44" fill="none" stroke="#F0C020" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="cat-page-icon" style="background:transparent;border:none;display:flex;align-items:center;justify-content:center"><svg width="44" height="44" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="12" height="52" fill="#F0C020" rx="1"/><rect x="18" y="14" width="12" height="40" fill="#F0C020" rx="1"/><rect x="34" y="28" width="12" height="26" fill="#F0C020" rx="1"/><path d="M38,8 L52,22 M44,22 L52,22 L52,14" fill="none" stroke="#F0C020" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <div><div class="cat-page-title">Least Group Stage Points</div><div class="cat-page-subtitle">Which team gets the least number of points in the groups?</div></div>
         </div>
         <div class="cat-page-value"><div class="cat-page-pts">3</div><div class="cat-page-ptslabel">pts today</div></div>
