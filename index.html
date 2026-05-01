@@ -10,8 +10,8 @@
   --black2: #1C1C1C;
   --black3: #242424;
   --black4: #2E2E2E;
-  --yellow: #E8B820;
-  --yellow2: #C99E18;
+  --yellow: #F0C020;
+  --yellow2: #D4A818;
   --red: #E63946;
   --red2: #C1121F;
   --cream: #F5F2E8;
@@ -66,7 +66,7 @@ header{background:var(--black);border-bottom:1px solid var(--border);padding:0 2
 .hero{padding:48px 24px 40px;text-align:center;position:relative;border-bottom:1px solid var(--border);background:var(--black2)}
 .hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 19px,var(--border) 19px,var(--border) 20px),repeating-linear-gradient(90deg,transparent,transparent 19px,var(--border) 19px,var(--border) 20px);opacity:.22;pointer-events:none}
 .hero-inner{position:relative;z-index:1;max-width:1320px;margin:0 auto;display:flex;flex-direction:column;align-items:center}
-.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:14px;opacity:.8}
+.hero-eyebrow{font-family:Impact,"Arial Black",sans-serif;font-size:22px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:var(--yellow);margin-bottom:16px}
 .hero-title{font-family:Impact,'Arial Black',sans-serif;font-size:clamp(36px,5vw,64px);letter-spacing:-1px;line-height:1.0;color:var(--cream);margin-bottom:14px;text-align:center}
 .hero-title span{color:var(--yellow)}
 .hero-tagline{font-size:14px;color:var(--muted);max-width:640px;margin:0 0 16px;font-style:italic;line-height:1.6;text-align:center}
@@ -150,7 +150,7 @@ tr.p1 .pot-box{background:var(--red);color:var(--cream)}
 .back-btn:hover{color:var(--yellow)}
 .back-btn::before{content:'←'}
 .cat-page-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px}
-.cat-page-icon{width:56px;height:56px;background:var(--black4);display:flex;align-items:center;justify-content:center;color:var(--yellow);flex-shrink:0;border:1px solid var(--border2)}
+.cat-page-icon{width:60px;height:60px;background:var(--black4);display:flex;align-items:center;justify-content:center;color:var(--yellow);flex-shrink:0;border:1px solid var(--border2)}
 .cat-page-title-wrap{display:flex;align-items:center;gap:16px}
 .cat-page-title{font-family:Impact,'Arial Black',sans-serif;font-size:clamp(28px,4vw,48px);letter-spacing:-1px;color:var(--cream);line-height:1}
 .cat-page-subtitle{font-size:13px;color:var(--muted);margin-top:6px}
@@ -231,7 +231,18 @@ footer strong{color:var(--yellow);font-family:Impact,'Arial Black',sans-serif;fo
 
 <header>
   <div class="brand" onclick="showPage('home')">
-    <div class="brand-kj">KJ</div>
+    <div class="brand-kj" style="background:var(--yellow);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0;padding:0">
+    <svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+      <!-- Football background circle subtle -->
+      <circle cx="18" cy="13" r="7" fill="rgba(0,0,0,0.12)"/>
+      <!-- Pentagon patches on ball -->
+      <polygon points="18,9 21,11.5 20,15 16,15 15,11.5" fill="rgba(0,0,0,0.22)"/>
+      <!-- K letter -->
+      <text x="7" y="28" font-family="Impact,Arial Black,sans-serif" font-size="13" font-weight="900" fill="#CC1A1A" letter-spacing="-1">K</text>
+      <!-- J letter -->
+      <text x="20" y="28" font-family="Impact,Arial Black,sans-serif" font-size="13" font-weight="900" fill="#CC1A1A" letter-spacing="-1">J</text>
+    </svg>
+  </div>
     <div class="brand-name"><span class="k">KNEE</span><span class="j">JERK</span></div>
   </div>
   <div class="header-right">
@@ -246,8 +257,7 @@ footer strong{color:var(--yellow);font-family:Impact,'Arial Black',sans-serif;fo
   <div class="hero">
     <div class="hero-inner">
       <div class="hero-eyebrow">World Cup 2026</div>
-      <h1 class="hero-title">The prediction<br>game that lets you<br><span>change your mind</span></h1>
-      <p class="hero-tagline">Pick early, score big. Every day you wait costs you points — but <em>getting it right makes it worth it.</em></p>
+      <h1 class="hero-title">The prediction game<br>that lets you<br><span>change your mind</span></h1>
       <div class="hero-meta">
         <span class="hero-badge">Last update: Sun 28 June, 09:00 BST</span>
         <span class="hero-badge">Next update: Sun 5 July, 09:00 BST</span>
@@ -257,84 +267,84 @@ footer strong{color:var(--yellow);font-family:Impact,'Arial Black',sans-serif;fo
   </div>
 
   <div class="home-section">
-    <div style="background:var(--black);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:8px 24px;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);opacity:.55;margin-bottom:0">Today's prediction values — click a category to explore</div>
+    <div style="background:var(--black);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:8px 24px;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);opacity:.55;margin-bottom:0">Today's Prediction Values<br><span style="font-size:9px;letter-spacing:1.5px;opacity:.6">Click a category to explore</span></div>
     <div class="cat-cards">
 
       <div class="cat-card" onclick="showCatPage('mgsp')">
         <div class="cat-card-top">
           <div class="cat-card-icon">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"/><path d="M9 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10"/><path d="M15 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14"/><path d="M4 20h14"/></svg>
+            <svg width="44" height="44" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM200,192H56a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v76.69l34.34-34.35a8,8,0,0,1,11.32,0L128,132.69,172.69,88H144a8,8,0,0,1,0-16h48a8,8,0,0,1,8,8v48a8,8,0,0,1-16,0V99.31l-50.34,50.35a8,8,0,0,1-11.32,0L104,131.31l-40,40V176H200a8,8,0,0,1,0,16Z"/></svg>
           </div>
           <span class="cat-card-arrow">→</span>
         </div>
         <div class="cat-card-name">Most Group Stage Points</div>
         <div class="cat-card-value"><span class="cat-card-pts">3</span><span class="cat-card-ptslabel">pts today</span></div>
-        <div class="cat-card-hint">Locks 26 June · England &amp; Brazil lead</div>
+        <div class="cat-card-hint">England &amp; Brazil lead picks</div>
         <div class="cat-card-cta">Explore picks →</div>
       </div>
 
       <div class="cat-card" onclick="showCatPage('lgsp')">
         <div class="cat-card-top">
           <div class="cat-card-icon">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7l6 6l4 -4l8 8"/><path d="M21 10l0 7l-7 0"/></svg>
+            <svg width="44" height="44" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM200,192H56a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0V92.69l32,32,34.34-34.35a8,8,0,0,1,11.32,0L176,124.69V104a8,8,0,0,1,16,0v40a8,8,0,0,1-8,8H144a8,8,0,0,1,0-16h20.69L136,107.31l-34.34,34.35a8,8,0,0,1-11.32,0L64,115.31V176H200a8,8,0,0,1,0,16Z"/></svg>
           </div>
           <span class="cat-card-arrow">→</span>
         </div>
         <div class="cat-card-name">Least Group Stage Points</div>
         <div class="cat-card-value"><span class="cat-card-pts">3</span><span class="cat-card-ptslabel">pts today</span></div>
-        <div class="cat-card-hint">Locks 26 June · Haiti dominates picks</div>
+        <div class="cat-card-hint">Haiti dominates picks</div>
         <div class="cat-card-cta">Explore picks →</div>
       </div>
 
       <div class="cat-card" onclick="showCatPage('tst')">
         <div class="cat-card-top">
           <div class="cat-card-icon">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M12 7l4.76 3.45l-1.76 5.55h-6l-1.76 -5.55l4.76 -3.45"/><path d="M12 7v-4m3 13l2.5 3m-.74 -8.55l3.74 -1.45m-11.44 7.05l-2.56 2.95m.74 -8.55l-3.74 -1.45"/></svg>
+            <svg width="44" height="44" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,39.38,24.79-17.05a88.41,88.41,0,0,1,36.18,27l-8,26.94c-.2,0-.41.1-.61.17l-22.82,7.41a7.59,7.59,0,0,0-1,.4L136,88.62c0-.2,0-.41,0-.62V64C136,63.79,136,63.58,136,63.38ZM95.24,46.33,120,63.38c0,.2,0,.41,0,.62V88c0,.21,0,.42,0,.62L91.44,108.29a7.59,7.59,0,0,0-1-.4l-22.82-7.41c-.2-.07-.41-.12-.61-.17l-8-26.94A88.41,88.41,0,0,1,95.24,46.33Zm-13,129.09H53.9a87.4,87.4,0,0,1-13.79-43.07l22-16.88a5.77,5.77,0,0,0,.58.22l22.83,7.42a7.83,7.83,0,0,0,.93.22l10.79,31.42c-.15.18-.3.36-.44.55L82.7,174.71A7.8,7.8,0,0,0,82.24,175.42ZM150.69,213a88.16,88.16,0,0,1-45.38,0L95.25,184.6c.13-.16.27-.31.39-.48l14.11-19.42a7.66,7.66,0,0,0,.46-.7h35.58a7.66,7.66,0,0,0,.46.7l14.11,19.42c.12.17.26.32.39.48Zm23.07-37.61a7.8,7.8,0,0,0-.46-.71L159.19,155.3c-.14-.19-.29-.37-.44-.55l10.79-31.42a7.83,7.83,0,0,0,.93-.22l22.83-7.42a5.77,5.77,0,0,0,.58-.22l22,16.88a87.4,87.4,0,0,1-13.79,43.07Z"/></svg>
           </div>
           <span class="cat-card-arrow">→</span>
         </div>
         <div class="cat-card-name">Top Scoring Team</div>
         <div class="cat-card-value"><span class="cat-card-pts">25</span><span class="cat-card-ptslabel">pts today</span></div>
-        <div class="cat-card-hint">Locks 18 July · Brazil favourite</div>
+        <div class="cat-card-hint">Brazil favourite</div>
         <div class="cat-card-cta">Explore picks →</div>
       </div>
 
       <div class="cat-card" onclick="showCatPage('ast')">
         <div class="cat-card-top">
           <div class="cat-card-icon">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 4a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"/><path d="M3 17l5 1l.75 -1.5"/><path d="M14 21v-4l-4 -3l1 -6"/><path d="M6 12v-3l5 -1l3 3l3 1"/><path d="M19.5 20a.5 .5 0 1 0 0 -1a.5 .5 0 0 0 0 1" fill="currentColor"/></svg>
+            <svg width="44" height="44" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M254.3,107.91,228.78,56.85a16,16,0,0,0-21.47-7.15L182.44,62.13,130.05,48.27a8.14,8.14,0,0,0-4.1,0L73.56,62.13,48.69,49.7a16,16,0,0,0-21.47,7.15L1.7,107.9a16,16,0,0,0,7.15,21.47l27,13.51,55.49,39.63a8.06,8.06,0,0,0,2.71,1.25l64,16a8,8,0,0,0,7.6-2.1l40-40,15.08-15.08,26.42-13.21a16,16,0,0,0,7.15-21.46Zm-54.89,33.37L165,113.72a8,8,0,0,0-10.68.61C136.51,132.27,116.66,130,104,122L147.24,80h31.81l27.21,54.41Zm-41.87,41.86L99.42,168.61l-49.2-35.14,28-56L128,64.28l9.8,2.59-45,43.68-.08.09a16,16,0,0,0,2.72,24.81c20.56,13.13,45.37,11,64.91-5L188,152.66Zm-25.72,34.8a8,8,0,0,1-7.75,6.06,8.13,8.13,0,0,1-1.95-.24L80.41,213.33a7.89,7.89,0,0,1-2.71-1.25L51.35,193.26a8,8,0,0,1,9.3-13l25.11,17.94L126,208.24A8,8,0,0,1,131.82,217.94Z"/></svg>
           </div>
           <span class="cat-card-arrow">→</span>
         </div>
         <div class="cat-card-name">Most Assists</div>
         <div class="cat-card-value"><span class="cat-card-pts">25</span><span class="cat-card-ptslabel">pts today</span></div>
-        <div class="cat-card-hint">Locks 18 July · Split between De Bruyne &amp; Mbappé</div>
+        <div class="cat-card-hint">Split between De Bruyne &amp; Mbappé</div>
         <div class="cat-card-cta">Explore picks →</div>
       </div>
 
       <div class="cat-card" onclick="showCatPage('gbt')">
         <div class="cat-card-top">
           <div class="cat-card-icon">
-            <svg width="26" height="26" viewBox="0 0 256 256" fill="currentColor"><path d="M192,104H164V56a20,20,0,0,0-20-20H32A12,12,0,0,0,20.8,52.3c10.88,28.39,8.3,78.36-.33,108.38A12,12,0,0,0,20,164v36a20,20,0,0,0,20,20H66.11a20.16,20.16,0,0,0,9-2.11L86.83,212h14.34l11.77,5.89a20.16,20.16,0,0,0,9,2.11h28.22a20.16,20.16,0,0,0,8.95-2.11L170.83,212h14.34l11.77,5.89a20.16,20.16,0,0,0,8.95,2.11H232a20,20,0,0,0,20-20V164A60.07,60.07,0,0,0,192,104ZM48,60h92v44H116a12,12,0,0,0,0,24h76a36.07,36.07,0,0,1,33.94,24H47.21C52.75,124.08,54.23,88.41,48,60ZM228,196H206.83l-11.77-5.89a20.16,20.16,0,0,0-8.95-2.11H169.89a20.16,20.16,0,0,0-8.95,2.11L149.17,196H122.83l-11.77-5.89a20.16,20.16,0,0,0-9-2.11H85.89a20.16,20.16,0,0,0-9,2.11L65.17,196H44V176H228Z"/></svg>
+            <svg width="44" height="44" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M192,112H112.27a8.17,8.17,0,0,1-8.25-7.47A8,8,0,0,1,112,96h44a4,4,0,0,0,4-4V84a4,4,0,0,0-4-4H112.27A8.17,8.17,0,0,1,104,72.53,8,8,0,0,1,112,64h44a4,4,0,0,0,4-4V56a16,16,0,0,0-16-16H32.22a8.23,8.23,0,0,0-5.08,1.64,8,8,0,0,0-2.61,9.22c11.06,28.84,8.76,83.71-.22,114.93A8,8,0,0,0,24,168v32a16,16,0,0,0,16,16H66.11a16,16,0,0,0,7.16-1.69L85.89,208h16.22l12.62,6.31a16,16,0,0,0,7.16,1.69h28.22a16,16,0,0,0,7.16-1.69L169.89,208h16.22l12.62,6.31a16,16,0,0,0,7.16,1.69H232a16,16,0,0,0,16-16V168A56,56,0,0,0,192,112Zm40,88H205.89l-12.62-6.31a16,16,0,0,0-7.16-1.69H169.89a16,16,0,0,0-7.16,1.69L150.11,200H121.89l-12.62-6.31a16,16,0,0,0-7.16-1.69H85.89a16,16,0,0,0-7.16,1.69L66.11,200H40V176H232Z"/></svg>
           </div>
           <span class="cat-card-arrow">→</span>
         </div>
         <div class="cat-card-name">Golden Boot</div>
         <div class="cat-card-value"><span class="cat-card-pts">25</span><span class="cat-card-ptslabel">pts today</span></div>
-        <div class="cat-card-hint">Locks 18 July · Haaland leads with 3 picks</div>
+        <div class="cat-card-hint">Haaland leads with 3 picks</div>
         <div class="cat-card-cta">Explore picks →</div>
       </div>
 
       <div class="cat-card" onclick="showCatPage('wcw')">
         <div class="cat-card-top">
           <div class="cat-card-icon">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 21l8 0"/><path d="M12 17l0 4"/><path d="M7 4l10 0"/><path d="M17 4v8a5 5 0 0 1 -10 0v-8"/><path d="M3 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M17 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/></svg>
+            <svg width="44" height="44" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M232,64H208V48a8,8,0,0,0-8-8H56a8,8,0,0,0-8,8V64H24A16,16,0,0,0,8,80V96a40,40,0,0,0,40,40h3.65A80.13,80.13,0,0,0,120,191.61V216H96a8,8,0,0,0,0,16h64a8,8,0,0,0,0-16H136V191.58c31.94-3.23,58.44-25.64,68.08-55.58H208a40,40,0,0,0,40-40V80A16,16,0,0,0,232,64ZM48,120A24,24,0,0,1,24,96V80H48v32q0,4,.39,8ZM232,96a24,24,0,0,1-24,24h-.5a81.81,81.81,0,0,0,.5-8.9V80h24Z"/></svg>
           </div>
           <span class="cat-card-arrow">→</span>
         </div>
         <div class="cat-card-name">World Cup Winners</div>
         <div class="cat-card-value"><span class="cat-card-pts">50</span><span class="cat-card-ptslabel">pts today</span></div>
-        <div class="cat-card-hint">Locks 18 July · Brazil leads with 3 picks</div>
+        <div class="cat-card-hint">Brazil leads with 3 picks</div>
         <div class="cat-card-cta">Explore picks →</div>
       </div>
 
@@ -485,8 +495,11 @@ footer strong{color:var(--yellow);font-family:Impact,'Arial Black',sans-serif;fo
       <div class="how-grid">
         <div class="how-left">
           <h2>How does<br><span>KneeJerk</span><br>work?</h2>
-          <p>Six prediction categories. Pick early and you score <strong>more points</strong> if you're right. Wait and see how things play out, but every day costs you.</p>
-          <p>You can change your mind as many times as you like — but each change locks in that day's lower value. The game rewards <strong>confidence and conviction</strong>.</p>
+          <p>Make six predictions before the World Cup. Once the tournament begins, change your mind as many times as you want — right up to the day before the final, even!</p>
+          <p>However... <strong>there's a cost.</strong> Each day that passes, the value of a prediction goes down. A prediction made at the start of the tournament scores more points than one at the end.</p>
+          <p>But you only score points if the prediction is right.</p>
+          <p>And this is the conundrum that Knee-jerkers face. Stay loyal to a high-value pick you've lost hope with? Or make a change that feels right but for points that feel wrong?</p>
+          <p><strong>Decision-making is everything in football.</strong></p>
           <table class="pts-table">
             <thead><tr><th>Category</th><th>Max</th><th>Drop</th><th>Min</th></tr></thead>
             <tbody>
@@ -504,28 +517,28 @@ footer strong{color:var(--yellow);font-family:Impact,'Arial Black',sans-serif;fo
             <div class="how-step-num">1</div>
             <div class="how-step-body">
               <h4>Make your picks</h4>
-              <p>Send your predictions to the league admin before the tournament starts. The earlier you pick, the <strong>more points</strong> a correct answer is worth.</p>
+              <p>Send your predictions to the league admin before the World Cup starts.</p>
             </div>
           </div>
           <div class="how-step">
             <div class="how-step-num">2</div>
             <div class="how-step-body">
               <h4>Change your mind</h4>
-              <p>You can update any pick right up to the day before it resolves. Just tell the admin. But the value drops every day — so changing late costs you.</p>
+              <p>You can update your pick right up to the day that category resolves. Send any new pick to the admin — the potential points value will also update.</p>
             </div>
           </div>
           <div class="how-step">
             <div class="how-step-num">3</div>
             <div class="how-step-body">
-              <h4>Sunday updates</h4>
-              <p>The dashboard refreshes every Sunday at <strong>09:00 BST</strong>. Changes made during the week don't show until Sunday — so nobody can copy your last-minute thinking.</p>
+              <h4>Weekly updates</h4>
+              <p>The dashboard refreshes every Sunday at <strong>9:00 BST</strong>, at which point changes made during the week will be made public on the dashboard and individual category pages.</p>
             </div>
           </div>
           <div class="how-step">
             <div class="how-step-num">4</div>
             <div class="how-step-body">
-              <h4>Score when categories resolve</h4>
-              <p>Group stage categories resolve 27 June. Everything else resolves after the final, 19 July. Ties pay <strong>full value to everyone</strong> who picked correctly.</p>
+              <h4>Points scoring</h4>
+              <p>Group stage categories resolve on 27th June. All other categories resolve on 19th July after the World Cup final. In the event of category ties, points can be awarded for multiple correct picks.</p>
             </div>
           </div>
         </div>
@@ -544,8 +557,8 @@ footer strong{color:var(--yellow);font-family:Impact,'Arial Black',sans-serif;fo
       <button class="back-btn" onclick="showPage('home')">Back to dashboard</button>
       <div class="cat-page-header">
         <div class="cat-page-title-wrap">
-          <div class="cat-page-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"/><path d="M9 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10"/><path d="M15 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14"/><path d="M4 20h14"/></svg></div>
-          <div><div class="cat-page-title">Most Group Stage Points</div><div class="cat-page-subtitle">Which team finishes the group stage with the most points? · Locks 26 June</div></div>
+          <div class="cat-page-icon"><svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM200,192H56a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v76.69l34.34-34.35a8,8,0,0,1,11.32,0L128,132.69,172.69,88H144a8,8,0,0,1,0-16h48a8,8,0,0,1,8,8v48a8,8,0,0,1-16,0V99.31l-50.34,50.35a8,8,0,0,1-11.32,0L104,131.31l-40,40V176H200a8,8,0,0,1,0,16Z"/></svg></div>
+          <div><div class="cat-page-title">Most Group Stage Points</div><div class="cat-page-subtitle">Which team gets the highest number of points in the groups?</div></div>
         </div>
         <div class="cat-page-value"><div class="cat-page-pts">3</div><div class="cat-page-ptslabel">pts today</div></div>
       </div>
@@ -622,8 +635,8 @@ footer strong{color:var(--yellow);font-family:Impact,'Arial Black',sans-serif;fo
       <button class="back-btn" onclick="showPage('home')">Back to dashboard</button>
       <div class="cat-page-header">
         <div class="cat-page-title-wrap">
-          <div class="cat-page-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7l6 6l4 -4l8 8"/><path d="M21 10l0 7l-7 0"/></svg></div>
-          <div><div class="cat-page-title">Least Group Stage Points</div><div class="cat-page-subtitle">Which team finishes bottom of the group stage? · Locks 26 June</div></div>
+          <div class="cat-page-icon"><svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM200,192H56a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0V92.69l32,32,34.34-34.35a8,8,0,0,1,11.32,0L176,124.69V104a8,8,0,0,1,16,0v40a8,8,0,0,1-8,8H144a8,8,0,0,1,0-16h20.69L136,107.31l-34.34,34.35a8,8,0,0,1-11.32,0L64,115.31V176H200a8,8,0,0,1,0,16Z"/></svg></div>
+          <div><div class="cat-page-title">Least Group Stage Points</div><div class="cat-page-subtitle">Which team gets the least number of points in the groups?</div></div>
         </div>
         <div class="cat-page-value"><div class="cat-page-pts">3</div><div class="cat-page-ptslabel">pts today</div></div>
       </div>
@@ -698,8 +711,8 @@ footer strong{color:var(--yellow);font-family:Impact,'Arial Black',sans-serif;fo
       <button class="back-btn" onclick="showPage('home')">Back to dashboard</button>
       <div class="cat-page-header">
         <div class="cat-page-title-wrap">
-          <div class="cat-page-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M12 7l4.76 3.45l-1.76 5.55h-6l-1.76 -5.55l4.76 -3.45"/><path d="M12 7v-4m3 13l2.5 3m-.74 -8.55l3.74 -1.45m-11.44 7.05l-2.56 2.95m.74 -8.55l-3.74 -1.45"/></svg></div>
-          <div><div class="cat-page-title">Top Scoring Team</div><div class="cat-page-subtitle">Most goals scored across the whole tournament · Locks 18 July</div></div>
+          <div class="cat-page-icon"><svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,39.38,24.79-17.05a88.41,88.41,0,0,1,36.18,27l-8,26.94c-.2,0-.41.1-.61.17l-22.82,7.41a7.59,7.59,0,0,0-1,.4L136,88.62c0-.2,0-.41,0-.62V64C136,63.79,136,63.58,136,63.38ZM95.24,46.33,120,63.38c0,.2,0,.41,0,.62V88c0,.21,0,.42,0,.62L91.44,108.29a7.59,7.59,0,0,0-1-.4l-22.82-7.41c-.2-.07-.41-.12-.61-.17l-8-26.94A88.41,88.41,0,0,1,95.24,46.33Zm-13,129.09H53.9a87.4,87.4,0,0,1-13.79-43.07l22-16.88a5.77,5.77,0,0,0,.58.22l22.83,7.42a7.83,7.83,0,0,0,.93.22l10.79,31.42c-.15.18-.3.36-.44.55L82.7,174.71A7.8,7.8,0,0,0,82.24,175.42ZM150.69,213a88.16,88.16,0,0,1-45.38,0L95.25,184.6c.13-.16.27-.31.39-.48l14.11-19.42a7.66,7.66,0,0,0,.46-.7h35.58a7.66,7.66,0,0,0,.46.7l14.11,19.42c.12.17.26.32.39.48Zm23.07-37.61a7.8,7.8,0,0,0-.46-.71L159.19,155.3c-.14-.19-.29-.37-.44-.55l10.79-31.42a7.83,7.83,0,0,0,.93-.22l22.83-7.42a5.77,5.77,0,0,0,.58-.22l22,16.88a87.4,87.4,0,0,1-13.79,43.07Z"/></svg></div>
+          <div><div class="cat-page-title">Top Scoring Team</div><div class="cat-page-subtitle">Most goals across the tournament.</div></div>
         </div>
         <div class="cat-page-value"><div class="cat-page-pts">25</div><div class="cat-page-ptslabel">pts today</div></div>
       </div>
@@ -774,8 +787,8 @@ footer strong{color:var(--yellow);font-family:Impact,'Arial Black',sans-serif;fo
       <button class="back-btn" onclick="showPage('home')">Back to dashboard</button>
       <div class="cat-page-header">
         <div class="cat-page-title-wrap">
-          <div class="cat-page-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 4a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"/><path d="M3 17l5 1l.75 -1.5"/><path d="M14 21v-4l-4 -3l1 -6"/><path d="M6 12v-3l5 -1l3 3l3 1"/><path d="M19.5 20a.5 .5 0 1 0 0 -1a.5 .5 0 0 0 0 1" fill="currentColor"/></svg></div>
-          <div><div class="cat-page-title">Most Assists</div><div class="cat-page-subtitle">Most goal assists across the whole tournament · Locks 18 July</div></div>
+          <div class="cat-page-icon"><svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M254.3,107.91,228.78,56.85a16,16,0,0,0-21.47-7.15L182.44,62.13,130.05,48.27a8.14,8.14,0,0,0-4.1,0L73.56,62.13,48.69,49.7a16,16,0,0,0-21.47,7.15L1.7,107.9a16,16,0,0,0,7.15,21.47l27,13.51,55.49,39.63a8.06,8.06,0,0,0,2.71,1.25l64,16a8,8,0,0,0,7.6-2.1l40-40,15.08-15.08,26.42-13.21a16,16,0,0,0,7.15-21.46Zm-54.89,33.37L165,113.72a8,8,0,0,0-10.68.61C136.51,132.27,116.66,130,104,122L147.24,80h31.81l27.21,54.41Zm-41.87,41.86L99.42,168.61l-49.2-35.14,28-56L128,64.28l9.8,2.59-45,43.68-.08.09a16,16,0,0,0,2.72,24.81c20.56,13.13,45.37,11,64.91-5L188,152.66Zm-25.72,34.8a8,8,0,0,1-7.75,6.06,8.13,8.13,0,0,1-1.95-.24L80.41,213.33a7.89,7.89,0,0,1-2.71-1.25L51.35,193.26a8,8,0,0,1,9.3-13l25.11,17.94L126,208.24A8,8,0,0,1,131.82,217.94Z"/></svg></div>
+          <div><div class="cat-page-title">Most Assists</div><div class="cat-page-subtitle">Most goal assists across the tournament.</div></div>
         </div>
         <div class="cat-page-value"><div class="cat-page-pts">25</div><div class="cat-page-ptslabel">pts today</div></div>
       </div>
@@ -852,7 +865,7 @@ footer strong{color:var(--yellow);font-family:Impact,'Arial Black',sans-serif;fo
       <button class="back-btn" onclick="showPage('home')">Back to dashboard</button>
       <div class="cat-page-header">
         <div class="cat-page-title-wrap">
-          <div class="cat-page-icon"><svg width="30" height="30" viewBox="0 0 256 256" fill="currentColor"><path d="M192,104H164V56a20,20,0,0,0-20-20H32A12,12,0,0,0,20.8,52.3c10.88,28.39,8.3,78.36-.33,108.38A12,12,0,0,0,20,164v36a20,20,0,0,0,20,20H66.11a20.16,20.16,0,0,0,9-2.11L86.83,212h14.34l11.77,5.89a20.16,20.16,0,0,0,9,2.11h28.22a20.16,20.16,0,0,0,8.95-2.11L170.83,212h14.34l11.77,5.89a20.16,20.16,0,0,0,8.95,2.11H232a20,20,0,0,0,20-20V164A60.07,60.07,0,0,0,192,104ZM48,60h92v44H116a12,12,0,0,0,0,24h76a36.07,36.07,0,0,1,33.94,24H47.21C52.75,124.08,54.23,88.41,48,60ZM228,196H206.83l-11.77-5.89a20.16,20.16,0,0,0-8.95-2.11H169.89a20.16,20.16,0,0,0-8.95,2.11L149.17,196H122.83l-11.77-5.89a20.16,20.16,0,0,0-9-2.11H85.89a20.16,20.16,0,0,0-9,2.11L65.17,196H44V176H228Z"/></svg></div>
+          <div class="cat-page-icon"><svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M192,112H112.27a8.17,8.17,0,0,1-8.25-7.47A8,8,0,0,1,112,96h44a4,4,0,0,0,4-4V84a4,4,0,0,0-4-4H112.27A8.17,8.17,0,0,1,104,72.53,8,8,0,0,1,112,64h44a4,4,0,0,0,4-4V56a16,16,0,0,0-16-16H32.22a8.23,8.23,0,0,0-5.08,1.64,8,8,0,0,0-2.61,9.22c11.06,28.84,8.76,83.71-.22,114.93A8,8,0,0,0,24,168v32a16,16,0,0,0,16,16H66.11a16,16,0,0,0,7.16-1.69L85.89,208h16.22l12.62,6.31a16,16,0,0,0,7.16,1.69h28.22a16,16,0,0,0,7.16-1.69L169.89,208h16.22l12.62,6.31a16,16,0,0,0,7.16,1.69H232a16,16,0,0,0,16-16V168A56,56,0,0,0,192,112Zm40,88H205.89l-12.62-6.31a16,16,0,0,0-7.16-1.69H169.89a16,16,0,0,0-7.16,1.69L150.11,200H121.89l-12.62-6.31a16,16,0,0,0-7.16-1.69H85.89a16,16,0,0,0-7.16,1.69L66.11,200H40V176H232Z"/></svg></div>
           <div><div class="cat-page-title">Golden Boot</div><div class="cat-page-subtitle">Top goalscorer of the tournament · Locks 18 July</div></div>
         </div>
         <div class="cat-page-value"><div class="cat-page-pts">25</div><div class="cat-page-ptslabel">pts today</div></div>
@@ -928,8 +941,8 @@ footer strong{color:var(--yellow);font-family:Impact,'Arial Black',sans-serif;fo
       <button class="back-btn" onclick="showPage('home')">Back to dashboard</button>
       <div class="cat-page-header">
         <div class="cat-page-title-wrap">
-          <div class="cat-page-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 21l8 0"/><path d="M12 17l0 4"/><path d="M7 4l10 0"/><path d="M17 4v8a5 5 0 0 1 -10 0v-8"/><path d="M3 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M17 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/></svg></div>
-          <div><div class="cat-page-title">World Cup Winners</div><div class="cat-page-subtitle">Who lifts the trophy on 19 July? · Locks 18 July</div></div>
+          <div class="cat-page-icon"><svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M232,64H208V48a8,8,0,0,0-8-8H56a8,8,0,0,0-8,8V64H24A16,16,0,0,0,8,80V96a40,40,0,0,0,40,40h3.65A80.13,80.13,0,0,0,120,191.61V216H96a8,8,0,0,0,0,16h64a8,8,0,0,0,0-16H136V191.58c31.94-3.23,58.44-25.64,68.08-55.58H208a40,40,0,0,0,40-40V80A16,16,0,0,0,232,64ZM48,120A24,24,0,0,1,24,96V80H48v32q0,4,.39,8ZM232,96a24,24,0,0,1-24,24h-.5a81.81,81.81,0,0,0,.5-8.9V80h24Z"/></svg></div>
+          <div><div class="cat-page-title">World Cup Winners</div><div class="cat-page-subtitle">Who lifts the trophy on July 19th?</div></div>
         </div>
         <div class="cat-page-value"><div class="cat-page-pts">50</div><div class="cat-page-ptslabel">pts today</div></div>
       </div>
