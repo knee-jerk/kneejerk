@@ -61,7 +61,7 @@ header{background:var(--black);border-bottom:1px solid var(--border);padding:0 2
 
 /* ======= PAGES ======= */
 #site{display:none}
-.page{display:none !important;animation:fadeIn .25s ease}.page.active{display:block !important}
+.page{display:none !important;animation:fadeIn .25s ease}.page.active{display:block !important}[hidden]{display:none !important}
 .page.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
@@ -211,6 +211,17 @@ footer strong{color:var(--yellow);font-family:'Anton','Arial Black',sans-serif;f
   .hero-title{letter-spacing:-2px}
 }
 </style>
+<script>
+// Hide all category pages immediately before render - prevents flash of all content
+document.addEventListener("DOMContentLoaded", function() {
+  ["page-mgsp","page-lgsp","page-tst","page-ast","page-gbt","page-wcw"].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) { el.style.display = "none"; el.style.visibility = "hidden"; }
+  });
+  var home = document.getElementById("page-home");
+  if (home) { home.style.display = "block"; home.style.visibility = "visible"; }
+});
+</script>
 </head>
 <body>
 
@@ -545,7 +556,7 @@ footer strong{color:var(--yellow);font-family:'Anton','Arial Black',sans-serif;f
 <!-- ===== CATEGORY PAGES ===== -->
 
 <!-- Most Group Stage Points -->
-<div id="page-mgsp" class="page" style="display:none">
+<div id="page-mgsp" class="page" hidden>
   <div class="cat-page-hero">
     <div class="cat-page-hero-inner">
       <button class="back-btn" onclick="showPage('home')">Back to dashboard</button>
@@ -639,7 +650,7 @@ footer strong{color:var(--yellow);font-family:'Anton','Arial Black',sans-serif;f
 
 
 <!-- Least Group Stage Points -->
-<div id="page-lgsp" class="page" style="display:none">
+<div id="page-lgsp" class="page" hidden>
   <div class="cat-page-hero">
     <div class="cat-page-hero-inner">
       <button class="back-btn" onclick="showPage('home')">Back to dashboard</button>
@@ -731,7 +742,7 @@ footer strong{color:var(--yellow);font-family:'Anton','Arial Black',sans-serif;f
 
 
 <!-- Top Scoring Team -->
-<div id="page-tst" class="page" style="display:none">
+<div id="page-tst" class="page" hidden>
   <div class="cat-page-hero">
     <div class="cat-page-hero-inner">
       <button class="back-btn" onclick="showPage('home')">Back to dashboard</button>
@@ -818,7 +829,7 @@ footer strong{color:var(--yellow);font-family:'Anton','Arial Black',sans-serif;f
 
 
 <!-- Most Assists -->
-<div id="page-ast" class="page" style="display:none">
+<div id="page-ast" class="page" hidden>
   <div class="cat-page-hero">
     <div class="cat-page-hero-inner">
       <button class="back-btn" onclick="showPage('home')">Back to dashboard</button>
@@ -907,7 +918,7 @@ footer strong{color:var(--yellow);font-family:'Anton','Arial Black',sans-serif;f
 
 
 <!-- Golden Boot -->
-<div id="page-gbt" class="page" style="display:none">
+<div id="page-gbt" class="page" hidden>
   <div class="cat-page-hero">
     <div class="cat-page-hero-inner">
       <button class="back-btn" onclick="showPage('home')">Back to dashboard</button>
@@ -994,7 +1005,7 @@ footer strong{color:var(--yellow);font-family:'Anton','Arial Black',sans-serif;f
 
 
 <!-- World Cup Winners -->
-<div id="page-wcw" class="page" style="display:none">
+<div id="page-wcw" class="page" hidden>
   <div class="cat-page-hero">
     <div class="cat-page-hero-inner">
       <button class="back-btn" onclick="showPage('home')">Back to dashboard</button>
@@ -1117,11 +1128,15 @@ function showPage(id) {
   document.querySelectorAll(".page").forEach(p => {
     p.classList.remove("active");
     p.style.display = "none";
+    p.style.visibility = "hidden";
+    p.setAttribute("hidden", "");
   });
   const target = document.getElementById("page-" + id);
   if (target) {
     target.classList.add("active");
+    target.removeAttribute("hidden");
     target.style.display = "block";
+    target.style.visibility = "visible";
     window.scrollTo(0, 0);
   }
 }
