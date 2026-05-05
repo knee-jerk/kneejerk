@@ -210,6 +210,20 @@ footer strong{color:var(--yellow);font-family:'Anton','Arial Black',sans-serif;f
   .brand-name{font-size:20px}
   .hero-title{letter-spacing:-2px}
 }
+
+/* ===== LATEST CHANGES TABS ===== */
+.lc-section{max-width:1320px;margin:0 auto;padding:0 24px 48px}
+.lc-tabs{display:flex;flex-wrap:wrap;gap:2px;border-bottom:2px solid var(--yellow)}
+.lc-tab{padding:10px 16px;font-family:"Anton","Arial Black",sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);cursor:pointer;background:var(--black3);border:none;transition:all .15s;white-space:nowrap;flex-shrink:0}
+.lc-tab:hover{color:var(--cream);background:var(--black4)}
+.lc-tab.active{color:var(--black);background:var(--yellow)}
+.lc-panel{display:none;background:var(--black2);border:1px solid var(--border);border-top:none;padding:20px}
+.lc-panel.active{display:block}
+.lc-panel p{font-size:12px;color:var(--muted);margin-bottom:14px}
+@media(max-width:700px){
+  .lc-tab{padding:8px 10px;font-size:9px;letter-spacing:1px}
+  .lc-section{padding:0 16px 32px}
+}
 </style>
 <script>
 // Hide all category pages immediately before render - prevents flash of all content
@@ -495,6 +509,49 @@ document.addEventListener("DOMContentLoaded", function() {
   </div>
 
   <!-- HOW IT WORKS -->
+
+  <div class="lc-section">
+    <div class="section-label" style="color:var(--cream);opacity:.85;font-size:12px;letter-spacing:2px">Latest Changes</div>
+    <div class="lc-tabs">
+      <button class="lc-tab active" onclick="showLcTab(this,'lc-mgsp')">Most GS Pts</button>
+      <button class="lc-tab" onclick="showLcTab(this,'lc-lgsp')">Least GS Pts</button>
+      <button class="lc-tab" onclick="showLcTab(this,'lc-tst')">Top Scoring</button>
+      <button class="lc-tab" onclick="showLcTab(this,'lc-ast')">Most Assists</button>
+      <button class="lc-tab" onclick="showLcTab(this,'lc-gbt')">Golden Boot</button>
+      <button class="lc-tab" onclick="showLcTab(this,'lc-wcw')">WC Winners</button>
+    </div>
+    <div id="lc-mgsp" class="lc-panel active">
+      <p>Changes made in the last 7 days · Updated every Sunday at 09:00 BST</p>
+      <table class="picks-table"><thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
+      <tbody><tr><td colspan="4" style="color:var(--muted);font-style:italic;text-align:center;padding:18px">No changes this week</td></tr></tbody></table>
+    </div>
+    <div id="lc-lgsp" class="lc-panel">
+      <p>Changes made in the last 7 days · Updated every Sunday at 09:00 BST</p>
+      <table class="picks-table"><thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
+      <tbody><tr><td colspan="4" style="color:var(--muted);font-style:italic;text-align:center;padding:18px">No changes this week</td></tr></tbody></table>
+    </div>
+    <div id="lc-tst" class="lc-panel">
+      <p>Changes made in the last 7 days · Updated every Sunday at 09:00 BST</p>
+      <table class="picks-table"><thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
+      <tbody><tr><td colspan="4" style="color:var(--muted);font-style:italic;text-align:center;padding:18px">No changes this week</td></tr></tbody></table>
+    </div>
+    <div id="lc-ast" class="lc-panel">
+      <p>Changes made in the last 7 days · Updated every Sunday at 09:00 BST</p>
+      <table class="picks-table"><thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
+      <tbody><tr><td colspan="4" style="color:var(--muted);font-style:italic;text-align:center;padding:18px">No changes this week</td></tr></tbody></table>
+    </div>
+    <div id="lc-gbt" class="lc-panel">
+      <p>Changes made in the last 7 days · Updated every Sunday at 09:00 BST</p>
+      <table class="picks-table"><thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
+      <tbody><tr><td colspan="4" style="color:var(--muted);font-style:italic;text-align:center;padding:18px">No changes this week</td></tr></tbody></table>
+    </div>
+    <div id="lc-wcw" class="lc-panel">
+      <p>Changes made in the last 7 days · Updated every Sunday at 09:00 BST</p>
+      <table class="picks-table"><thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
+      <tbody><tr><td colspan="4" style="color:var(--muted);font-style:italic;text-align:center;padding:18px">No changes this week</td></tr></tbody></table>
+    </div>
+  </div>
+
   <div class="how-section" id="how-section">
     <div class="how-inner">
       <div class="how-grid">
@@ -637,16 +694,7 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
   </div>
 </div>
-    <div class="cat-panel" style="margin-top:24px">
-      <h3>Latest Changes</h3>
-      <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Changes made in the last 7 days. Updated every Sunday at 09:00 BST.</p>
-      <table class="picks-table">
-        <thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
-        <tbody>
-          <tr><td colspan="4" style="color:var(--muted);font-style:italic;text-align:center;padding:20px">No changes this week</td></tr>
-        </tbody>
-      </table>
-    </div>
+    
 
 
 <!-- Least Group Stage Points -->
@@ -729,16 +777,7 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
   </div>
 </div>
-    <div class="cat-panel" style="margin-top:24px">
-      <h3>Latest Changes</h3>
-      <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Changes made in the last 7 days. Updated every Sunday at 09:00 BST.</p>
-      <table class="picks-table">
-        <thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
-        <tbody>
-          <tr><td colspan="4" style="color:var(--muted);font-style:italic;text-align:center;padding:20px">No changes this week</td></tr>
-        </tbody>
-      </table>
-    </div>
+    
 
 
 <!-- Top Scoring Team -->
@@ -816,16 +855,7 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
   </div>
 </div>
-    <div class="cat-panel" style="margin-top:24px">
-      <h3>Latest Changes</h3>
-      <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Changes made in the last 7 days. Updated every Sunday at 09:00 BST.</p>
-      <table class="picks-table">
-        <thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
-        <tbody>
-          <tr><td colspan="4" style="color:var(--muted);font-style:italic;text-align:center;padding:20px">No changes this week</td></tr>
-        </tbody>
-      </table>
-    </div>
+    
 
 
 <!-- Most Assists -->
@@ -905,16 +935,7 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
   </div>
 </div>
-    <div class="cat-panel" style="margin-top:24px">
-      <h3>Latest Changes</h3>
-      <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Changes made in the last 7 days. Updated every Sunday at 09:00 BST.</p>
-      <table class="picks-table">
-        <thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
-        <tbody>
-          <tr><td colspan="4" style="color:var(--muted);font-style:italic;text-align:center;padding:20px">No changes this week</td></tr>
-        </tbody>
-      </table>
-    </div>
+    
 
 
 <!-- Golden Boot -->
@@ -992,16 +1013,7 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
   </div>
 </div>
-    <div class="cat-panel" style="margin-top:24px">
-      <h3>Latest Changes</h3>
-      <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Changes made in the last 7 days. Updated every Sunday at 09:00 BST.</p>
-      <table class="picks-table">
-        <thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
-        <tbody>
-          <tr><td colspan="4" style="color:var(--muted);font-style:italic;text-align:center;padding:20px">No changes this week</td></tr>
-        </tbody>
-      </table>
-    </div>
+    
 
 
 <!-- World Cup Winners -->
@@ -1078,16 +1090,7 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
   </div>
 </div>
-    <div class="cat-panel" style="margin-top:24px">
-      <h3>Latest Changes</h3>
-      <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Changes made in the last 7 days. Updated every Sunday at 09:00 BST.</p>
-      <table class="picks-table">
-        <thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
-        <tbody>
-          <tr><td colspan="4" style="color:var(--muted);font-style:italic;text-align:center;padding:20px">No changes this week</td></tr>
-        </tbody>
-      </table>
-    </div>
+    
 
 
 <footer>
@@ -1140,6 +1143,14 @@ function showPage(id) {
     window.scrollTo(0, 0);
   }
 }
+
+function showLcTab(btn, panelId) {
+  document.querySelectorAll(".lc-tab").forEach(t => t.classList.remove("active"));
+  document.querySelectorAll(".lc-panel").forEach(p => p.classList.remove("active"));
+  btn.classList.add("active");
+  document.getElementById(panelId).classList.add("active");
+}
+
 function showCatPage(id) { showPage(id); }
 function scrollToHow() {
   showPage("home");
