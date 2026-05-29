@@ -7,6 +7,9 @@ Updates the six PTS_ variables in index.html automatically
 NOTE: Tournament start date is currently set to 04/06/2026 for dry run purposes.
 When the real tournament begins, change TOURNAMENT_START to date(2026, 6, 11)
 and update the lock dates accordingly.
+
+DECAY RULE: Day 1 of the tournament already has one step of decay applied.
+i.e. on the start date itself, points are max minus one decay step.
 """
 
 from datetime import date
@@ -32,7 +35,8 @@ def calculate_points(cat, today):
         return cfg["max"]
     if today >= cfg["lock"]:
         return cfg["min"]
-    days_elapsed = (today - TOURNAMENT_START).days
+    # Day 1 of tournament = first decay already applied (days_elapsed starts at 1)
+    days_elapsed = (today - TOURNAMENT_START).days + 1
     pts = cfg["max"] - (days_elapsed * cfg["decay"])
     return max(cfg["min"], pts)
 
