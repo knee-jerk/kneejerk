@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 KneeJerk — Daily points decay calculator
-Runs via GitHub Actions each day at 07:55 UTC (09:00 BST)
-Updates the six PTS_ variables and LAST_UPDATED timestamp in index.html
+Runs via GitHub Actions each day at 07:55 UTC (09:00 BST display time)
+Updates PTS_ variables, LAST_SUNDAY and NEXT_SUNDAY in index.html
 
 NOTE: Tournament start date is currently set to 04/06/2026 for dry run purposes.
 When the real tournament begins, change TOURNAMENT_START to date(2026, 6, 11)
@@ -11,7 +11,7 @@ and update the lock dates accordingly.
 DECAY RULE: Day 1 of the tournament already has one step of decay applied.
 """
 
-from datetime import date
+from datetime import date, timedelta
 import re
 
 # ── Tournament configuration ───────────────────────────────────────────────────
@@ -28,6 +28,8 @@ CATEGORIES = {
     "PTS_WCW":  {"max": 78, "decay": 2, "min": 2, "lock": date(2026, 7, 11)},
 }
 
+MONTH_NAMES = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+
 def calculate_points(cat, today):
     cfg = CATEGORIES[cat]
     if today < TOURNAMENT_START:
@@ -38,12 +40,17 @@ def calculate_points(cat, today):
     pts = cfg["max"] - (days_elapsed * cfg["decay"])
     return max(cfg["min"], pts)
 
-def format_timestamp(today):
-    day_names = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
-    month_names = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
-    day_name = day_names[today.weekday()]
-    month = month_names[today.month - 1]
-    return f"{day_name} {today.day} {month} {today.year}, 09:00 BST"
+def format_date(d):
+    month = MONTH_NAMES[d.month - 1]
+    return f"Sun {d.day} {month}, 09:00 BST"
+
+def get_sundays(today):
+    # Last Sunday on or before today
+    days_since_sunday = today.weekday() + 1 if today.weekday() != 6 else 0
+    last_sunday = today - timedelta(days=days_since_sunday)
+    # Next Sunday after that
+    next_sunday = last_sunday + timedelta(days=7)
+    return last_sunday, next_sunday
 
 def update_html(filepath, today):
     with open(filepath, "r") as f:
@@ -62,15 +69,19 @@ def update_html(filepath, today):
             content = new_content
             print(f"  {cat} = {new_val}")
 
-    # Update timestamp
-    timestamp = format_timestamp(today)
-    pattern = r'(var LAST_UPDATED\s*=\s*")[^"]*(")'
-    replacement = rf'\g<1>{timestamp}\g<2>'
-    new_content = re.sub(pattern, replacement, content)
-    if new_content != content:
-        changed = True
-        content = new_content
-        print(f"  LAST_UPDATED = {timestamp}")
+    # Update sunday dates
+    last_sunday, next_sunday = get_sundays(today)
+    last_str = format_date(last_sunday)
+    next_str = format_date(next_sunday)
+
+    for var, val in [("LAST_SUNDAY", last_str), ("NEXT_SUNDAY", next_str)]:
+        pattern = rf'(var {var}\s*=\s*")[^"]*(")'
+        replacement = rf'\g<1>{val}\g<2>'
+        new_content = re.sub(pattern, replacement, content)
+        if new_content != content:
+            changed = True
+            content = new_content
+            print(f"  {var} = {val}")
 
     if changed:
         with open(filepath, "w") as f:
