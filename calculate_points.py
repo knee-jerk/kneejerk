@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
 """
 KneeJerk — Daily points decay calculator
-Runs via GitHub Actions each day at 07:55 UTC (08:55 BST)
-Updates the six PTS_ variables in index.html automatically
+Runs via GitHub Actions each day at 07:55 UTC (09:00 BST)
+Updates the six PTS_ variables and LAST_UPDATED timestamp in index.html
 
 NOTE: Tournament start date is currently set to 04/06/2026 for dry run purposes.
 When the real tournament begins, change TOURNAMENT_START to date(2026, 6, 11)
 and update the lock dates accordingly.
 
 DECAY RULE: Day 1 of the tournament already has one step of decay applied.
-i.e. on the start date itself, points are max minus one decay step.
 """
 
 from datetime import date
@@ -35,16 +34,24 @@ def calculate_points(cat, today):
         return cfg["max"]
     if today >= cfg["lock"]:
         return cfg["min"]
-    # Day 1 of tournament = first decay already applied (days_elapsed starts at 1)
     days_elapsed = (today - TOURNAMENT_START).days + 1
     pts = cfg["max"] - (days_elapsed * cfg["decay"])
     return max(cfg["min"], pts)
+
+def format_timestamp(today):
+    day_names = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
+    month_names = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    day_name = day_names[today.weekday()]
+    month = month_names[today.month - 1]
+    return f"{day_name} {today.day} {month} {today.year}, 09:00 BST"
 
 def update_html(filepath, today):
     with open(filepath, "r") as f:
         content = f.read()
 
     changed = False
+
+    # Update points values
     for cat in CATEGORIES:
         new_val = calculate_points(cat, today)
         pattern = rf'(var {cat}\s*=\s*)(\d+)(;)'
@@ -54,6 +61,16 @@ def update_html(filepath, today):
             changed = True
             content = new_content
             print(f"  {cat} = {new_val}")
+
+    # Update timestamp
+    timestamp = format_timestamp(today)
+    pattern = r'(var LAST_UPDATED\s*=\s*")[^"]*(")'
+    replacement = rf'\g<1>{timestamp}\g<2>'
+    new_content = re.sub(pattern, replacement, content)
+    if new_content != content:
+        changed = True
+        content = new_content
+        print(f"  LAST_UPDATED = {timestamp}")
 
     if changed:
         with open(filepath, "w") as f:
