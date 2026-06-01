@@ -257,6 +257,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var PTS_AST  = 39;  // Most Assists             (max 39, -1/day, min 1)
   var PTS_GBT  = 39;  // Golden Boot              (max 39, -1/day, min 1)
   var PTS_WCW  = 78;  // World Cup Winners        (max 78, -2/day, min 2)
+  var LAST_UPDATED = "Mon 1 Jun 2026, 08:55 BST";
 </script>
 <!-- ============================================================ -->
 </head>
@@ -287,7 +288,7 @@ document.addEventListener("DOMContentLoaded", function() {
       <div class="hero-eyebrow">World Cup 2026</div>
       <h1 class="hero-title">The prediction game<br>that lets you<br><span>change your mind</span></h1>
       <div class="hero-meta">
-        <span class="hero-badge">Last update: Sun 28 June, 09:00 BST</span>
+        <span class="hero-badge" id="last-updated">Points last updated: --</span>
         <span class="hero-badge">Next update: Sun 5 July, 09:00 BST</span>
 
       </div>
@@ -1279,6 +1280,8 @@ document.addEventListener("DOMContentLoaded", function() {
     if (card) card.textContent = pts[cat];
     if (page) page.textContent = pts[cat];
   });
+  var el = document.getElementById("last-updated");
+  if (el) el.textContent = "Points last updated: " + LAST_UPDATED;
 });
 </script>
 </body>
