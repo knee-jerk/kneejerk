@@ -2,8 +2,9 @@ name: Daily Points Decay Update
 
 on:
   schedule:
-    # Runs at 07:55 UTC every day (08:55 BST)
-    - cron: '55 7 * * *'
+    # Runs at 23:00 UTC (01:00 BST) every day - allows for GitHub delay to hit ~06:30 BST
+    # If not run by 07:00 BST, trigger manually via the Actions tab
+    - cron: '0 23 * * *'
   workflow_dispatch:
     # Allows manual trigger from the Actions tab in GitHub
 
