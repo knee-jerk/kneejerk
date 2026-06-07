@@ -258,8 +258,8 @@ document.addEventListener("DOMContentLoaded", function() {
   var PTS_GBT  = 35;  // Golden Boot              (max 39, -1/day, min 1)
   var PTS_WCW  = 70;  // World Cup Winners        (max 78, -2/day, min 2)
   var LAST_UPDATED = "Not yet updated";
-  var LAST_SUNDAY  = "Sun 7 Jun, 09:00 BST";
-  var NEXT_SUNDAY  = "Sun 14 Jun, 09:00 BST";
+  var LAST_SUNDAY  = "Not yet updated";
+  var NEXT_SUNDAY  = "Not yet updated";
 </script>
 <!-- ============================================================ -->
 </head>
@@ -378,6 +378,11 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
 
     </div>
+  </div>
+
+  <!-- PREDICTIONS BUTTON -->
+  <div class="home-section" style="padding-top:16px;padding-bottom:16px;text-align:center">
+    <a href="https://forms.gle/JG3UbpB4gxquwJZUA" target="_blank" rel="noopener" style="display:inline-block;background:var(--yellow);color:#000000;font-family:'Anton','Arial Black',sans-serif;font-size:15px;letter-spacing:2px;text-transform:uppercase;padding:14px 32px;text-decoration:none;">Change your predictions now</a>
   </div>
 
   <!-- DASHBOARD -->
@@ -573,7 +578,7 @@ document.addEventListener("DOMContentLoaded", function() {
       <p>Changes made in the last 7 days · Updated every Sunday at 09:00 BST</p>
       <table class="picks-table"><thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
       <tbody>
-        <tr><td>Adam B</td><td class="pick">Haiti</td><td class="pick">Iran</td><td style="color:var(--muted)">Thu 5 Jun</td></tr>
+        <tr><td>Adam B</td><td class="pick">Haiti</td><td class="pick">Iran</td><td style="color:var(--muted)">Fri 6 Jun</td></tr>
         <tr><td>Craig M</td><td class="pick">Panama</td><td class="pick">Peru</td><td style="color:var(--muted)">Wed 4 Jun</td></tr>
         <tr><td>Howard T</td><td class="pick">Haiti</td><td class="pick">Mali</td><td style="color:var(--muted)">Thu 5 Jun</td></tr>
       </tbody></table>
@@ -712,14 +717,24 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
       </div>
       <div class="cat-panel">
-                        <h3>Pre-tournament picks</h3>
-        <div style="background:var(--black4);border:1px solid var(--border);padding:16px 16px 8px">
-          <div style="font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">Top picks — Day 1 distribution (15 players)</div>
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-              <div style="width:110px;font-size:11px;color:var(--cream);font-weight:600;flex-shrink:0">Brazil</div>
-              <div style="flex:1;background:var(--black);height:24px;position:relative;overflow:hidden">
-                <div style="width:26%;height:100%;background:#4DD0E1;opacity:0.85"></div>
-              </div>
+                                <h3>Recent trends</h3>
+        <div class="trend-wrap">
+<svg viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+            <line x1="40" y1="5" x2="40" y2="125" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
+            <line x1="260" y1="5" x2="260" y2="125" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="40" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
+            <text x="260" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
+            <line x1="40" y1="90" x2="260" y2="90" stroke="#4DD0E1" stroke-width="2.5" stroke-linecap="round"/><line x1="40" y1="98" x2="260" y2="90" stroke="#FF6F00" stroke-width="2.5" stroke-linecap="round"/><line x1="40" y1="98" x2="260" y2="105" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="40" cy="90" r="4" fill="#4DD0E1"/><circle cx="260" cy="90" r="4" fill="#4DD0E1"/><circle cx="40" cy="98" r="4" fill="#FF6F00"/><circle cx="260" cy="90" r="4" fill="#FF6F00"/><circle cx="40" cy="98" r="4" fill="#C77DFF"/><circle cx="260" cy="105" r="4" fill="#C77DFF"/>
+            <text x="32" y="94" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">4</text><text x="32" y="102" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3</text><text x="32" y="102" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3</text>
+            <text x="268" y="94" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">4</text><text x="268" y="94" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">4</text><text x="268" y="109" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2</text>
+          </svg>
+        </div>
+        <div class="trend-legend">
+          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>Brazil →</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>France ↑</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>England ↓</div>
+        </div>
               <div style="width:50px;text-align:right;font-size:11px;font-weight:700;font-family:'Anton','Arial Black',sans-serif;color:#4DD0E1">4/15</div>
             </div>
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
@@ -763,7 +778,6 @@ document.addEventListener("DOMContentLoaded", function() {
           <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>Brazil</div>
           <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>France</div>
           <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>England</div>
-        </div>
     <div class="cat-panel">
       <h3>All picks</h3>
       <table class="picks-table">
@@ -799,7 +813,6 @@ document.addEventListener("DOMContentLoaded", function() {
         <tr><td>Mark H</td><td class="pick">Argentina</td><td class="pick">Croatia</td><td style="color:var(--muted)">Wed 4 Jun</td></tr>
         </tbody>
       </table>
-    </div>
     </div>
     </div>
   </div>
@@ -843,14 +856,24 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
       </div>
       <div class="cat-panel">
-                        <h3>Pre-tournament picks</h3>
-        <div style="background:var(--black4);border:1px solid var(--border);padding:16px 16px 8px">
-          <div style="font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">Top picks — Day 1 distribution (15 players)</div>
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-              <div style="width:110px;font-size:11px;color:var(--cream);font-weight:600;flex-shrink:0">New Zealand</div>
-              <div style="flex:1;background:var(--black);height:24px;position:relative;overflow:hidden">
-                <div style="width:20%;height:100%;background:#4DD0E1;opacity:0.85"></div>
-              </div>
+                                <h3>Recent trends</h3>
+        <div class="trend-wrap">
+<svg viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+            <line x1="40" y1="5" x2="40" y2="125" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
+            <line x1="260" y1="5" x2="260" y2="125" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="40" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
+            <text x="260" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
+            <line x1="40" y1="83" x2="260" y2="98" stroke="#4DD0E1" stroke-width="2.5" stroke-linecap="round"/><line x1="40" y1="98" x2="260" y2="98" stroke="#FF6F00" stroke-width="2.5" stroke-linecap="round"/><line x1="40" y1="105" x2="260" y2="105" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="40" cy="83" r="4" fill="#4DD0E1"/><circle cx="260" cy="98" r="4" fill="#4DD0E1"/><circle cx="40" cy="98" r="4" fill="#FF6F00"/><circle cx="260" cy="98" r="4" fill="#FF6F00"/><circle cx="40" cy="105" r="4" fill="#C77DFF"/><circle cx="260" cy="105" r="4" fill="#C77DFF"/>
+            <text x="32" y="87" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">5</text><text x="32" y="102" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3</text><text x="32" y="109" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">2</text>
+            <text x="268" y="102" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">3</text><text x="268" y="102" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">3</text><text x="268" y="109" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2</text>
+          </svg>
+        </div>
+        <div class="trend-legend">
+          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>Haiti ↓</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>New Zealand →</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>Scotland →</div>
+        </div>
               <div style="width:50px;text-align:right;font-size:11px;font-weight:700;font-family:'Anton','Arial Black',sans-serif;color:#4DD0E1">3/15</div>
             </div>
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
@@ -894,7 +917,6 @@ document.addEventListener("DOMContentLoaded", function() {
           <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>Haiti</div>
           <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>New Zealand</div>
           <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>Scotland</div>
-        </div>
     <div class="cat-panel">
       <h3>All picks</h3>
       <table class="picks-table">
@@ -925,12 +947,11 @@ document.addEventListener("DOMContentLoaded", function() {
       <table class="picks-table">
         <thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
         <tbody>
-        <tr><td>Adam B</td><td class="pick">Haiti</td><td class="pick">Iran</td><td style="color:var(--muted)">Thu 5 Jun</td></tr>
+        <tr><td>Adam B</td><td class="pick">Haiti</td><td class="pick">Iran</td><td style="color:var(--muted)">Fri 6 Jun</td></tr>
         <tr><td>Craig M</td><td class="pick">Panama</td><td class="pick">Peru</td><td style="color:var(--muted)">Wed 4 Jun</td></tr>
         <tr><td>Howard T</td><td class="pick">Haiti</td><td class="pick">Mali</td><td style="color:var(--muted)">Thu 5 Jun</td></tr>
         </tbody>
       </table>
-    </div>
     </div>
     </div>
   </div>
@@ -968,14 +989,24 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
       </div>
       <div class="cat-panel">
-                        <h3>Pre-tournament picks</h3>
-        <div style="background:var(--black4);border:1px solid var(--border);padding:16px 16px 8px">
-          <div style="font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">Top picks — Day 1 distribution (15 players)</div>
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-              <div style="width:110px;font-size:11px;color:var(--cream);font-weight:600;flex-shrink:0">France</div>
-              <div style="flex:1;background:var(--black);height:24px;position:relative;overflow:hidden">
-                <div style="width:26%;height:100%;background:#4DD0E1;opacity:0.85"></div>
-              </div>
+                                <h3>Recent trends</h3>
+        <div class="trend-wrap">
+<svg viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+            <line x1="40" y1="5" x2="40" y2="125" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
+            <line x1="260" y1="5" x2="260" y2="125" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="40" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
+            <text x="260" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
+            <line x1="40" y1="90" x2="260" y2="90" stroke="#4DD0E1" stroke-width="2.5" stroke-linecap="round"/><line x1="40" y1="98" x2="260" y2="105" stroke="#FF6F00" stroke-width="2.5" stroke-linecap="round"/><line x1="40" y1="105" x2="260" y2="105" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="40" cy="90" r="4" fill="#4DD0E1"/><circle cx="260" cy="90" r="4" fill="#4DD0E1"/><circle cx="40" cy="98" r="4" fill="#FF6F00"/><circle cx="260" cy="105" r="4" fill="#FF6F00"/><circle cx="40" cy="105" r="4" fill="#C77DFF"/><circle cx="260" cy="105" r="4" fill="#C77DFF"/>
+            <text x="32" y="94" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">4</text><text x="32" y="102" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3</text><text x="32" y="109" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">2</text>
+            <text x="268" y="94" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">4</text><text x="268" y="109" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2</text><text x="268" y="109" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2</text>
+          </svg>
+        </div>
+        <div class="trend-legend">
+          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>France →</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>Brazil ↓</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>England →</div>
+        </div>
               <div style="width:50px;text-align:right;font-size:11px;font-weight:700;font-family:'Anton','Arial Black',sans-serif;color:#4DD0E1">4/15</div>
             </div>
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
@@ -1019,7 +1050,6 @@ document.addEventListener("DOMContentLoaded", function() {
           <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>France</div>
           <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>Brazil</div>
           <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>Spain</div>
-        </div>
     <div class="cat-panel">
       <h3>All picks</h3>
       <table class="picks-table">
@@ -1055,7 +1085,6 @@ document.addEventListener("DOMContentLoaded", function() {
         <tr><td>Paul M</td><td class="pick">Argentina</td><td class="pick">Tunisia</td><td style="color:var(--muted)">Fri 6 Jun</td></tr>
         </tbody>
       </table>
-    </div>
     </div>
     </div>
   </div>
@@ -1095,14 +1124,24 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
       </div>
       <div class="cat-panel">
-                        <h3>Pre-tournament picks</h3>
-        <div style="background:var(--black4);border:1px solid var(--border);padding:16px 16px 8px">
-          <div style="font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">Top picks — Day 1 distribution (15 players)</div>
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-              <div style="width:110px;font-size:11px;color:var(--cream);font-weight:600;flex-shrink:0">Pedri</div>
-              <div style="flex:1;background:var(--black);height:24px;position:relative;overflow:hidden">
-                <div style="width:20%;height:100%;background:#4DD0E1;opacity:0.85"></div>
-              </div>
+                                <h3>Recent trends</h3>
+        <div class="trend-wrap">
+<svg viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+            <line x1="40" y1="5" x2="40" y2="125" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
+            <line x1="260" y1="5" x2="260" y2="125" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="40" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
+            <text x="260" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
+            <line x1="40" y1="105" x2="260" y2="98" stroke="#4DD0E1" stroke-width="2.5" stroke-linecap="round"/><line x1="40" y1="98" x2="260" y2="105" stroke="#FF6F00" stroke-width="2.5" stroke-linecap="round"/><line x1="40" y1="105" x2="260" y2="105" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="40" cy="105" r="4" fill="#4DD0E1"/><circle cx="260" cy="98" r="4" fill="#4DD0E1"/><circle cx="40" cy="98" r="4" fill="#FF6F00"/><circle cx="260" cy="105" r="4" fill="#FF6F00"/><circle cx="40" cy="105" r="4" fill="#C77DFF"/><circle cx="260" cy="105" r="4" fill="#C77DFF"/>
+            <text x="32" y="109" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">2</text><text x="32" y="102" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3</text><text x="32" y="109" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">2</text>
+            <text x="268" y="102" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">3</text><text x="268" y="109" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2</text><text x="268" y="109" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2</text>
+          </svg>
+        </div>
+        <div class="trend-legend">
+          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>Pedri ↑</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>Mbappé ↓</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>De Bruyne →</div>
+        </div>
               <div style="width:50px;text-align:right;font-size:11px;font-weight:700;font-family:'Anton','Arial Black',sans-serif;color:#4DD0E1">3/15</div>
             </div>
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
@@ -1146,7 +1185,6 @@ document.addEventListener("DOMContentLoaded", function() {
           <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>Mbappé</div>
           <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>Vinicius Jr</div>
           <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>Pedri</div>
-        </div>
     <div class="cat-panel">
       <h3>All picks</h3>
       <table class="picks-table">
@@ -1182,7 +1220,6 @@ document.addEventListener("DOMContentLoaded", function() {
         <tr><td>Simon M</td><td class="pick">Musiala</td><td class="pick">Nunez</td><td style="color:var(--muted)">Wed 4 Jun</td></tr>
         </tbody>
       </table>
-    </div>
     </div>
     </div>
   </div>
@@ -1221,14 +1258,24 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
       </div>
       <div class="cat-panel">
-                        <h3>Pre-tournament picks</h3>
-        <div style="background:var(--black4);border:1px solid var(--border);padding:16px 16px 8px">
-          <div style="font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">Top picks — Day 1 distribution (15 players)</div>
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-              <div style="width:110px;font-size:11px;color:var(--cream);font-weight:600;flex-shrink:0">Haaland</div>
-              <div style="flex:1;background:var(--black);height:24px;position:relative;overflow:hidden">
-                <div style="width:20%;height:100%;background:#4DD0E1;opacity:0.85"></div>
-              </div>
+                                <h3>Recent trends</h3>
+        <div class="trend-wrap">
+<svg viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+            <line x1="40" y1="5" x2="40" y2="125" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
+            <line x1="260" y1="5" x2="260" y2="125" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="40" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
+            <text x="260" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
+            <line x1="40" y1="98" x2="260" y2="98" stroke="#4DD0E1" stroke-width="2.5" stroke-linecap="round"/><line x1="40" y1="98" x2="260" y2="98" stroke="#FF6F00" stroke-width="2.5" stroke-linecap="round"/><line x1="40" y1="105" x2="260" y2="105" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="40" cy="98" r="4" fill="#4DD0E1"/><circle cx="260" cy="98" r="4" fill="#4DD0E1"/><circle cx="40" cy="98" r="4" fill="#FF6F00"/><circle cx="260" cy="98" r="4" fill="#FF6F00"/><circle cx="40" cy="105" r="4" fill="#C77DFF"/><circle cx="260" cy="105" r="4" fill="#C77DFF"/>
+            <text x="32" y="102" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3</text><text x="32" y="102" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3</text><text x="32" y="109" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">2</text>
+            <text x="268" y="102" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">3</text><text x="268" y="102" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">3</text><text x="268" y="109" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2</text>
+          </svg>
+        </div>
+        <div class="trend-legend">
+          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>Haaland →</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>Kane →</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>Messi →</div>
+        </div>
               <div style="width:50px;text-align:right;font-size:11px;font-weight:700;font-family:'Anton','Arial Black',sans-serif;color:#4DD0E1">3/15</div>
             </div>
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
@@ -1272,7 +1319,6 @@ document.addEventListener("DOMContentLoaded", function() {
           <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>Haaland</div>
           <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>Kane</div>
           <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>Mbappé</div>
-        </div>
     <div class="cat-panel">
       <h3>All picks</h3>
       <table class="picks-table">
@@ -1310,7 +1356,6 @@ document.addEventListener("DOMContentLoaded", function() {
       </table>
     </div>
     </div>
-    </div>
   </div>
 </div>
 
@@ -1346,14 +1391,24 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
       </div>
       <div class="cat-panel">
-                        <h3>Pre-tournament picks</h3>
-        <div style="background:var(--black4);border:1px solid var(--border);padding:16px 16px 8px">
-          <div style="font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">Top picks — Day 1 distribution (15 players)</div>
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-              <div style="width:110px;font-size:11px;color:var(--cream);font-weight:600;flex-shrink:0">Brazil</div>
-              <div style="flex:1;background:var(--black);height:24px;position:relative;overflow:hidden">
-                <div style="width:26%;height:100%;background:#4DD0E1;opacity:0.85"></div>
-              </div>
+                                <h3>Recent trends</h3>
+        <div class="trend-wrap">
+<svg viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+            <line x1="40" y1="5" x2="40" y2="125" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
+            <line x1="260" y1="5" x2="260" y2="125" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="40" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
+            <text x="260" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
+            <line x1="40" y1="90" x2="260" y2="90" stroke="#4DD0E1" stroke-width="2.5" stroke-linecap="round"/><line x1="40" y1="98" x2="260" y2="105" stroke="#FF6F00" stroke-width="2.5" stroke-linecap="round"/><line x1="40" y1="105" x2="260" y2="105" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="40" cy="90" r="4" fill="#4DD0E1"/><circle cx="260" cy="90" r="4" fill="#4DD0E1"/><circle cx="40" cy="98" r="4" fill="#FF6F00"/><circle cx="260" cy="105" r="4" fill="#FF6F00"/><circle cx="40" cy="105" r="4" fill="#C77DFF"/><circle cx="260" cy="105" r="4" fill="#C77DFF"/>
+            <text x="32" y="94" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">4</text><text x="32" y="102" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3</text><text x="32" y="109" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">2</text>
+            <text x="268" y="94" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">4</text><text x="268" y="109" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2</text><text x="268" y="109" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2</text>
+          </svg>
+        </div>
+        <div class="trend-legend">
+          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>Brazil →</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>Argentina ↓</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>Spain →</div>
+        </div>
               <div style="width:50px;text-align:right;font-size:11px;font-weight:700;font-family:'Anton','Arial Black',sans-serif;color:#4DD0E1">4/15</div>
             </div>
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
@@ -1397,7 +1452,6 @@ document.addEventListener("DOMContentLoaded", function() {
           <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>Brazil</div>
           <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>Argentina</div>
           <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>France</div>
-        </div>
     <div class="cat-panel">
       <h3>All picks</h3>
       <table class="picks-table">
@@ -1433,7 +1487,6 @@ document.addEventListener("DOMContentLoaded", function() {
         <tr><td>Simon W</td><td class="pick">England</td><td class="pick">Jordan</td><td style="color:var(--muted)">Wed 4 Jun</td></tr>
         </tbody>
       </table>
-    </div>
     </div>
     </div>
   </div>
