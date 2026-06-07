@@ -718,33 +718,52 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="cat-panel">
         <h3>Recent trends</h3>
-        <div class="trend-wrap">
-          <svg viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg">
-            <line x1="50" y1="15" x2="50" y2="110" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="250" y1="15" x2="250" y2="110" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
-            <text x="50" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
-            <text x="250" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
-            <line x1="50" y1="84" x2="250" y2="84" stroke="#4DD0E1" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="50" cy="84" r="4" fill="#4DD0E1"/>
-            <circle cx="250" cy="84" r="4" fill="#4DD0E1"/>
-            <text x="42" y="88" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">4</text>
-            <text x="258" y="88" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">4</text>
-            <line x1="50" y1="91" x2="250" y2="84" stroke="#FF6F00" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="50" cy="91" r="4" fill="#FF6F00"/>
-            <circle cx="250" cy="84" r="4" fill="#FF6F00"/>
-            <text x="42" y="95" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3</text>
-            <text x="258" y="88" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">4</text>
-            <line x1="50" y1="91" x2="250" y2="97" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="50" cy="91" r="4" fill="#C77DFF"/>
-            <circle cx="250" cy="97" r="4" fill="#C77DFF"/>
-            <text x="42" y="95" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3</text>
-            <text x="258" y="101" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2</text>
-          </svg>
+        <div class="trend-wrap" style="height:220px;border-top:2px solid #4DD0E1;padding:16px 8px 8px">
+          <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;overflow:visible">
+          <defs>
+          <linearGradient id="gradMGSP0" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4DD0E1" stop-opacity="0.18"/><stop offset="100%" stop-color="#4DD0E1" stop-opacity="0.02"/></linearGradient>
+          <linearGradient id="gradMGSP1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF6F00" stop-opacity="0.18"/><stop offset="100%" stop-color="#FF6F00" stop-opacity="0.02"/></linearGradient>
+          <linearGradient id="gradMGSP2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C77DFF" stop-opacity="0.18"/><stop offset="100%" stop-color="#C77DFF" stop-opacity="0.02"/></linearGradient>
+          </defs>
+          <line x1="60" y1="130" x2="440" y2="130" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="134" fill="#444" font-size="8" font-family="Arial" text-anchor="end">26%</text>
+          <line x1="60" y1="90" x2="440" y2="90" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="94" fill="#444" font-size="8" font-family="Arial" text-anchor="end">53%</text>
+          <line x1="60" y1="60" x2="440" y2="60" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="64" fill="#444" font-size="8" font-family="Arial" text-anchor="end">73%</text>
+          <line x1="60" y1="20" x2="440" y2="20" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="24" fill="#444" font-size="8" font-family="Arial" text-anchor="end">100%</text>
+          <text x="80" y="194" fill="#666" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">PRE</text>
+          <text x="420" y="194" fill="#666" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">WK 1</text>
+          <line x1="80" y1="20" x2="80" y2="170" stroke="#333" stroke-width="1.5"/>
+          <line x1="420" y1="20" x2="420" y2="170" stroke="#333" stroke-width="1.5"/>
+          <polygon points="80,140 420,150 420,170 80,170" fill="url(#gradMGSP2)"/>
+          <polygon points="80,140 420,130 420,170 80,170" fill="url(#gradMGSP1)"/>
+          <polygon points="80,130 420,130 420,170 80,170" fill="url(#gradMGSP0)"/>
+          <line x1="80" y1="130" x2="420" y2="130" stroke="#4DD0E1" stroke-width="4" stroke-opacity="0.2" stroke-linecap="round"/>
+          <line x1="80" y1="130" x2="420" y2="130" stroke="#4DD0E1" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="80" cy="130" r="5" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2"/>
+          <circle cx="420" cy="130" r="5" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2"/>
+          <text x="68" y="120" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">4 (26%)</text>
+          <text x="432" y="120" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">4 (26%) →</text>
+          <line x1="80" y1="140" x2="420" y2="130" stroke="#FF6F00" stroke-width="4" stroke-opacity="0.2" stroke-linecap="round"/>
+          <line x1="80" y1="140" x2="420" y2="130" stroke="#FF6F00" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="80" cy="140" r="5" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2"/>
+          <circle cx="420" cy="130" r="5" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2"/>
+          <text x="68" y="133" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3 (20%)</text>
+          <text x="432" y="123" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">4 (26%) ↑</text>
+          <line x1="80" y1="140" x2="420" y2="150" stroke="#C77DFF" stroke-width="4" stroke-opacity="0.2" stroke-linecap="round"/>
+          <line x1="80" y1="140" x2="420" y2="150" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="80" cy="140" r="5" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2"/>
+          <circle cx="420" cy="150" r="5" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2"/>
+          <text x="68" y="136" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3 (20%)</text>
+          <text x="432" y="146" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2 (13%) ↓</text>
+        </svg>
         </div>
         <div class="trend-legend">
-          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>Brazil →</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>France ↑</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>England ↓</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span><strong style="color:var(--cream);font-size:11px">Brazil</strong><span style="color:#4DD0E1;font-size:11px;margin-left:4px">→</span></div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span><strong style="color:var(--cream);font-size:11px">France</strong><span style="color:#FF6F00;font-size:11px;margin-left:4px">↑</span></div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span><strong style="color:var(--cream);font-size:11px">England</strong><span style="color:#C77DFF;font-size:11px;margin-left:4px">↓</span></div>
         </div>
       </div>
 
@@ -827,33 +846,52 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="cat-panel">
         <h3>Recent trends</h3>
-        <div class="trend-wrap">
-          <svg viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg">
-            <line x1="50" y1="15" x2="50" y2="110" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="250" y1="15" x2="250" y2="110" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
-            <text x="50" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
-            <text x="250" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
-            <line x1="50" y1="78" x2="250" y2="91" stroke="#4DD0E1" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="50" cy="78" r="4" fill="#4DD0E1"/>
-            <circle cx="250" cy="91" r="4" fill="#4DD0E1"/>
-            <text x="42" y="82" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">5</text>
-            <text x="258" y="95" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">3</text>
-            <line x1="50" y1="91" x2="250" y2="91" stroke="#FF6F00" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="50" cy="91" r="4" fill="#FF6F00"/>
-            <circle cx="250" cy="91" r="4" fill="#FF6F00"/>
-            <text x="42" y="95" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3</text>
-            <text x="258" y="95" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">3</text>
-            <line x1="50" y1="97" x2="250" y2="97" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="50" cy="97" r="4" fill="#C77DFF"/>
-            <circle cx="250" cy="97" r="4" fill="#C77DFF"/>
-            <text x="42" y="101" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">2</text>
-            <text x="258" y="101" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2</text>
-          </svg>
+        <div class="trend-wrap" style="height:220px;border-top:2px solid #4DD0E1;padding:16px 8px 8px">
+          <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;overflow:visible">
+          <defs>
+          <linearGradient id="gradLGSP0" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4DD0E1" stop-opacity="0.18"/><stop offset="100%" stop-color="#4DD0E1" stop-opacity="0.02"/></linearGradient>
+          <linearGradient id="gradLGSP1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF6F00" stop-opacity="0.18"/><stop offset="100%" stop-color="#FF6F00" stop-opacity="0.02"/></linearGradient>
+          <linearGradient id="gradLGSP2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C77DFF" stop-opacity="0.18"/><stop offset="100%" stop-color="#C77DFF" stop-opacity="0.02"/></linearGradient>
+          </defs>
+          <line x1="60" y1="130" x2="440" y2="130" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="134" fill="#444" font-size="8" font-family="Arial" text-anchor="end">26%</text>
+          <line x1="60" y1="90" x2="440" y2="90" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="94" fill="#444" font-size="8" font-family="Arial" text-anchor="end">53%</text>
+          <line x1="60" y1="60" x2="440" y2="60" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="64" fill="#444" font-size="8" font-family="Arial" text-anchor="end">73%</text>
+          <line x1="60" y1="20" x2="440" y2="20" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="24" fill="#444" font-size="8" font-family="Arial" text-anchor="end">100%</text>
+          <text x="80" y="194" fill="#666" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">PRE</text>
+          <text x="420" y="194" fill="#666" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">WK 1</text>
+          <line x1="80" y1="20" x2="80" y2="170" stroke="#333" stroke-width="1.5"/>
+          <line x1="420" y1="20" x2="420" y2="170" stroke="#333" stroke-width="1.5"/>
+          <polygon points="80,150 420,150 420,170 80,170" fill="url(#gradLGSP2)"/>
+          <polygon points="80,140 420,140 420,170 80,170" fill="url(#gradLGSP1)"/>
+          <polygon points="80,120 420,140 420,170 80,170" fill="url(#gradLGSP0)"/>
+          <line x1="80" y1="120" x2="420" y2="140" stroke="#4DD0E1" stroke-width="4" stroke-opacity="0.2" stroke-linecap="round"/>
+          <line x1="80" y1="120" x2="420" y2="140" stroke="#4DD0E1" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="80" cy="120" r="5" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2"/>
+          <circle cx="420" cy="140" r="5" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2"/>
+          <text x="68" y="110" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">5 (33%)</text>
+          <text x="432" y="130" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">3 (20%) ↓</text>
+          <line x1="80" y1="140" x2="420" y2="140" stroke="#FF6F00" stroke-width="4" stroke-opacity="0.2" stroke-linecap="round"/>
+          <line x1="80" y1="140" x2="420" y2="140" stroke="#FF6F00" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="80" cy="140" r="5" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2"/>
+          <circle cx="420" cy="140" r="5" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2"/>
+          <text x="68" y="133" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3 (20%)</text>
+          <text x="432" y="133" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">3 (20%) →</text>
+          <line x1="80" y1="150" x2="420" y2="150" stroke="#C77DFF" stroke-width="4" stroke-opacity="0.2" stroke-linecap="round"/>
+          <line x1="80" y1="150" x2="420" y2="150" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="80" cy="150" r="5" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2"/>
+          <circle cx="420" cy="150" r="5" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2"/>
+          <text x="68" y="146" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">2 (13%)</text>
+          <text x="432" y="146" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2 (13%) →</text>
+        </svg>
         </div>
         <div class="trend-legend">
-          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>Haiti ↓</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>New Zealand →</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>Scotland →</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span><strong style="color:var(--cream);font-size:11px">Haiti</strong><span style="color:#4DD0E1;font-size:11px;margin-left:4px">↓</span></div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span><strong style="color:var(--cream);font-size:11px">New Zealand</strong><span style="color:#FF6F00;font-size:11px;margin-left:4px">→</span></div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span><strong style="color:var(--cream);font-size:11px">Cape Verde</strong><span style="color:#C77DFF;font-size:11px;margin-left:4px">→</span></div>
         </div>
       </div>
 
@@ -930,33 +968,52 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="cat-panel">
         <h3>Recent trends</h3>
-        <div class="trend-wrap">
-          <svg viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg">
-            <line x1="50" y1="15" x2="50" y2="110" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="250" y1="15" x2="250" y2="110" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
-            <text x="50" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
-            <text x="250" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
-            <line x1="50" y1="84" x2="250" y2="84" stroke="#4DD0E1" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="50" cy="84" r="4" fill="#4DD0E1"/>
-            <circle cx="250" cy="84" r="4" fill="#4DD0E1"/>
-            <text x="42" y="88" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">4</text>
-            <text x="258" y="88" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">4</text>
-            <line x1="50" y1="91" x2="250" y2="97" stroke="#FF6F00" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="50" cy="91" r="4" fill="#FF6F00"/>
-            <circle cx="250" cy="97" r="4" fill="#FF6F00"/>
-            <text x="42" y="95" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3</text>
-            <text x="258" y="101" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2</text>
-            <line x1="50" y1="97" x2="250" y2="97" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="50" cy="97" r="4" fill="#C77DFF"/>
-            <circle cx="250" cy="97" r="4" fill="#C77DFF"/>
-            <text x="42" y="101" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">2</text>
-            <text x="258" y="101" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2</text>
-          </svg>
+        <div class="trend-wrap" style="height:220px;border-top:2px solid #4DD0E1;padding:16px 8px 8px">
+          <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;overflow:visible">
+          <defs>
+          <linearGradient id="gradTST0" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4DD0E1" stop-opacity="0.18"/><stop offset="100%" stop-color="#4DD0E1" stop-opacity="0.02"/></linearGradient>
+          <linearGradient id="gradTST1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF6F00" stop-opacity="0.18"/><stop offset="100%" stop-color="#FF6F00" stop-opacity="0.02"/></linearGradient>
+          <linearGradient id="gradTST2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C77DFF" stop-opacity="0.18"/><stop offset="100%" stop-color="#C77DFF" stop-opacity="0.02"/></linearGradient>
+          </defs>
+          <line x1="60" y1="130" x2="440" y2="130" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="134" fill="#444" font-size="8" font-family="Arial" text-anchor="end">26%</text>
+          <line x1="60" y1="90" x2="440" y2="90" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="94" fill="#444" font-size="8" font-family="Arial" text-anchor="end">53%</text>
+          <line x1="60" y1="60" x2="440" y2="60" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="64" fill="#444" font-size="8" font-family="Arial" text-anchor="end">73%</text>
+          <line x1="60" y1="20" x2="440" y2="20" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="24" fill="#444" font-size="8" font-family="Arial" text-anchor="end">100%</text>
+          <text x="80" y="194" fill="#666" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">PRE</text>
+          <text x="420" y="194" fill="#666" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">WK 1</text>
+          <line x1="80" y1="20" x2="80" y2="170" stroke="#333" stroke-width="1.5"/>
+          <line x1="420" y1="20" x2="420" y2="170" stroke="#333" stroke-width="1.5"/>
+          <polygon points="80,150 420,150 420,170 80,170" fill="url(#gradTST2)"/>
+          <polygon points="80,140 420,150 420,170 80,170" fill="url(#gradTST1)"/>
+          <polygon points="80,130 420,130 420,170 80,170" fill="url(#gradTST0)"/>
+          <line x1="80" y1="130" x2="420" y2="130" stroke="#4DD0E1" stroke-width="4" stroke-opacity="0.2" stroke-linecap="round"/>
+          <line x1="80" y1="130" x2="420" y2="130" stroke="#4DD0E1" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="80" cy="130" r="5" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2"/>
+          <circle cx="420" cy="130" r="5" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2"/>
+          <text x="68" y="120" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">4 (26%)</text>
+          <text x="432" y="120" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">4 (26%) →</text>
+          <line x1="80" y1="140" x2="420" y2="150" stroke="#FF6F00" stroke-width="4" stroke-opacity="0.2" stroke-linecap="round"/>
+          <line x1="80" y1="140" x2="420" y2="150" stroke="#FF6F00" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="80" cy="140" r="5" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2"/>
+          <circle cx="420" cy="150" r="5" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2"/>
+          <text x="68" y="133" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3 (20%)</text>
+          <text x="432" y="143" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2 (13%) ↓</text>
+          <line x1="80" y1="150" x2="420" y2="150" stroke="#C77DFF" stroke-width="4" stroke-opacity="0.2" stroke-linecap="round"/>
+          <line x1="80" y1="150" x2="420" y2="150" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="80" cy="150" r="5" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2"/>
+          <circle cx="420" cy="150" r="5" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2"/>
+          <text x="68" y="146" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">2 (13%)</text>
+          <text x="432" y="146" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2 (13%) →</text>
+        </svg>
         </div>
         <div class="trend-legend">
-          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>France →</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>Brazil ↓</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>England →</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span><strong style="color:var(--cream);font-size:11px">France</strong><span style="color:#4DD0E1;font-size:11px;margin-left:4px">→</span></div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span><strong style="color:var(--cream);font-size:11px">Brazil</strong><span style="color:#FF6F00;font-size:11px;margin-left:4px">↓</span></div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span><strong style="color:var(--cream);font-size:11px">Spain</strong><span style="color:#C77DFF;font-size:11px;margin-left:4px">→</span></div>
         </div>
       </div>
 
@@ -1035,33 +1092,52 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="cat-panel">
         <h3>Recent trends</h3>
-        <div class="trend-wrap">
-          <svg viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg">
-            <line x1="50" y1="15" x2="50" y2="110" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="250" y1="15" x2="250" y2="110" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
-            <text x="50" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
-            <text x="250" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
-            <line x1="50" y1="97" x2="250" y2="91" stroke="#4DD0E1" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="50" cy="97" r="4" fill="#4DD0E1"/>
-            <circle cx="250" cy="91" r="4" fill="#4DD0E1"/>
-            <text x="42" y="101" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">2</text>
-            <text x="258" y="95" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">3</text>
-            <line x1="50" y1="91" x2="250" y2="97" stroke="#FF6F00" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="50" cy="91" r="4" fill="#FF6F00"/>
-            <circle cx="250" cy="97" r="4" fill="#FF6F00"/>
-            <text x="42" y="95" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3</text>
-            <text x="258" y="101" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2</text>
-            <line x1="50" y1="97" x2="250" y2="97" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="50" cy="97" r="4" fill="#C77DFF"/>
-            <circle cx="250" cy="97" r="4" fill="#C77DFF"/>
-            <text x="42" y="101" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">2</text>
-            <text x="258" y="101" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2</text>
-          </svg>
+        <div class="trend-wrap" style="height:220px;border-top:2px solid #4DD0E1;padding:16px 8px 8px">
+          <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;overflow:visible">
+          <defs>
+          <linearGradient id="gradAST0" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4DD0E1" stop-opacity="0.18"/><stop offset="100%" stop-color="#4DD0E1" stop-opacity="0.02"/></linearGradient>
+          <linearGradient id="gradAST1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF6F00" stop-opacity="0.18"/><stop offset="100%" stop-color="#FF6F00" stop-opacity="0.02"/></linearGradient>
+          <linearGradient id="gradAST2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C77DFF" stop-opacity="0.18"/><stop offset="100%" stop-color="#C77DFF" stop-opacity="0.02"/></linearGradient>
+          </defs>
+          <line x1="60" y1="130" x2="440" y2="130" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="134" fill="#444" font-size="8" font-family="Arial" text-anchor="end">26%</text>
+          <line x1="60" y1="90" x2="440" y2="90" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="94" fill="#444" font-size="8" font-family="Arial" text-anchor="end">53%</text>
+          <line x1="60" y1="60" x2="440" y2="60" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="64" fill="#444" font-size="8" font-family="Arial" text-anchor="end">73%</text>
+          <line x1="60" y1="20" x2="440" y2="20" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="24" fill="#444" font-size="8" font-family="Arial" text-anchor="end">100%</text>
+          <text x="80" y="194" fill="#666" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">PRE</text>
+          <text x="420" y="194" fill="#666" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">WK 1</text>
+          <line x1="80" y1="20" x2="80" y2="170" stroke="#333" stroke-width="1.5"/>
+          <line x1="420" y1="20" x2="420" y2="170" stroke="#333" stroke-width="1.5"/>
+          <polygon points="80,150 420,150 420,170 80,170" fill="url(#gradAST2)"/>
+          <polygon points="80,140 420,150 420,170 80,170" fill="url(#gradAST1)"/>
+          <polygon points="80,150 420,140 420,170 80,170" fill="url(#gradAST0)"/>
+          <line x1="80" y1="150" x2="420" y2="140" stroke="#4DD0E1" stroke-width="4" stroke-opacity="0.2" stroke-linecap="round"/>
+          <line x1="80" y1="150" x2="420" y2="140" stroke="#4DD0E1" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="80" cy="150" r="5" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2"/>
+          <circle cx="420" cy="140" r="5" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2"/>
+          <text x="68" y="140" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">2 (13%)</text>
+          <text x="432" y="130" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">3 (20%) ↑</text>
+          <line x1="80" y1="140" x2="420" y2="150" stroke="#FF6F00" stroke-width="4" stroke-opacity="0.2" stroke-linecap="round"/>
+          <line x1="80" y1="140" x2="420" y2="150" stroke="#FF6F00" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="80" cy="140" r="5" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2"/>
+          <circle cx="420" cy="150" r="5" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2"/>
+          <text x="68" y="133" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3 (20%)</text>
+          <text x="432" y="143" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2 (13%) ↓</text>
+          <line x1="80" y1="150" x2="420" y2="150" stroke="#C77DFF" stroke-width="4" stroke-opacity="0.2" stroke-linecap="round"/>
+          <line x1="80" y1="150" x2="420" y2="150" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="80" cy="150" r="5" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2"/>
+          <circle cx="420" cy="150" r="5" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2"/>
+          <text x="68" y="146" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">2 (13%)</text>
+          <text x="432" y="146" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2 (13%) →</text>
+        </svg>
         </div>
         <div class="trend-legend">
-          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>Pedri ↑</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>Mbappé ↓</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>De Bruyne →</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span><strong style="color:var(--cream);font-size:11px">Pedri</strong><span style="color:#4DD0E1;font-size:11px;margin-left:4px">↑</span></div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span><strong style="color:var(--cream);font-size:11px">Mbappé</strong><span style="color:#FF6F00;font-size:11px;margin-left:4px">↓</span></div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span><strong style="color:var(--cream);font-size:11px">De Bruyne</strong><span style="color:#C77DFF;font-size:11px;margin-left:4px">→</span></div>
         </div>
       </div>
 
@@ -1139,33 +1215,52 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="cat-panel">
         <h3>Recent trends</h3>
-        <div class="trend-wrap">
-          <svg viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg">
-            <line x1="50" y1="15" x2="50" y2="110" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="250" y1="15" x2="250" y2="110" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
-            <text x="50" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
-            <text x="250" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
-            <line x1="50" y1="91" x2="250" y2="91" stroke="#4DD0E1" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="50" cy="91" r="4" fill="#4DD0E1"/>
-            <circle cx="250" cy="91" r="4" fill="#4DD0E1"/>
-            <text x="42" y="95" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3</text>
-            <text x="258" y="95" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">3</text>
-            <line x1="50" y1="91" x2="250" y2="91" stroke="#FF6F00" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="50" cy="91" r="4" fill="#FF6F00"/>
-            <circle cx="250" cy="91" r="4" fill="#FF6F00"/>
-            <text x="42" y="95" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3</text>
-            <text x="258" y="95" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">3</text>
-            <line x1="50" y1="97" x2="250" y2="97" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="50" cy="97" r="4" fill="#C77DFF"/>
-            <circle cx="250" cy="97" r="4" fill="#C77DFF"/>
-            <text x="42" y="101" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">2</text>
-            <text x="258" y="101" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2</text>
-          </svg>
+        <div class="trend-wrap" style="height:220px;border-top:2px solid #4DD0E1;padding:16px 8px 8px">
+          <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;overflow:visible">
+          <defs>
+          <linearGradient id="gradGBT0" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4DD0E1" stop-opacity="0.18"/><stop offset="100%" stop-color="#4DD0E1" stop-opacity="0.02"/></linearGradient>
+          <linearGradient id="gradGBT1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF6F00" stop-opacity="0.18"/><stop offset="100%" stop-color="#FF6F00" stop-opacity="0.02"/></linearGradient>
+          <linearGradient id="gradGBT2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C77DFF" stop-opacity="0.18"/><stop offset="100%" stop-color="#C77DFF" stop-opacity="0.02"/></linearGradient>
+          </defs>
+          <line x1="60" y1="130" x2="440" y2="130" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="134" fill="#444" font-size="8" font-family="Arial" text-anchor="end">26%</text>
+          <line x1="60" y1="90" x2="440" y2="90" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="94" fill="#444" font-size="8" font-family="Arial" text-anchor="end">53%</text>
+          <line x1="60" y1="60" x2="440" y2="60" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="64" fill="#444" font-size="8" font-family="Arial" text-anchor="end">73%</text>
+          <line x1="60" y1="20" x2="440" y2="20" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="24" fill="#444" font-size="8" font-family="Arial" text-anchor="end">100%</text>
+          <text x="80" y="194" fill="#666" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">PRE</text>
+          <text x="420" y="194" fill="#666" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">WK 1</text>
+          <line x1="80" y1="20" x2="80" y2="170" stroke="#333" stroke-width="1.5"/>
+          <line x1="420" y1="20" x2="420" y2="170" stroke="#333" stroke-width="1.5"/>
+          <polygon points="80,150 420,150 420,170 80,170" fill="url(#gradGBT2)"/>
+          <polygon points="80,140 420,140 420,170 80,170" fill="url(#gradGBT1)"/>
+          <polygon points="80,140 420,140 420,170 80,170" fill="url(#gradGBT0)"/>
+          <line x1="80" y1="140" x2="420" y2="140" stroke="#4DD0E1" stroke-width="4" stroke-opacity="0.2" stroke-linecap="round"/>
+          <line x1="80" y1="140" x2="420" y2="140" stroke="#4DD0E1" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="80" cy="140" r="5" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2"/>
+          <circle cx="420" cy="140" r="5" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2"/>
+          <text x="68" y="130" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3 (20%)</text>
+          <text x="432" y="130" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">3 (20%) →</text>
+          <line x1="80" y1="140" x2="420" y2="140" stroke="#FF6F00" stroke-width="4" stroke-opacity="0.2" stroke-linecap="round"/>
+          <line x1="80" y1="140" x2="420" y2="140" stroke="#FF6F00" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="80" cy="140" r="5" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2"/>
+          <circle cx="420" cy="140" r="5" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2"/>
+          <text x="68" y="133" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3 (20%)</text>
+          <text x="432" y="133" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">3 (20%) →</text>
+          <line x1="80" y1="150" x2="420" y2="150" stroke="#C77DFF" stroke-width="4" stroke-opacity="0.2" stroke-linecap="round"/>
+          <line x1="80" y1="150" x2="420" y2="150" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="80" cy="150" r="5" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2"/>
+          <circle cx="420" cy="150" r="5" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2"/>
+          <text x="68" y="146" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">2 (13%)</text>
+          <text x="432" y="146" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2 (13%) →</text>
+        </svg>
         </div>
         <div class="trend-legend">
-          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>Kane →</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>Haaland →</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>Lewandowski →</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span><strong style="color:var(--cream);font-size:11px">Haaland</strong><span style="color:#4DD0E1;font-size:11px;margin-left:4px">→</span></div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span><strong style="color:var(--cream);font-size:11px">Kane</strong><span style="color:#FF6F00;font-size:11px;margin-left:4px">→</span></div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span><strong style="color:var(--cream);font-size:11px">Messi</strong><span style="color:#C77DFF;font-size:11px;margin-left:4px">→</span></div>
         </div>
       </div>
 
@@ -1242,33 +1337,52 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="cat-panel">
         <h3>Recent trends</h3>
-        <div class="trend-wrap">
-          <svg viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg">
-            <line x1="50" y1="15" x2="50" y2="110" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
-            <line x1="250" y1="15" x2="250" y2="110" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
-            <text x="50" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Pre</text>
-            <text x="250" y="130" fill="#7A7A7A" font-size="9" font-family="Arial" text-anchor="middle">Wk 1</text>
-            <line x1="50" y1="84" x2="250" y2="84" stroke="#4DD0E1" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="50" cy="84" r="4" fill="#4DD0E1"/>
-            <circle cx="250" cy="84" r="4" fill="#4DD0E1"/>
-            <text x="42" y="88" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">4</text>
-            <text x="258" y="88" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">4</text>
-            <line x1="50" y1="91" x2="250" y2="97" stroke="#FF6F00" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="50" cy="91" r="4" fill="#FF6F00"/>
-            <circle cx="250" cy="97" r="4" fill="#FF6F00"/>
-            <text x="42" y="95" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3</text>
-            <text x="258" y="101" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2</text>
-            <line x1="50" y1="97" x2="250" y2="97" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="50" cy="97" r="4" fill="#C77DFF"/>
-            <circle cx="250" cy="97" r="4" fill="#C77DFF"/>
-            <text x="42" y="101" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">2</text>
-            <text x="258" y="101" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2</text>
-          </svg>
+        <div class="trend-wrap" style="height:220px;border-top:2px solid #4DD0E1;padding:16px 8px 8px">
+          <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;overflow:visible">
+          <defs>
+          <linearGradient id="gradWCW0" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4DD0E1" stop-opacity="0.18"/><stop offset="100%" stop-color="#4DD0E1" stop-opacity="0.02"/></linearGradient>
+          <linearGradient id="gradWCW1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF6F00" stop-opacity="0.18"/><stop offset="100%" stop-color="#FF6F00" stop-opacity="0.02"/></linearGradient>
+          <linearGradient id="gradWCW2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C77DFF" stop-opacity="0.18"/><stop offset="100%" stop-color="#C77DFF" stop-opacity="0.02"/></linearGradient>
+          </defs>
+          <line x1="60" y1="130" x2="440" y2="130" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="134" fill="#444" font-size="8" font-family="Arial" text-anchor="end">26%</text>
+          <line x1="60" y1="90" x2="440" y2="90" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="94" fill="#444" font-size="8" font-family="Arial" text-anchor="end">53%</text>
+          <line x1="60" y1="60" x2="440" y2="60" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="64" fill="#444" font-size="8" font-family="Arial" text-anchor="end">73%</text>
+          <line x1="60" y1="20" x2="440" y2="20" stroke="#2A2A2A" stroke-width="1"/>
+          <text x="56" y="24" fill="#444" font-size="8" font-family="Arial" text-anchor="end">100%</text>
+          <text x="80" y="194" fill="#666" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">PRE</text>
+          <text x="420" y="194" fill="#666" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">WK 1</text>
+          <line x1="80" y1="20" x2="80" y2="170" stroke="#333" stroke-width="1.5"/>
+          <line x1="420" y1="20" x2="420" y2="170" stroke="#333" stroke-width="1.5"/>
+          <polygon points="80,150 420,150 420,170 80,170" fill="url(#gradWCW2)"/>
+          <polygon points="80,140 420,150 420,170 80,170" fill="url(#gradWCW1)"/>
+          <polygon points="80,130 420,130 420,170 80,170" fill="url(#gradWCW0)"/>
+          <line x1="80" y1="130" x2="420" y2="130" stroke="#4DD0E1" stroke-width="4" stroke-opacity="0.2" stroke-linecap="round"/>
+          <line x1="80" y1="130" x2="420" y2="130" stroke="#4DD0E1" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="80" cy="130" r="5" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2"/>
+          <circle cx="420" cy="130" r="5" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2"/>
+          <text x="68" y="120" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">4 (26%)</text>
+          <text x="432" y="120" fill="#4DD0E1" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">4 (26%) →</text>
+          <line x1="80" y1="140" x2="420" y2="150" stroke="#FF6F00" stroke-width="4" stroke-opacity="0.2" stroke-linecap="round"/>
+          <line x1="80" y1="140" x2="420" y2="150" stroke="#FF6F00" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="80" cy="140" r="5" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2"/>
+          <circle cx="420" cy="150" r="5" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2"/>
+          <text x="68" y="133" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">3 (20%)</text>
+          <text x="432" y="143" fill="#FF6F00" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2 (13%) ↓</text>
+          <line x1="80" y1="150" x2="420" y2="150" stroke="#C77DFF" stroke-width="4" stroke-opacity="0.2" stroke-linecap="round"/>
+          <line x1="80" y1="150" x2="420" y2="150" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="80" cy="150" r="5" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2"/>
+          <circle cx="420" cy="150" r="5" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2"/>
+          <text x="68" y="146" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">2 (13%)</text>
+          <text x="432" y="146" fill="#C77DFF" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">2 (13%) →</text>
+        </svg>
         </div>
         <div class="trend-legend">
-          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span>Brazil →</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span>Argentina ↓</div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span>France →</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#4DD0E1"></span><strong style="color:var(--cream);font-size:11px">Brazil</strong><span style="color:#4DD0E1;font-size:11px;margin-left:4px">→</span></div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#FF6F00"></span><strong style="color:var(--cream);font-size:11px">Argentina</strong><span style="color:#FF6F00;font-size:11px;margin-left:4px">↓</span></div>
+          <div class="legend-item"><span class="legend-swatch" style="background:#C77DFF"></span><strong style="color:var(--cream);font-size:11px">Spain</strong><span style="color:#C77DFF;font-size:11px;margin-left:4px">→</span></div>
         </div>
       </div>
 
