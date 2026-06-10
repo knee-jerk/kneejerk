@@ -2,11 +2,10 @@
 """
 KneeJerk — Daily points decay calculator
 Runs via GitHub Actions each day at 01:00 UTC (02:00 BST)
-Updates the six PTS_ variables, LAST_SUNDAY and NEXT_SUNDAY in index.html
+Updates PTS_ variables, LAST_UPDATED and NEXT_UPDATED in index.html
 
 Tournament start: 11 June 2026 (day 1, first decay applied)
 Day 0: 10 June 2026 (max points, no decay)
-Picks made on or before 10 June score maximum points.
 """
 
 from datetime import date, timedelta
@@ -23,7 +22,35 @@ CATEGORIES = {
     "PTS_WCW":  {"max": 78, "decay": 2, "min": 2, "lock": date(2026, 7, 18)},
 }
 
+# Full update schedule
+UPDATE_SCHEDULE = [
+    date(2026, 6, 10),  # Wed - launch day
+    date(2026, 6, 14),  # Sun
+    date(2026, 6, 21),  # Sun
+    date(2026, 6, 28),  # Sun
+    date(2026, 7, 5),   # Sun
+    date(2026, 7, 12),  # Sun
+    date(2026, 7, 19),  # Sun - final weekend
+]
+
 MONTH_NAMES = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+DAY_NAMES   = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
+
+def format_update_date(d):
+    day_name = DAY_NAMES[d.weekday()]
+    month = MONTH_NAMES[d.month - 1]
+    return f"{day_name} {d.day} {month}, 09:00 BST"
+
+def get_update_dates(today):
+    last = None
+    next_ = None
+    for d in UPDATE_SCHEDULE:
+        if d <= today:
+            last = d
+        else:
+            if next_ is None:
+                next_ = d
+    return last, next_
 
 def calculate_points(cat, today):
     cfg = CATEGORIES[cat]
@@ -31,20 +58,9 @@ def calculate_points(cat, today):
         return cfg["max"]
     if today >= cfg["lock"]:
         return cfg["min"]
-    # Day 1 = first decay already applied
     days_elapsed = (today - TOURNAMENT_START).days + 1
     pts = cfg["max"] - (days_elapsed * cfg["decay"])
     return max(cfg["min"], pts)
-
-def format_date(d):
-    month = MONTH_NAMES[d.month - 1]
-    return f"Sun {d.day} {month}, 09:00 BST"
-
-def get_sundays(today):
-    days_since_sunday = today.weekday() + 1 if today.weekday() != 6 else 0
-    last_sunday = today - timedelta(days=days_since_sunday)
-    next_sunday = last_sunday + timedelta(days=7)
-    return last_sunday, next_sunday
 
 def update_html(filepath, today):
     with open(filepath, "r") as f:
@@ -52,21 +68,24 @@ def update_html(filepath, today):
 
     changed = False
 
+    # Update points values
     for cat in CATEGORIES:
         new_val = calculate_points(cat, today)
         pattern = rf'(var {cat}\s*=\s*)(\d+)(;)'
-        replacement = rf'\g<1>{new_val}\g<3>'
-        new_content = re.sub(pattern, replacement, content)
+        new_content = re.sub(pattern, rf'\g<1>{new_val}\g<3>', content)
         if new_content != content:
             changed = True
             content = new_content
             print(f"  {cat} = {new_val}")
 
-    last_sunday, next_sunday = get_sundays(today)
-    for var, val in [("LAST_SUNDAY", format_date(last_sunday)), ("NEXT_SUNDAY", format_date(next_sunday))]:
+    # Update last/next update dates
+    last, next_ = get_update_dates(today)
+    last_str = format_update_date(last) if last else "Not yet updated"
+    next_str = format_update_date(next_) if next_ else "Season complete"
+
+    for var, val in [("LAST_SUNDAY", last_str), ("NEXT_SUNDAY", next_str)]:
         pattern = rf'(var {var}\s*=\s*")[^"]*(")'
-        replacement = rf'\g<1>{val}\g<2>'
-        new_content = re.sub(pattern, replacement, content)
+        new_content = re.sub(pattern, rf'\g<1>{val}\g<2>', content)
         if new_content != content:
             changed = True
             content = new_content
