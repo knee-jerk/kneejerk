@@ -232,6 +232,20 @@ footer strong{color:var(--yellow);font-family:'Anton','Arial Black',sans-serif;f
   .lc-tab{padding:8px 10px;font-size:9px;letter-spacing:1px}
   .lc-section{padding:0 16px 32px}
 }
+
+/* Terms modal */
+.terms-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px}
+.terms-overlay.open{display:flex;align-items:flex-start;justify-content:center}
+.terms-modal{background:var(--black2);border:1px solid var(--border);max-width:600px;width:100%;margin:auto;padding:24px 20px;position:relative}
+.terms-close{position:absolute;top:12px;right:16px;background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;line-height:1;padding:4px 8px}
+.terms-close:hover{color:var(--cream)}
+.terms-modal h2{font-family:'Anton','Arial Black',sans-serif;color:var(--yellow);font-size:20px;letter-spacing:1px;margin-bottom:4px;font-weight:400}
+.terms-modal h3{font-family:'Anton','Arial Black',sans-serif;color:var(--cream);font-size:13px;letter-spacing:1px;margin:18px 0 6px;font-weight:400}
+.terms-modal p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:10px}
+.terms-modal a{color:var(--yellow);text-decoration:none}
+.terms-divider{border:none;border-top:1px solid var(--border);margin:16px 0}
+.footer-terms-link{color:var(--muted);text-decoration:underline;cursor:pointer;background:none;border:none;font-size:11px;font-family:inherit;letter-spacing:0.5px;padding:0}
+.footer-terms-link:hover{color:var(--cream)}
 </style>
 <script>
 // Hide all category pages immediately before render - prevents flash of all content
@@ -251,15 +265,15 @@ document.addEventListener("DOMContentLoaded", function() {
      DO NOT edit anything outside this section
      ============================================================ -->
 <script>
-  var PTS_MGSP = 8;   // Most Group Stage Points  (max 17, -1/day, min 1)
-  var PTS_LGSP = 8;   // Least Group Stage Points (max 17, -1/day, min 1)
-  var PTS_TST  = 30;  // Top Scoring Team         (max 39, -1/day, min 1)
-  var PTS_AST  = 30;  // Most Assists             (max 39, -1/day, min 1)
-  var PTS_GBT  = 30;  // Golden Boot              (max 39, -1/day, min 1)
-  var PTS_WCW  = 60;  // World Cup Winners        (max 78, -2/day, min 2)
+  var PTS_MGSP = 17;   // Most Group Stage Points  (max 17, -1/day, min 1)
+  var PTS_LGSP = 17;   // Least Group Stage Points (max 17, -1/day, min 1)
+  var PTS_TST  = 39;  // Top Scoring Team         (max 39, -1/day, min 1)
+  var PTS_AST  = 39;  // Most Assists             (max 39, -1/day, min 1)
+  var PTS_GBT  = 39;  // Golden Boot              (max 39, -1/day, min 1)
+  var PTS_WCW  = 78;  // World Cup Winners        (max 78, -2/day, min 2)
   var LAST_UPDATED = "Not yet updated";
-  var LAST_SUNDAY  = "Sun 14 Jun, 09:00 BST";
-  var NEXT_SUNDAY  = "Sun 21 Jun, 09:00 BST";
+  var LAST_SUNDAY  = "Not yet updated";
+  var NEXT_SUNDAY  = "Not yet updated";
 </script>
 <!-- ============================================================ -->
 </head>
@@ -1260,8 +1274,34 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <footer>
   <strong>KNEEJERK</strong><br>
-  <span>The football prediction game that lets you change your mind · Private league · Dashboard refreshes Sunday 09:00 BST</span>
+  <span>The football prediction game that lets you change your mind · Private league · Dashboard refreshes Sunday 09:00 BST</span><br>
+  <span style="display:inline-block;margin-top:8px">© KneeJerk 2026. Created by David Hodgson. All rights reserved. · <button class="footer-terms-link" onclick="document.getElementById('termsOverlay').classList.add('open')">Terms</button></span>
 </footer>
+
+
+<!-- Terms modal -->
+<div id="termsOverlay" class="terms-overlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="terms-modal">
+    <button class="terms-close" onclick="document.getElementById('termsOverlay').classList.remove('open')">✕</button>
+    <h2>KNEEJERK — TERMS OF USE</h2>
+    <hr class="terms-divider">
+
+    <h3>OWNERSHIP</h3>
+    <p>KneeJerk is an original prediction game concept created by David Hodgson in 2026. The name KneeJerk, the time-weighted scoring mechanic (whereby points available for each prediction category decrease incrementally each day from the start of a competition), the site design, and all associated materials are the intellectual property of David Hodgson.</p>
+
+    <h3>SCORING MECHANIC</h3>
+    <p>The KneeJerk scoring system is a proprietary time-weighted prediction format in which the points value of each prediction decreases by a fixed amount each day from the start of a competition. KneeJerk is designed to work across any sport or competition format, including but not limited to football tournaments, domestic leagues, and other sporting events. Predictions made before the competition begins are awarded maximum points. The later a prediction is made or changed, the lower its points value. This mechanic and its specific implementation are the original work of David Hodgson.</p>
+
+    <h3>USAGE</h3>
+    <p>This site is currently operated as a private league. The game concept, scoring system, brand name and site design are not licensed for reproduction, commercial use or distribution in any format - including but not limited to football, other sports, or any competition format - without the express written permission of David Hodgson.</p>
+
+    <h3>LICENSING</h3>
+    <p>For licensing or commercial enquiries, contact: <a href="mailto:kneejerkprediction@gmail.com">kneejerkprediction@gmail.com</a></p>
+
+    <hr class="terms-divider">
+    <p style="font-size:11px;color:var(--muted);text-align:center">© KneeJerk 2026. Created by David Hodgson. All rights reserved.</p>
+  </div>
+</div>
 
 </div><!-- /site -->
 
