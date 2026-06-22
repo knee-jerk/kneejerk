@@ -265,15 +265,15 @@ document.addEventListener("DOMContentLoaded", function() {
      DO NOT edit anything outside this section
      ============================================================ -->
 <script>
-  var PTS_MGSP = 5;   // Most Group Stage Points  (max 17, -1/day, min 1)
-  var PTS_LGSP = 5;   // Least Group Stage Points (max 17, -1/day, min 1)
-  var PTS_TST  = 27;  // Top Scoring Team         (max 39, -1/day, min 1)
-  var PTS_AST  = 27;  // Most Assists             (max 39, -1/day, min 1)
-  var PTS_GBT  = 27;  // Golden Boot              (max 39, -1/day, min 1)
-  var PTS_WCW  = 54;  // World Cup Winners        (max 78, -2/day, min 2)
+  var PTS_MGSP = 6;   // Most Group Stage Points  (max 17, -1/day, min 1)
+  var PTS_LGSP = 6;   // Least Group Stage Points (max 17, -1/day, min 1)
+  var PTS_TST  = 28;  // Top Scoring Team         (max 39, -1/day, min 1)
+  var PTS_AST  = 28;  // Most Assists             (max 39, -1/day, min 1)
+  var PTS_GBT  = 28;  // Golden Boot              (max 39, -1/day, min 1)
+  var PTS_WCW  = 56;  // World Cup Winners        (max 78, -2/day, min 2)
   var LAST_UPDATED = "Not yet updated";
-  var LAST_SUNDAY  = "Sun 21 Jun, 09:00 BST";
-  var NEXT_SUNDAY  = "Sun 28 Jun, 09:00 BST";
+  var LAST_SUNDAY  = "Not yet updated";
+  var NEXT_SUNDAY  = "Not yet updated";
 </script>
 <!-- ============================================================ -->
 </head>
@@ -727,8 +727,8 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="cat-panel">
         <h3>Recent trends</h3>
-        <div class="trend-wrap" style="height:280px;border-top:2px solid #F0C020;padding:12px 8px 8px">
-          <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+        <div class="trend-wrap" style="height:300px;border-top:2px solid #F0C020;padding:12px 8px 8px">
+          <svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
           <defs>
           <linearGradient id="gmgspGermany" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F0C020" stop-opacity="0.25"/><stop offset="100%" stop-color="#F0C020" stop-opacity="0.05"/></linearGradient>
           <linearGradient id="gmgspSpain" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF6F00" stop-opacity="0.25"/><stop offset="100%" stop-color="#FF6F00" stop-opacity="0.05"/></linearGradient>
@@ -739,43 +739,43 @@ document.addEventListener("DOMContentLoaded", function() {
           <linearGradient id="gmgspBrazil" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#9C27B0" stop-opacity="0.25"/><stop offset="100%" stop-color="#9C27B0" stop-opacity="0.05"/></linearGradient>
           <linearGradient id="gmgspPortugal" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF5722" stop-opacity="0.25"/><stop offset="100%" stop-color="#FF5722" stop-opacity="0.05"/></linearGradient>
           </defs>
-          <line x1="30" y1="97" x2="370" y2="97" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="4,4"/>
-          <line x1="50" y1="25" x2="50" y2="170" stroke="#444" stroke-width="1.5"/>
-          <line x1="350" y1="25" x2="350" y2="170" stroke="#444" stroke-width="1.5"/>
-          <text x="50" y="192" fill="#888" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">PRE</text>
-          <text x="350" y="192" fill="#888" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">WK 1</text>
-          <polygon points="50,159 350,184 350,170 50,170" fill="url(#gmgspPortugal)"/>
-          <polygon points="50,111 350,170 350,170 50,170" fill="url(#gmgspBrazil)"/>
-          <polygon points="50,184 350,159 350,170 50,170" fill="url(#gmgspFrance)"/>
-          <polygon points="50,170 350,145 350,170 50,170" fill="url(#gmgspUnitedStates)"/>
-          <polygon points="50,145 350,69 350,170 50,170" fill="url(#gmgspEngland)"/>
-          <polygon points="50,97 350,111 350,170 50,170" fill="url(#gmgspArgentina)"/>
-          <polygon points="50,49 350,97 350,170 50,170" fill="url(#gmgspSpain)"/>
-          <polygon points="50,121 350,73 350,170 50,170" fill="url(#gmgspGermany)"/>
-          <line x1="50" y1="121" x2="350" y2="73" stroke="#F0C020" stroke-width="10.0" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="121" x2="350" y2="73" stroke="#F0C020" stroke-width="4.0" stroke-linecap="round"/>
-          <circle cx="50" cy="121" r="11" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','Germany')"/>
-          <circle cx="350" cy="73" r="11" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','Germany')"/>
-          <line x1="50" y1="49" x2="350" y2="97" stroke="#FF6F00" stroke-width="8.4" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="49" x2="350" y2="97" stroke="#FF6F00" stroke-width="3.4" stroke-linecap="round"/>
-          <circle cx="50" cy="49" r="10" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','Spain')"/>
-          <circle cx="350" cy="97" r="10" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','Spain')"/>
-          <line x1="50" y1="97" x2="350" y2="111" stroke="#C77DFF" stroke-width="8.4" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="97" x2="350" y2="111" stroke="#C77DFF" stroke-width="3.4" stroke-linecap="round"/>
-          <circle cx="50" cy="97" r="10" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','Argentina')"/>
-          <circle cx="350" cy="111" r="10" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','Argentina')"/>
-          <line x1="50" y1="145" x2="350" y2="69" stroke="#4DD0E1" stroke-width="8.4" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="145" x2="350" y2="69" stroke="#4DD0E1" stroke-width="3.4" stroke-linecap="round"/>
-          <circle cx="50" cy="145" r="10" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','England')"/>
-          <circle cx="350" cy="69" r="10" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','England')"/>
-          <line x1="50" y1="170" x2="350" y2="145" stroke="#4CAF50" stroke-width="1.5" stroke-dasharray="4,3" stroke-opacity="0.6"/>
-          <circle cx="350" cy="145" r="8" fill="#1C1C1C" stroke="#4CAF50" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','UnitedStates')"/>
-          <line x1="50" y1="170" x2="350" y2="159" stroke="#E63946" stroke-width="1.5" stroke-dasharray="4,3" stroke-opacity="0.6"/>
-          <circle cx="350" cy="159" r="8" fill="#1C1C1C" stroke="#E63946" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','France')"/>
-          <line x1="50" y1="111" x2="350" y2="170" stroke="#9C27B0" stroke-width="1.5" stroke-dasharray="4,3" stroke-opacity="0.4"/>
-          <circle cx="50" cy="111" r="7" fill="#1C1C1C" stroke="#9C27B0" stroke-width="2" stroke-opacity="0.5" style="cursor:pointer" onclick="togglePick('mgsp','Brazil')"/>
-          <line x1="50" y1="159" x2="350" y2="170" stroke="#FF5722" stroke-width="1.5" stroke-dasharray="4,3" stroke-opacity="0.4"/>
-          <circle cx="50" cy="159" r="7" fill="#1C1C1C" stroke="#FF5722" stroke-width="2" stroke-opacity="0.5" style="cursor:pointer" onclick="togglePick('mgsp','Portugal')"/>
+          <line x1="20" y1="150" x2="480" y2="150" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="30" y1="25" x2="30" y2="270" stroke="#555" stroke-width="2"/>
+          <line x1="470" y1="25" x2="470" y2="270" stroke="#555" stroke-width="2"/>
+          <text x="30" y="290" fill="#999" font-size="11" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">PRE</text>
+          <text x="470" y="290" fill="#999" font-size="11" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">WK 1</text>
+          <polygon points="30,244 470,283 470,265 30,265" fill="url(#gmgspPortugal)"/>
+          <polygon points="30,168 470,265 470,265 30,265" fill="url(#gmgspBrazil)"/>
+          <polygon points="30,283 470,244 470,265 30,265" fill="url(#gmgspFrance)"/>
+          <polygon points="30,265 470,226 470,265 30,265" fill="url(#gmgspUnitedStates)"/>
+          <polygon points="30,226 470,114 470,265 30,265" fill="url(#gmgspEngland)"/>
+          <polygon points="30,150 470,168 470,265 30,265" fill="url(#gmgspArgentina)"/>
+          <polygon points="30,73 470,150 470,265 30,265" fill="url(#gmgspSpain)"/>
+          <polygon points="30,188 470,111 470,265 30,265" fill="url(#gmgspGermany)"/>
+          <line x1="30" y1="188" x2="470" y2="111" stroke="#F0C020" stroke-width="11.2" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="188" x2="470" y2="111" stroke="#F0C020" stroke-width="4.5" stroke-linecap="round"/>
+          <circle cx="30" cy="188" r="13" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','Germany')"/>
+          <circle cx="470" cy="111" r="13" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','Germany')"/>
+          <line x1="30" y1="73" x2="470" y2="150" stroke="#FF6F00" stroke-width="9.4" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="73" x2="470" y2="150" stroke="#FF6F00" stroke-width="3.8" stroke-linecap="round"/>
+          <circle cx="30" cy="73" r="11" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','Spain')"/>
+          <circle cx="470" cy="150" r="11" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','Spain')"/>
+          <line x1="30" y1="150" x2="470" y2="168" stroke="#C77DFF" stroke-width="9.4" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="150" x2="470" y2="168" stroke="#C77DFF" stroke-width="3.8" stroke-linecap="round"/>
+          <circle cx="30" cy="150" r="11" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','Argentina')"/>
+          <circle cx="470" cy="168" r="11" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','Argentina')"/>
+          <line x1="30" y1="226" x2="470" y2="114" stroke="#4DD0E1" stroke-width="9.4" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="226" x2="470" y2="114" stroke="#4DD0E1" stroke-width="3.8" stroke-linecap="round"/>
+          <circle cx="30" cy="226" r="11" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','England')"/>
+          <circle cx="470" cy="114" r="11" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','England')"/>
+          <line x1="30" y1="265" x2="470" y2="226" stroke="#4CAF50" stroke-width="1.5" stroke-dasharray="4,3" stroke-opacity="0.6"/>
+          <circle cx="470" cy="226" r="9" fill="#1C1C1C" stroke="#4CAF50" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','UnitedStates')"/>
+          <line x1="30" y1="265" x2="470" y2="244" stroke="#E63946" stroke-width="1.5" stroke-dasharray="4,3" stroke-opacity="0.6"/>
+          <circle cx="470" cy="244" r="9" fill="#1C1C1C" stroke="#E63946" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('mgsp','France')"/>
+          <line x1="30" y1="168" x2="470" y2="265" stroke="#9C27B0" stroke-width="1.5" stroke-dasharray="4,3" stroke-opacity="0.4"/>
+          <circle cx="30" cy="168" r="8" fill="#1C1C1C" stroke="#9C27B0" stroke-width="2" stroke-opacity="0.5" style="cursor:pointer" onclick="togglePick('mgsp','Brazil')"/>
+          <line x1="30" y1="244" x2="470" y2="265" stroke="#FF5722" stroke-width="1.5" stroke-dasharray="4,3" stroke-opacity="0.4"/>
+          <circle cx="30" cy="244" r="8" fill="#1C1C1C" stroke="#FF5722" stroke-width="2" stroke-opacity="0.5" style="cursor:pointer" onclick="togglePick('mgsp','Portugal')"/>
         </svg>
         </div>
         <p style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 2px">Tap any pick for more</p>
@@ -870,51 +870,51 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="cat-panel">
         <h3>Recent trends</h3>
-        <div class="trend-wrap" style="height:280px;border-top:2px solid #F0C020;padding:12px 8px 8px">
-          <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+        <div class="trend-wrap" style="height:300px;border-top:2px solid #F0C020;padding:12px 8px 8px">
+          <svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
           <defs>
           <linearGradient id="glgspCuraao" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F0C020" stop-opacity="0.25"/><stop offset="100%" stop-color="#F0C020" stop-opacity="0.05"/></linearGradient>
           <linearGradient id="glgspHaiti" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF6F00" stop-opacity="0.25"/><stop offset="100%" stop-color="#FF6F00" stop-opacity="0.05"/></linearGradient>
           <linearGradient id="glgspPanama" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C77DFF" stop-opacity="0.25"/><stop offset="100%" stop-color="#C77DFF" stop-opacity="0.05"/></linearGradient>
-          <linearGradient id="glgspNewZealand" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4DD0E1" stop-opacity="0.25"/><stop offset="100%" stop-color="#4DD0E1" stop-opacity="0.05"/></linearGradient>
-          <linearGradient id="glgspIraq" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4CAF50" stop-opacity="0.25"/><stop offset="100%" stop-color="#4CAF50" stop-opacity="0.05"/></linearGradient>
-          <linearGradient id="glgspJordan" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E63946" stop-opacity="0.25"/><stop offset="100%" stop-color="#E63946" stop-opacity="0.05"/></linearGradient>
+          <linearGradient id="glgspIraq" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4DD0E1" stop-opacity="0.25"/><stop offset="100%" stop-color="#4DD0E1" stop-opacity="0.05"/></linearGradient>
+          <linearGradient id="glgspJordan" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4CAF50" stop-opacity="0.25"/><stop offset="100%" stop-color="#4CAF50" stop-opacity="0.05"/></linearGradient>
+          <linearGradient id="glgspNewZealand" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E63946" stop-opacity="0.25"/><stop offset="100%" stop-color="#E63946" stop-opacity="0.05"/></linearGradient>
           </defs>
-          <line x1="30" y1="97" x2="370" y2="97" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="4,4"/>
-          <line x1="50" y1="25" x2="50" y2="170" stroke="#444" stroke-width="1.5"/>
-          <line x1="350" y1="25" x2="350" y2="170" stroke="#444" stroke-width="1.5"/>
-          <text x="50" y="192" fill="#888" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">PRE</text>
-          <text x="350" y="192" fill="#888" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">WK 1</text>
-          <polygon points="50,123 350,123 350,170 50,170" fill="url(#glgspJordan)"/>
-          <polygon points="50,165 350,165 350,170 50,170" fill="url(#glgspIraq)"/>
-          <polygon points="50,151 350,151 350,170 50,170" fill="url(#glgspNewZealand)"/>
-          <polygon points="50,133 350,133 350,170 50,170" fill="url(#glgspPanama)"/>
-          <polygon points="50,115 350,115 350,170 50,170" fill="url(#glgspHaiti)"/>
-          <polygon points="50,43 350,43 350,170 50,170" fill="url(#glgspCuraao)"/>
-          <line x1="50" y1="43" x2="350" y2="43" stroke="#F0C020" stroke-width="10.0" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="43" x2="350" y2="43" stroke="#F0C020" stroke-width="4.0" stroke-linecap="round"/>
-          <circle cx="50" cy="43" r="11" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Curaao')"/>
-          <circle cx="350" cy="43" r="11" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Curaao')"/>
-          <line x1="50" y1="115" x2="350" y2="115" stroke="#FF6F00" stroke-width="6.4" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="115" x2="350" y2="115" stroke="#FF6F00" stroke-width="2.6" stroke-linecap="round"/>
-          <circle cx="50" cy="115" r="8" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Haiti')"/>
-          <circle cx="350" cy="115" r="8" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Haiti')"/>
-          <line x1="50" y1="133" x2="350" y2="133" stroke="#C77DFF" stroke-width="5.5" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="133" x2="350" y2="133" stroke="#C77DFF" stroke-width="2.2" stroke-linecap="round"/>
-          <circle cx="50" cy="133" r="8" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Panama')"/>
-          <circle cx="350" cy="133" r="8" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Panama')"/>
-          <line x1="50" y1="151" x2="350" y2="151" stroke="#4DD0E1" stroke-width="4.6" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="151" x2="350" y2="151" stroke="#4DD0E1" stroke-width="1.9" stroke-linecap="round"/>
-          <circle cx="50" cy="151" r="7" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','NewZealand')"/>
-          <circle cx="350" cy="151" r="7" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','NewZealand')"/>
-          <line x1="50" y1="165" x2="350" y2="165" stroke="#4CAF50" stroke-width="4.6" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="165" x2="350" y2="165" stroke="#4CAF50" stroke-width="1.9" stroke-linecap="round"/>
-          <circle cx="50" cy="165" r="7" fill="#1C1C1C" stroke="#4CAF50" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Iraq')"/>
-          <circle cx="350" cy="165" r="7" fill="#1C1C1C" stroke="#4CAF50" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Iraq')"/>
-          <line x1="50" y1="123" x2="350" y2="123" stroke="#E63946" stroke-width="4.6" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="123" x2="350" y2="123" stroke="#E63946" stroke-width="1.9" stroke-linecap="round"/>
-          <circle cx="50" cy="123" r="7" fill="#1C1C1C" stroke="#E63946" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Jordan')"/>
-          <circle cx="350" cy="123" r="7" fill="#1C1C1C" stroke="#E63946" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Jordan')"/>
+          <line x1="20" y1="150" x2="480" y2="150" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="30" y1="25" x2="30" y2="270" stroke="#555" stroke-width="2"/>
+          <line x1="470" y1="25" x2="470" y2="270" stroke="#555" stroke-width="2"/>
+          <text x="30" y="290" fill="#999" font-size="11" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">PRE</text>
+          <text x="470" y="290" fill="#999" font-size="11" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">WK 1</text>
+          <polygon points="30,200 470,200 470,265 30,265" fill="url(#glgspNewZealand)"/>
+          <polygon points="30,254 470,254 470,265 30,265" fill="url(#glgspJordan)"/>
+          <polygon points="30,236 470,236 470,265 30,265" fill="url(#glgspIraq)"/>
+          <polygon points="30,207 470,207 470,265 30,265" fill="url(#glgspPanama)"/>
+          <polygon points="30,178 470,178 470,265 30,265" fill="url(#glgspHaiti)"/>
+          <polygon points="30,63 470,63 470,265 30,265" fill="url(#glgspCuraao)"/>
+          <line x1="30" y1="63" x2="470" y2="63" stroke="#F0C020" stroke-width="11.2" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="63" x2="470" y2="63" stroke="#F0C020" stroke-width="4.5" stroke-linecap="round"/>
+          <circle cx="30" cy="63" r="13" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Curaao')"/>
+          <circle cx="470" cy="63" r="13" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Curaao')"/>
+          <line x1="30" y1="178" x2="470" y2="178" stroke="#FF6F00" stroke-width="7.0" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="178" x2="470" y2="178" stroke="#FF6F00" stroke-width="2.8" stroke-linecap="round"/>
+          <circle cx="30" cy="178" r="10" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Haiti')"/>
+          <circle cx="470" cy="178" r="10" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Haiti')"/>
+          <line x1="30" y1="207" x2="470" y2="207" stroke="#C77DFF" stroke-width="5.9" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="207" x2="470" y2="207" stroke="#C77DFF" stroke-width="2.4" stroke-linecap="round"/>
+          <circle cx="30" cy="207" r="9" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Panama')"/>
+          <circle cx="470" cy="207" r="9" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Panama')"/>
+          <line x1="30" y1="236" x2="470" y2="236" stroke="#4DD0E1" stroke-width="4.8" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="236" x2="470" y2="236" stroke="#4DD0E1" stroke-width="1.9" stroke-linecap="round"/>
+          <circle cx="30" cy="236" r="8" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Iraq')"/>
+          <circle cx="470" cy="236" r="8" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Iraq')"/>
+          <line x1="30" y1="254" x2="470" y2="254" stroke="#4CAF50" stroke-width="4.8" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="254" x2="470" y2="254" stroke="#4CAF50" stroke-width="1.9" stroke-linecap="round"/>
+          <circle cx="30" cy="254" r="8" fill="#1C1C1C" stroke="#4CAF50" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Jordan')"/>
+          <circle cx="470" cy="254" r="8" fill="#1C1C1C" stroke="#4CAF50" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','Jordan')"/>
+          <line x1="30" y1="200" x2="470" y2="200" stroke="#E63946" stroke-width="4.8" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="200" x2="470" y2="200" stroke="#E63946" stroke-width="1.9" stroke-linecap="round"/>
+          <circle cx="30" cy="200" r="8" fill="#1C1C1C" stroke="#E63946" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','NewZealand')"/>
+          <circle cx="470" cy="200" r="8" fill="#1C1C1C" stroke="#E63946" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('lgsp','NewZealand')"/>
         </svg>
         </div>
         <p style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 2px">Tap any pick for more</p>
@@ -922,9 +922,9 @@ document.addEventListener("DOMContentLoaded", function() {
           <div id="row-lgsp-Curaao" style="border-left:3px solid #F0C020;margin-bottom:2px;background:var(--black3)"><div onclick="togglePick('lgsp','Curaao')" style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;cursor:pointer"><div style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:50%;background:#F0C020;flex-shrink:0;display:inline-block"></span><strong style="color:var(--cream);font-size:13px">Curaçao</strong></div><div style="display:flex;align-items:center;gap:10px"><span style="font-size:11px;color:var(--muted)">7 → 7</span><span style="font-size:14px;font-weight:700;color:#969696">→</span><span style="font-size:11px;color:#F0C020;font-family:'Anton','Arial Black',sans-serif;letter-spacing:1px">46%</span><span id="chev-lgsp-Curaao" style="color:#F0C020;font-size:11px;margin-left:2px">▼</span></div></div><div id="mgr-lgsp-Curaao" style="display:none"><div style="display:flex;justify-content:space-between;padding:4px 12px 4px 28px;border-top:1px solid #1A1A1A"><span style="font-size:12px;color:var(--cream)">Andy K</span><span style="font-size:12px;font-weight:700;color:#F0C020;font-family:'Anton','Arial Black',sans-serif">17 pts</span></div><div style="display:flex;justify-content:space-between;padding:4px 12px 4px 28px;border-top:1px solid #1A1A1A"><span style="font-size:12px;color:var(--cream)">Clint P</span><span style="font-size:12px;font-weight:700;color:#F0C020;font-family:'Anton','Arial Black',sans-serif">17 pts</span></div><div style="display:flex;justify-content:space-between;padding:4px 12px 4px 28px;border-top:1px solid #1A1A1A"><span style="font-size:12px;color:var(--cream)">Dan W</span><span style="font-size:12px;font-weight:700;color:#F0C020;font-family:'Anton','Arial Black',sans-serif">17 pts</span></div><div style="display:flex;justify-content:space-between;padding:4px 12px 4px 28px;border-top:1px solid #1A1A1A"><span style="font-size:12px;color:var(--cream)">David B</span><span style="font-size:12px;font-weight:700;color:#F0C020;font-family:'Anton','Arial Black',sans-serif">17 pts</span></div><div style="display:flex;justify-content:space-between;padding:4px 12px 4px 28px;border-top:1px solid #1A1A1A"><span style="font-size:12px;color:var(--cream)">Fabio K</span><span style="font-size:12px;font-weight:700;color:#F0C020;font-family:'Anton','Arial Black',sans-serif">17 pts</span></div><div style="display:flex;justify-content:space-between;padding:4px 12px 4px 28px;border-top:1px solid #1A1A1A"><span style="font-size:12px;color:var(--cream)">Howard T</span><span style="font-size:12px;font-weight:700;color:#F0C020;font-family:'Anton','Arial Black',sans-serif">17 pts</span></div><div style="display:flex;justify-content:space-between;padding:4px 12px 4px 28px;border-top:1px solid #1A1A1A"><span style="font-size:12px;color:var(--cream)">Nicola B</span><span style="font-size:12px;font-weight:700;color:#F0C020;font-family:'Anton','Arial Black',sans-serif">17 pts</span></div></div></div>
           <div id="row-lgsp-Haiti" style="border-left:3px solid #FF6F00;margin-bottom:2px;background:var(--black3)"><div onclick="togglePick('lgsp','Haiti')" style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;cursor:pointer"><div style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:50%;background:#FF6F00;flex-shrink:0;display:inline-block"></span><strong style="color:var(--cream);font-size:13px">Haiti</strong></div><div style="display:flex;align-items:center;gap:10px"><span style="font-size:11px;color:var(--muted)">3 → 3</span><span style="font-size:14px;font-weight:700;color:#969696">→</span><span style="font-size:11px;color:#FF6F00;font-family:'Anton','Arial Black',sans-serif;letter-spacing:1px">20%</span><span id="chev-lgsp-Haiti" style="color:#FF6F00;font-size:11px;margin-left:2px">▼</span></div></div><div id="mgr-lgsp-Haiti" style="display:none"><div style="display:flex;justify-content:space-between;padding:4px 12px 4px 28px;border-top:1px solid #1A1A1A"><span style="font-size:12px;color:var(--cream)">Adam B</span><span style="font-size:12px;font-weight:700;color:#FF6F00;font-family:'Anton','Arial Black',sans-serif">17 pts</span></div><div style="display:flex;justify-content:space-between;padding:4px 12px 4px 28px;border-top:1px solid #1A1A1A"><span style="font-size:12px;color:var(--cream)">Mark H</span><span style="font-size:12px;font-weight:700;color:#FF6F00;font-family:'Anton','Arial Black',sans-serif">17 pts</span></div><div style="display:flex;justify-content:space-between;padding:4px 12px 4px 28px;border-top:1px solid #1A1A1A"><span style="font-size:12px;color:var(--cream)">Paul M</span><span style="font-size:12px;font-weight:700;color:#FF6F00;font-family:'Anton','Arial Black',sans-serif">17 pts</span></div></div></div>
           <div id="row-lgsp-Panama" style="border-left:3px solid #C77DFF;margin-bottom:2px;background:var(--black3)"><div onclick="togglePick('lgsp','Panama')" style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;cursor:pointer"><div style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:50%;background:#C77DFF;flex-shrink:0;display:inline-block"></span><strong style="color:var(--cream);font-size:13px">Panama</strong></div><div style="display:flex;align-items:center;gap:10px"><span style="font-size:11px;color:var(--muted)">2 → 2</span><span style="font-size:14px;font-weight:700;color:#969696">→</span><span style="font-size:11px;color:#C77DFF;font-family:'Anton','Arial Black',sans-serif;letter-spacing:1px">13%</span><span id="chev-lgsp-Panama" style="color:#C77DFF;font-size:11px;margin-left:2px">▼</span></div></div><div id="mgr-lgsp-Panama" style="display:none"><div style="display:flex;justify-content:space-between;padding:4px 12px 4px 28px;border-top:1px solid #1A1A1A"><span style="font-size:12px;color:var(--cream)">Craig M</span><span style="font-size:12px;font-weight:700;color:#C77DFF;font-family:'Anton','Arial Black',sans-serif">17 pts</span></div><div style="display:flex;justify-content:space-between;padding:4px 12px 4px 28px;border-top:1px solid #1A1A1A"><span style="font-size:12px;color:var(--cream)">Simon W</span><span style="font-size:12px;font-weight:700;color:#C77DFF;font-family:'Anton','Arial Black',sans-serif">17 pts</span></div></div></div>
-          <div id="row-lgsp-NewZealand" style="border-left:3px solid #4DD0E1;margin-bottom:2px;background:var(--black3)"><div onclick="togglePick('lgsp','NewZealand')" style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;cursor:pointer"><div style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:50%;background:#4DD0E1;flex-shrink:0;display:inline-block"></span><strong style="color:var(--cream);font-size:13px">New Zealand</strong></div><div style="display:flex;align-items:center;gap:10px"><span style="font-size:11px;color:var(--muted)">1 → 1</span><span style="font-size:14px;font-weight:700;color:#969696">→</span><span style="font-size:11px;color:#4DD0E1;font-family:'Anton','Arial Black',sans-serif;letter-spacing:1px">6%</span><span id="chev-lgsp-NewZealand" style="color:#4DD0E1;font-size:11px;margin-left:2px">▼</span></div></div><div id="mgr-lgsp-NewZealand" style="display:none"><div style="display:flex;justify-content:space-between;padding:4px 12px 4px 28px;border-top:1px solid #1A1A1A"><span style="font-size:12px;color:var(--cream)">Tommy H</span><span style="font-size:12px;font-weight:700;color:#4DD0E1;font-family:'Anton','Arial Black',sans-serif">17 pts</span></div></div></div>
-          <div id="row-lgsp-Iraq" style="border-left:3px solid #4CAF50;margin-bottom:2px;background:var(--black3)"><div onclick="togglePick('lgsp','Iraq')" style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;cursor:pointer"><div style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:50%;background:#4CAF50;flex-shrink:0;display:inline-block"></span><strong style="color:var(--cream);font-size:13px">Iraq</strong></div><div style="display:flex;align-items:center;gap:10px"><span style="font-size:11px;color:var(--muted)">1 → 1</span><span style="font-size:14px;font-weight:700;color:#969696">→</span><span style="font-size:11px;color:#4CAF50;font-family:'Anton','Arial Black',sans-serif;letter-spacing:1px">6%</span><span id="chev-lgsp-Iraq" style="color:#4CAF50;font-size:11px;margin-left:2px">▼</span></div></div><div id="mgr-lgsp-Iraq" style="display:none"><div style="display:flex;justify-content:space-between;padding:4px 12px 4px 28px;border-top:1px solid #1A1A1A"><span style="font-size:12px;color:var(--cream)">Simon M</span><span style="font-size:12px;font-weight:700;color:#4CAF50;font-family:'Anton','Arial Black',sans-serif">17 pts</span></div></div></div>
-          <div id="row-lgsp-Jordan" style="border-left:3px solid #E63946;margin-bottom:2px;background:var(--black3)"><div onclick="togglePick('lgsp','Jordan')" style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;cursor:pointer"><div style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:50%;background:#E63946;flex-shrink:0;display:inline-block"></span><strong style="color:var(--cream);font-size:13px">Jordan</strong></div><div style="display:flex;align-items:center;gap:10px"><span style="font-size:11px;color:var(--muted)">1 → 1</span><span style="font-size:14px;font-weight:700;color:#969696">→</span><span style="font-size:11px;color:#E63946;font-family:'Anton','Arial Black',sans-serif;letter-spacing:1px">6%</span><span id="chev-lgsp-Jordan" style="color:#E63946;font-size:11px;margin-left:2px">▼</span></div></div><div id="mgr-lgsp-Jordan" style="display:none"><div style="display:flex;justify-content:space-between;padding:4px 12px 4px 28px;border-top:1px solid #1A1A1A"><span style="font-size:12px;color:var(--cream)">Matt B</span><span style="font-size:12px;font-weight:700;color:#E63946;font-family:'Anton','Arial Black',sans-serif">17 pts</span></div></div></div>
+          <div id="row-lgsp-Iraq" style="border-left:3px solid #4DD0E1;margin-bottom:2px;background:var(--black3)"><div onclick="togglePick('lgsp','Iraq')" style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;cursor:pointer"><div style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:50%;background:#4DD0E1;flex-shrink:0;display:inline-block"></span><strong style="color:var(--cream);font-size:13px">Iraq</strong></div><div style="display:flex;align-items:center;gap:10px"><span style="font-size:11px;color:var(--muted)">1 → 1</span><span style="font-size:14px;font-weight:700;color:#969696">→</span><span style="font-size:11px;color:#4DD0E1;font-family:'Anton','Arial Black',sans-serif;letter-spacing:1px">6%</span><span id="chev-lgsp-Iraq" style="color:#4DD0E1;font-size:11px;margin-left:2px">▼</span></div></div><div id="mgr-lgsp-Iraq" style="display:none"><div style="display:flex;justify-content:space-between;padding:4px 12px 4px 28px;border-top:1px solid #1A1A1A"><span style="font-size:12px;color:var(--cream)">Simon M</span><span style="font-size:12px;font-weight:700;color:#4DD0E1;font-family:'Anton','Arial Black',sans-serif">17 pts</span></div></div></div>
+          <div id="row-lgsp-Jordan" style="border-left:3px solid #4CAF50;margin-bottom:2px;background:var(--black3)"><div onclick="togglePick('lgsp','Jordan')" style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;cursor:pointer"><div style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:50%;background:#4CAF50;flex-shrink:0;display:inline-block"></span><strong style="color:var(--cream);font-size:13px">Jordan</strong></div><div style="display:flex;align-items:center;gap:10px"><span style="font-size:11px;color:var(--muted)">1 → 1</span><span style="font-size:14px;font-weight:700;color:#969696">→</span><span style="font-size:11px;color:#4CAF50;font-family:'Anton','Arial Black',sans-serif;letter-spacing:1px">6%</span><span id="chev-lgsp-Jordan" style="color:#4CAF50;font-size:11px;margin-left:2px">▼</span></div></div><div id="mgr-lgsp-Jordan" style="display:none"><div style="display:flex;justify-content:space-between;padding:4px 12px 4px 28px;border-top:1px solid #1A1A1A"><span style="font-size:12px;color:var(--cream)">Matt B</span><span style="font-size:12px;font-weight:700;color:#4CAF50;font-family:'Anton','Arial Black',sans-serif">17 pts</span></div></div></div>
+          <div id="row-lgsp-NewZealand" style="border-left:3px solid #E63946;margin-bottom:2px;background:var(--black3)"><div onclick="togglePick('lgsp','NewZealand')" style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;cursor:pointer"><div style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:50%;background:#E63946;flex-shrink:0;display:inline-block"></span><strong style="color:var(--cream);font-size:13px">New Zealand</strong></div><div style="display:flex;align-items:center;gap:10px"><span style="font-size:11px;color:var(--muted)">1 → 1</span><span style="font-size:14px;font-weight:700;color:#969696">→</span><span style="font-size:11px;color:#E63946;font-family:'Anton','Arial Black',sans-serif;letter-spacing:1px">6%</span><span id="chev-lgsp-NewZealand" style="color:#E63946;font-size:11px;margin-left:2px">▼</span></div></div><div id="mgr-lgsp-NewZealand" style="display:none"><div style="display:flex;justify-content:space-between;padding:4px 12px 4px 28px;border-top:1px solid #1A1A1A"><span style="font-size:12px;color:var(--cream)">Tommy H</span><span style="font-size:12px;font-weight:700;color:#E63946;font-family:'Anton','Arial Black',sans-serif">17 pts</span></div></div></div>
         </div>
       </div>
 
@@ -996,8 +996,8 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="cat-panel">
         <h3>Recent trends</h3>
-        <div class="trend-wrap" style="height:280px;border-top:2px solid #F0C020;padding:12px 8px 8px">
-          <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+        <div class="trend-wrap" style="height:300px;border-top:2px solid #F0C020;padding:12px 8px 8px">
+          <svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
           <defs>
           <linearGradient id="gtstSpain" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F0C020" stop-opacity="0.25"/><stop offset="100%" stop-color="#F0C020" stop-opacity="0.05"/></linearGradient>
           <linearGradient id="gtstFrance" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF6F00" stop-opacity="0.25"/><stop offset="100%" stop-color="#FF6F00" stop-opacity="0.05"/></linearGradient>
@@ -1005,34 +1005,34 @@ document.addEventListener("DOMContentLoaded", function() {
           <linearGradient id="gtstEngland" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4DD0E1" stop-opacity="0.25"/><stop offset="100%" stop-color="#4DD0E1" stop-opacity="0.05"/></linearGradient>
           <linearGradient id="gtstBrazil" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4CAF50" stop-opacity="0.25"/><stop offset="100%" stop-color="#4CAF50" stop-opacity="0.05"/></linearGradient>
           </defs>
-          <line x1="30" y1="97" x2="370" y2="97" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="4,4"/>
-          <line x1="50" y1="25" x2="50" y2="170" stroke="#444" stroke-width="1.5"/>
-          <line x1="350" y1="25" x2="350" y2="170" stroke="#444" stroke-width="1.5"/>
-          <text x="50" y="192" fill="#888" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">PRE</text>
-          <text x="350" y="192" fill="#888" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">WK 1</text>
-          <polygon points="50,137 350,153 350,170 50,170" fill="url(#gtstBrazil)"/>
-          <polygon points="50,170 350,151 350,170 50,170" fill="url(#gtstEngland)"/>
-          <polygon points="50,153 350,137 350,170 50,170" fill="url(#gtstGermany)"/>
-          <polygon points="50,105 350,105 350,170 50,170" fill="url(#gtstFrance)"/>
-          <polygon points="50,41 350,73 350,170 50,170" fill="url(#gtstSpain)"/>
-          <line x1="50" y1="41" x2="350" y2="73" stroke="#F0C020" stroke-width="10.0" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="41" x2="350" y2="73" stroke="#F0C020" stroke-width="4.0" stroke-linecap="round"/>
-          <circle cx="50" cy="41" r="11" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('tst','Spain')"/>
-          <circle cx="350" cy="73" r="11" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('tst','Spain')"/>
-          <line x1="50" y1="105" x2="350" y2="105" stroke="#FF6F00" stroke-width="7.9" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="105" x2="350" y2="105" stroke="#FF6F00" stroke-width="3.2" stroke-linecap="round"/>
-          <circle cx="50" cy="105" r="9" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('tst','France')"/>
-          <circle cx="350" cy="105" r="9" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('tst','France')"/>
-          <line x1="50" y1="153" x2="350" y2="137" stroke="#C77DFF" stroke-width="5.8" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="153" x2="350" y2="137" stroke="#C77DFF" stroke-width="2.3" stroke-linecap="round"/>
-          <circle cx="50" cy="153" r="8" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('tst','Germany')"/>
-          <circle cx="350" cy="137" r="8" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('tst','Germany')"/>
-          <line x1="50" y1="170" x2="350" y2="151" stroke="#4DD0E1" stroke-width="1.5" stroke-dasharray="4,3" stroke-opacity="0.6"/>
-          <circle cx="350" cy="151" r="8" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('tst','England')"/>
-          <line x1="50" y1="137" x2="350" y2="153" stroke="#4CAF50" stroke-width="4.8" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="137" x2="350" y2="153" stroke="#4CAF50" stroke-width="1.9" stroke-linecap="round"/>
-          <circle cx="50" cy="137" r="7" fill="#1C1C1C" stroke="#4CAF50" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('tst','Brazil')"/>
-          <circle cx="350" cy="153" r="7" fill="#1C1C1C" stroke="#4CAF50" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('tst','Brazil')"/>
+          <line x1="20" y1="150" x2="480" y2="150" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="30" y1="25" x2="30" y2="270" stroke="#555" stroke-width="2"/>
+          <line x1="470" y1="25" x2="470" y2="270" stroke="#555" stroke-width="2"/>
+          <text x="30" y="290" fill="#999" font-size="11" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">PRE</text>
+          <text x="470" y="290" fill="#999" font-size="11" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">WK 1</text>
+          <polygon points="30,213 470,239 470,265 30,265" fill="url(#gtstBrazil)"/>
+          <polygon points="30,265 470,231 470,265 30,265" fill="url(#gtstEngland)"/>
+          <polygon points="30,239 470,213 470,265 30,265" fill="url(#gtstGermany)"/>
+          <polygon points="30,162 470,162 470,265 30,265" fill="url(#gtstFrance)"/>
+          <polygon points="30,60 470,111 470,265 30,265" fill="url(#gtstSpain)"/>
+          <line x1="30" y1="60" x2="470" y2="111" stroke="#F0C020" stroke-width="11.2" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="60" x2="470" y2="111" stroke="#F0C020" stroke-width="4.5" stroke-linecap="round"/>
+          <circle cx="30" cy="60" r="13" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('tst','Spain')"/>
+          <circle cx="470" cy="111" r="13" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('tst','Spain')"/>
+          <line x1="30" y1="162" x2="470" y2="162" stroke="#FF6F00" stroke-width="8.8" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="162" x2="470" y2="162" stroke="#FF6F00" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="30" cy="162" r="11" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('tst','France')"/>
+          <circle cx="470" cy="162" r="11" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('tst','France')"/>
+          <line x1="30" y1="239" x2="470" y2="213" stroke="#C77DFF" stroke-width="6.2" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="239" x2="470" y2="213" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="30" cy="239" r="9" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('tst','Germany')"/>
+          <circle cx="470" cy="213" r="9" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('tst','Germany')"/>
+          <line x1="30" y1="265" x2="470" y2="231" stroke="#4DD0E1" stroke-width="1.5" stroke-dasharray="4,3" stroke-opacity="0.6"/>
+          <circle cx="470" cy="231" r="9" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('tst','England')"/>
+          <line x1="30" y1="213" x2="470" y2="239" stroke="#4CAF50" stroke-width="5.0" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="213" x2="470" y2="239" stroke="#4CAF50" stroke-width="2.0" stroke-linecap="round"/>
+          <circle cx="30" cy="213" r="8" fill="#1C1C1C" stroke="#4CAF50" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('tst','Brazil')"/>
+          <circle cx="470" cy="239" r="8" fill="#1C1C1C" stroke="#4CAF50" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('tst','Brazil')"/>
         </svg>
         </div>
         <p style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 2px">Tap any pick for more</p>
@@ -1114,39 +1114,39 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="cat-panel">
         <h3>Recent trends</h3>
-        <div class="trend-wrap" style="height:280px;border-top:2px solid #F0C020;padding:12px 8px 8px">
-          <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+        <div class="trend-wrap" style="height:300px;border-top:2px solid #F0C020;padding:12px 8px 8px">
+          <svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
           <defs>
           <linearGradient id="gastOlise" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F0C020" stop-opacity="0.25"/><stop offset="100%" stop-color="#F0C020" stop-opacity="0.05"/></linearGradient>
           <linearGradient id="gastYamal" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF6F00" stop-opacity="0.25"/><stop offset="100%" stop-color="#FF6F00" stop-opacity="0.05"/></linearGradient>
           <linearGradient id="gastFernandes" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C77DFF" stop-opacity="0.25"/><stop offset="100%" stop-color="#C77DFF" stop-opacity="0.05"/></linearGradient>
           <linearGradient id="gastWirtz" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4DD0E1" stop-opacity="0.25"/><stop offset="100%" stop-color="#4DD0E1" stop-opacity="0.05"/></linearGradient>
           </defs>
-          <line x1="30" y1="97" x2="370" y2="97" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="4,4"/>
-          <line x1="50" y1="25" x2="50" y2="170" stroke="#444" stroke-width="1.5"/>
-          <line x1="350" y1="25" x2="350" y2="170" stroke="#444" stroke-width="1.5"/>
-          <text x="50" y="192" fill="#888" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">PRE</text>
-          <text x="350" y="192" fill="#888" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">WK 1</text>
-          <polygon points="50,153 350,167 350,170 50,170" fill="url(#gastWirtz)"/>
-          <polygon points="50,105 350,153 350,170 50,170" fill="url(#gastFernandes)"/>
-          <polygon points="50,103 350,89 350,170 50,170" fill="url(#gastYamal)"/>
-          <polygon points="50,89 350,41 350,170 50,170" fill="url(#gastOlise)"/>
-          <line x1="50" y1="89" x2="350" y2="41" stroke="#F0C020" stroke-width="10.0" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="89" x2="350" y2="41" stroke="#F0C020" stroke-width="4.0" stroke-linecap="round"/>
-          <circle cx="50" cy="89" r="11" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('ast','Olise')"/>
-          <circle cx="350" cy="41" r="11" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('ast','Olise')"/>
-          <line x1="50" y1="103" x2="350" y2="89" stroke="#FF6F00" stroke-width="7.7" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="103" x2="350" y2="89" stroke="#FF6F00" stroke-width="3.1" stroke-linecap="round"/>
-          <circle cx="50" cy="103" r="9" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('ast','Yamal')"/>
-          <circle cx="350" cy="89" r="9" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('ast','Yamal')"/>
-          <line x1="50" y1="105" x2="350" y2="153" stroke="#C77DFF" stroke-width="4.5" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="105" x2="350" y2="153" stroke="#C77DFF" stroke-width="1.8" stroke-linecap="round"/>
-          <circle cx="50" cy="105" r="7" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('ast','Fernandes')"/>
-          <circle cx="350" cy="153" r="7" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('ast','Fernandes')"/>
-          <line x1="50" y1="153" x2="350" y2="167" stroke="#4DD0E1" stroke-width="4.5" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="153" x2="350" y2="167" stroke="#4DD0E1" stroke-width="1.8" stroke-linecap="round"/>
-          <circle cx="50" cy="153" r="7" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('ast','Wirtz')"/>
-          <circle cx="350" cy="167" r="7" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('ast','Wirtz')"/>
+          <line x1="20" y1="150" x2="480" y2="150" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="30" y1="25" x2="30" y2="270" stroke="#555" stroke-width="2"/>
+          <line x1="470" y1="25" x2="470" y2="270" stroke="#555" stroke-width="2"/>
+          <text x="30" y="290" fill="#999" font-size="11" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">PRE</text>
+          <text x="470" y="290" fill="#999" font-size="11" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">WK 1</text>
+          <polygon points="30,239 470,257 470,265 30,265" fill="url(#gastWirtz)"/>
+          <polygon points="30,162 470,239 470,265 30,265" fill="url(#gastFernandes)"/>
+          <polygon points="30,155 470,137 470,265 30,265" fill="url(#gastYamal)"/>
+          <polygon points="30,137 470,60 470,265 30,265" fill="url(#gastOlise)"/>
+          <line x1="30" y1="137" x2="470" y2="60" stroke="#F0C020" stroke-width="11.2" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="137" x2="470" y2="60" stroke="#F0C020" stroke-width="4.5" stroke-linecap="round"/>
+          <circle cx="30" cy="137" r="13" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('ast','Olise')"/>
+          <circle cx="470" cy="60" r="13" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('ast','Olise')"/>
+          <line x1="30" y1="155" x2="470" y2="137" stroke="#FF6F00" stroke-width="8.4" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="155" x2="470" y2="137" stroke="#FF6F00" stroke-width="3.4" stroke-linecap="round"/>
+          <circle cx="30" cy="155" r="11" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('ast','Yamal')"/>
+          <circle cx="470" cy="137" r="11" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('ast','Yamal')"/>
+          <line x1="30" y1="162" x2="470" y2="239" stroke="#C77DFF" stroke-width="4.7" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="162" x2="470" y2="239" stroke="#C77DFF" stroke-width="1.9" stroke-linecap="round"/>
+          <circle cx="30" cy="162" r="8" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('ast','Fernandes')"/>
+          <circle cx="470" cy="239" r="8" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('ast','Fernandes')"/>
+          <line x1="30" y1="239" x2="470" y2="257" stroke="#4DD0E1" stroke-width="4.7" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="239" x2="470" y2="257" stroke="#4DD0E1" stroke-width="1.9" stroke-linecap="round"/>
+          <circle cx="30" cy="239" r="8" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('ast','Wirtz')"/>
+          <circle cx="470" cy="257" r="8" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('ast','Wirtz')"/>
         </svg>
         </div>
         <p style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 2px">Tap any pick for more</p>
@@ -1226,37 +1226,37 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="cat-panel">
         <h3>Recent trends</h3>
-        <div class="trend-wrap" style="height:280px;border-top:2px solid #F0C020;padding:12px 8px 8px">
-          <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+        <div class="trend-wrap" style="height:300px;border-top:2px solid #F0C020;padding:12px 8px 8px">
+          <svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
           <defs>
           <linearGradient id="ggbtMbapp" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F0C020" stop-opacity="0.25"/><stop offset="100%" stop-color="#F0C020" stop-opacity="0.05"/></linearGradient>
           <linearGradient id="ggbtKane" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF6F00" stop-opacity="0.25"/><stop offset="100%" stop-color="#FF6F00" stop-opacity="0.05"/></linearGradient>
           <linearGradient id="ggbtOyarzabal" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C77DFF" stop-opacity="0.25"/><stop offset="100%" stop-color="#C77DFF" stop-opacity="0.05"/></linearGradient>
           <linearGradient id="ggbtOlise" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4DD0E1" stop-opacity="0.25"/><stop offset="100%" stop-color="#4DD0E1" stop-opacity="0.05"/></linearGradient>
           </defs>
-          <line x1="30" y1="97" x2="370" y2="97" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="4,4"/>
-          <line x1="50" y1="25" x2="50" y2="170" stroke="#444" stroke-width="1.5"/>
-          <line x1="350" y1="25" x2="350" y2="170" stroke="#444" stroke-width="1.5"/>
-          <text x="50" y="192" fill="#888" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">PRE</text>
-          <text x="350" y="192" fill="#888" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">WK 1</text>
-          <polygon points="50,151 350,170 350,170 50,170" fill="url(#ggbtOlise)"/>
-          <polygon points="50,133 350,133 350,170 50,170" fill="url(#ggbtOyarzabal)"/>
-          <polygon points="50,75 350,61 350,170 50,170" fill="url(#ggbtKane)"/>
-          <polygon points="50,61 350,43 350,170 50,170" fill="url(#ggbtMbapp)"/>
-          <line x1="50" y1="61" x2="350" y2="43" stroke="#F0C020" stroke-width="10.0" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="61" x2="350" y2="43" stroke="#F0C020" stroke-width="4.0" stroke-linecap="round"/>
-          <circle cx="50" cy="61" r="11" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('gbt','Mbapp')"/>
-          <circle cx="350" cy="43" r="11" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('gbt','Mbapp')"/>
-          <line x1="50" y1="75" x2="350" y2="61" stroke="#FF6F00" stroke-width="9.1" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="75" x2="350" y2="61" stroke="#FF6F00" stroke-width="3.6" stroke-linecap="round"/>
-          <circle cx="50" cy="75" r="10" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('gbt','Kane')"/>
-          <circle cx="350" cy="61" r="10" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('gbt','Kane')"/>
-          <line x1="50" y1="133" x2="350" y2="133" stroke="#C77DFF" stroke-width="5.5" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="133" x2="350" y2="133" stroke="#C77DFF" stroke-width="2.2" stroke-linecap="round"/>
-          <circle cx="50" cy="133" r="8" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('gbt','Oyarzabal')"/>
-          <circle cx="350" cy="133" r="8" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('gbt','Oyarzabal')"/>
-          <line x1="50" y1="151" x2="350" y2="170" stroke="#4DD0E1" stroke-width="1.5" stroke-dasharray="4,3" stroke-opacity="0.4"/>
-          <circle cx="50" cy="151" r="7" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2" stroke-opacity="0.5" style="cursor:pointer" onclick="togglePick('gbt','Olise')"/>
+          <line x1="20" y1="150" x2="480" y2="150" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="30" y1="25" x2="30" y2="270" stroke="#555" stroke-width="2"/>
+          <line x1="470" y1="25" x2="470" y2="270" stroke="#555" stroke-width="2"/>
+          <text x="30" y="290" fill="#999" font-size="11" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">PRE</text>
+          <text x="470" y="290" fill="#999" font-size="11" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">WK 1</text>
+          <polygon points="30,236 470,265 470,265 30,265" fill="url(#ggbtOlise)"/>
+          <polygon points="30,207 470,207 470,265 30,265" fill="url(#ggbtOyarzabal)"/>
+          <polygon points="30,110 470,92 470,265 30,265" fill="url(#ggbtKane)"/>
+          <polygon points="30,92 470,63 470,265 30,265" fill="url(#ggbtMbapp)"/>
+          <line x1="30" y1="92" x2="470" y2="63" stroke="#F0C020" stroke-width="11.2" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="92" x2="470" y2="63" stroke="#F0C020" stroke-width="4.5" stroke-linecap="round"/>
+          <circle cx="30" cy="92" r="13" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('gbt','Mbapp')"/>
+          <circle cx="470" cy="63" r="13" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('gbt','Mbapp')"/>
+          <line x1="30" y1="110" x2="470" y2="92" stroke="#FF6F00" stroke-width="10.2" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="110" x2="470" y2="92" stroke="#FF6F00" stroke-width="4.1" stroke-linecap="round"/>
+          <circle cx="30" cy="110" r="12" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('gbt','Kane')"/>
+          <circle cx="470" cy="92" r="12" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('gbt','Kane')"/>
+          <line x1="30" y1="207" x2="470" y2="207" stroke="#C77DFF" stroke-width="5.9" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="207" x2="470" y2="207" stroke="#C77DFF" stroke-width="2.4" stroke-linecap="round"/>
+          <circle cx="30" cy="207" r="9" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('gbt','Oyarzabal')"/>
+          <circle cx="470" cy="207" r="9" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('gbt','Oyarzabal')"/>
+          <line x1="30" y1="236" x2="470" y2="265" stroke="#4DD0E1" stroke-width="1.5" stroke-dasharray="4,3" stroke-opacity="0.4"/>
+          <circle cx="30" cy="236" r="8" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2" stroke-opacity="0.5" style="cursor:pointer" onclick="togglePick('gbt','Olise')"/>
         </svg>
         </div>
         <p style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 2px">Tap any pick for more</p>
@@ -1335,39 +1335,39 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="cat-panel">
         <h3>Recent trends</h3>
-        <div class="trend-wrap" style="height:280px;border-top:2px solid #F0C020;padding:12px 8px 8px">
-          <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+        <div class="trend-wrap" style="height:300px;border-top:2px solid #F0C020;padding:12px 8px 8px">
+          <svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
           <defs>
           <linearGradient id="gwcwSpain" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F0C020" stop-opacity="0.25"/><stop offset="100%" stop-color="#F0C020" stop-opacity="0.05"/></linearGradient>
           <linearGradient id="gwcwFrance" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF6F00" stop-opacity="0.25"/><stop offset="100%" stop-color="#FF6F00" stop-opacity="0.05"/></linearGradient>
           <linearGradient id="gwcwEngland" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C77DFF" stop-opacity="0.25"/><stop offset="100%" stop-color="#C77DFF" stop-opacity="0.05"/></linearGradient>
           <linearGradient id="gwcwPortugal" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4DD0E1" stop-opacity="0.25"/><stop offset="100%" stop-color="#4DD0E1" stop-opacity="0.05"/></linearGradient>
           </defs>
-          <line x1="30" y1="97" x2="370" y2="97" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="4,4"/>
-          <line x1="50" y1="25" x2="50" y2="170" stroke="#444" stroke-width="1.5"/>
-          <line x1="350" y1="25" x2="350" y2="170" stroke="#444" stroke-width="1.5"/>
-          <text x="50" y="192" fill="#888" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">PRE</text>
-          <text x="350" y="192" fill="#888" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">WK 1</text>
-          <polygon points="50,155 350,155 350,170 50,170" fill="url(#gwcwPortugal)"/>
-          <polygon points="50,141 350,141 350,170 50,170" fill="url(#gwcwEngland)"/>
-          <polygon points="50,126 350,126 350,170 50,170" fill="url(#gwcwFrance)"/>
-          <polygon points="50,39 350,39 350,170 50,170" fill="url(#gwcwSpain)"/>
-          <line x1="50" y1="39" x2="350" y2="39" stroke="#F0C020" stroke-width="10.0" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="39" x2="350" y2="39" stroke="#F0C020" stroke-width="4.0" stroke-linecap="round"/>
-          <circle cx="50" cy="39" r="11" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('wcw','Spain')"/>
-          <circle cx="350" cy="39" r="11" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('wcw','Spain')"/>
-          <line x1="50" y1="126" x2="350" y2="126" stroke="#FF6F00" stroke-width="5.8" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="126" x2="350" y2="126" stroke="#FF6F00" stroke-width="2.3" stroke-linecap="round"/>
-          <circle cx="50" cy="126" r="8" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('wcw','France')"/>
-          <circle cx="350" cy="126" r="8" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('wcw','France')"/>
-          <line x1="50" y1="141" x2="350" y2="141" stroke="#C77DFF" stroke-width="5.1" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="141" x2="350" y2="141" stroke="#C77DFF" stroke-width="2.1" stroke-linecap="round"/>
-          <circle cx="50" cy="141" r="7" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('wcw','England')"/>
-          <circle cx="350" cy="141" r="7" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('wcw','England')"/>
-          <line x1="50" y1="155" x2="350" y2="155" stroke="#4DD0E1" stroke-width="4.4" stroke-opacity="0.15" stroke-linecap="round"/>
-          <line x1="50" y1="155" x2="350" y2="155" stroke="#4DD0E1" stroke-width="1.8" stroke-linecap="round"/>
-          <circle cx="50" cy="155" r="7" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('wcw','Portugal')"/>
-          <circle cx="350" cy="155" r="7" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('wcw','Portugal')"/>
+          <line x1="20" y1="150" x2="480" y2="150" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="30" y1="25" x2="30" y2="270" stroke="#555" stroke-width="2"/>
+          <line x1="470" y1="25" x2="470" y2="270" stroke="#555" stroke-width="2"/>
+          <text x="30" y="290" fill="#999" font-size="11" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">PRE</text>
+          <text x="470" y="290" fill="#999" font-size="11" font-family="Arial" text-anchor="middle" font-weight="bold" letter-spacing="1">WK 1</text>
+          <polygon points="30,242 470,242 470,265 30,265" fill="url(#gwcwPortugal)"/>
+          <polygon points="30,219 470,219 470,265 30,265" fill="url(#gwcwEngland)"/>
+          <polygon points="30,196 470,196 470,265 30,265" fill="url(#gwcwFrance)"/>
+          <polygon points="30,58 470,58 470,265 30,265" fill="url(#gwcwSpain)"/>
+          <line x1="30" y1="58" x2="470" y2="58" stroke="#F0C020" stroke-width="11.2" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="58" x2="470" y2="58" stroke="#F0C020" stroke-width="4.5" stroke-linecap="round"/>
+          <circle cx="30" cy="58" r="13" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('wcw','Spain')"/>
+          <circle cx="470" cy="58" r="13" fill="#1C1C1C" stroke="#F0C020" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('wcw','Spain')"/>
+          <line x1="30" y1="196" x2="470" y2="196" stroke="#FF6F00" stroke-width="6.2" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="196" x2="470" y2="196" stroke="#FF6F00" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="30" cy="196" r="9" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('wcw','France')"/>
+          <circle cx="470" cy="196" r="9" fill="#1C1C1C" stroke="#FF6F00" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('wcw','France')"/>
+          <line x1="30" y1="219" x2="470" y2="219" stroke="#C77DFF" stroke-width="5.4" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="219" x2="470" y2="219" stroke="#C77DFF" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="30" cy="219" r="9" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('wcw','England')"/>
+          <circle cx="470" cy="219" r="9" fill="#1C1C1C" stroke="#C77DFF" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('wcw','England')"/>
+          <line x1="30" y1="242" x2="470" y2="242" stroke="#4DD0E1" stroke-width="4.6" stroke-opacity="0.12" stroke-linecap="round"/>
+          <line x1="30" y1="242" x2="470" y2="242" stroke="#4DD0E1" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="30" cy="242" r="8" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('wcw','Portugal')"/>
+          <circle cx="470" cy="242" r="8" fill="#1C1C1C" stroke="#4DD0E1" stroke-width="2.5" style="cursor:pointer" onclick="togglePick('wcw','Portugal')"/>
         </svg>
         </div>
         <p style="font-size:11px;color:var(--muted);text-align:center;padding:6px 0 2px">Tap any pick for more</p>
