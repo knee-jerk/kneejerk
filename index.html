@@ -315,7 +315,7 @@ document.addEventListener("DOMContentLoaded", function() {
     <div style="background:var(--black);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:10px 24px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cream);opacity:.85;margin-bottom:0">Today's Prediction Values<br><span style="font-size:10px;letter-spacing:1.5px;color:var(--cream);opacity:.8">Click a category to explore</span></div>
     <div class="cat-cards">
 
-      <div class="cat-card" onclick="showCatPage('mgsp')">
+      <div class="cat-card" onclick="showCatPage('mgsp')" style="opacity:0.65;filter:grayscale(30%)">
         <div class="cat-card-top">
           <div class="cat-card-icon" style="background:transparent;border:none;display:flex;align-items:center;justify-content:center"><svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
   <!-- Diagonal shaft -->
@@ -326,12 +326,12 @@ document.addEventListener("DOMContentLoaded", function() {
           <span class="cat-card-arrow">→</span>
         </div>
         <div class="cat-card-name">Most Group Stage Points</div>
-        <div class="cat-card-value"><span class="cat-card-pts" id="card-pts-mgsp">3</span><span class="cat-card-ptslabel">pts today</span></div>
+        <div class="cat-card-value"><span class="cat-card-pts" id="card-pts-mgsp">Locked</span><span class="cat-card-ptslabel"></span></div>
         <div class="cat-card-hint">Argentina leads with 7 picks</div>
         <div class="cat-card-cta">Explore picks →</div>
       </div>
 
-      <div class="cat-card" onclick="showCatPage('lgsp')">
+      <div class="cat-card" onclick="showCatPage('lgsp')" style="opacity:0.65;filter:grayscale(30%)">
         <div class="cat-card-top">
           <div class="cat-card-icon" style="background:transparent;border:none;display:flex;align-items:center;justify-content:center"><svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
   <!-- Diagonal shaft -->
@@ -342,7 +342,7 @@ document.addEventListener("DOMContentLoaded", function() {
           <span class="cat-card-arrow">→</span>
         </div>
         <div class="cat-card-name">Least Group Stage Points</div>
-        <div class="cat-card-value"><span class="cat-card-pts" id="card-pts-lgsp">3</span><span class="cat-card-ptslabel">pts today</span></div>
+        <div class="cat-card-value"><span class="cat-card-pts" id="card-pts-lgsp">Locked</span><span class="cat-card-ptslabel"></span></div>
         <div class="cat-card-hint">Haiti leads with 6 picks</div>
         <div class="cat-card-cta">Explore picks →</div>
       </div>
@@ -713,7 +713,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </svg></div>
           <div><div class="cat-page-title">Most Group Stage Points</div><div class="cat-page-subtitle">Which team will get the highest number of points across the group stage?</div></div>
         </div>
-        <div class="cat-page-value"><div class="cat-page-pts" id="page-pts-mgsp">3</div><div class="cat-page-ptslabel">pts today</div></div>
+        <div class="cat-page-value"><div class="cat-page-pts" id="page-pts-mgsp">Locked</div><div class="cat-page-ptslabel">pts today</div></div>
       </div>
     </div>
   </div>
@@ -874,7 +874,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </svg></div>
           <div><div class="cat-page-title">Least Group Stage Points</div><div class="cat-page-subtitle">Which team will get the lowest number of points across the group stage?</div></div>
         </div>
-        <div class="cat-page-value"><div class="cat-page-pts" id="page-pts-lgsp">3</div><div class="cat-page-ptslabel">pts today</div></div>
+        <div class="cat-page-value"><div class="cat-page-pts" id="page-pts-lgsp">Locked</div><div class="cat-page-ptslabel">pts today</div></div>
       </div>
     </div>
   </div>
@@ -1613,7 +1613,9 @@ document.addEventListener("DOMContentLoaded", function() {
     gbt:  PTS_GBT,
     wcw:  PTS_WCW
   };
+  var lockedCats = ["mgsp", "lgsp"];
   Object.keys(pts).forEach(function(cat) {
+    if (lockedCats.indexOf(cat) !== -1) return;
     var card = document.getElementById("card-pts-" + cat);
     var page = document.getElementById("page-pts-" + cat);
     if (card) card.textContent = pts[cat];
