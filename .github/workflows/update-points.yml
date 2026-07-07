@@ -4,7 +4,7 @@ on:
   schedule:
     # Runs at 23:00 UTC (01:00 BST) every day - allows for GitHub delay to hit ~06:30 BST
     # If not run by 07:00 BST, trigger manually via the Actions tab
-    - cron: '0 23 * * *'
+    - cron: '0 1 * * *'
   workflow_dispatch:
     # Allows manual trigger from the Actions tab in GitHub
 
