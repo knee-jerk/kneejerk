@@ -272,8 +272,8 @@ document.addEventListener("DOMContentLoaded", function() {
   var PTS_GBT  = 1;  // Golden Boot              (max 39, -1/day, min 1)
   var PTS_WCW  = 2;  // World Cup Winners        (max 78, -2/day, min 2)
   var LAST_UPDATED = "Not yet updated";
-  var LAST_SUNDAY  = "Sun 19 Jul, 09:00 BST";
-  var NEXT_SUNDAY  = "Season complete";
+  var LAST_SUNDAY  = "Not yet updated";
+  var NEXT_SUNDAY  = "Not yet updated";
 </script>
 <!-- ============================================================ -->
 </head>
@@ -353,7 +353,7 @@ document.addEventListener("DOMContentLoaded", function() {
           <span class="cat-card-arrow">→</span>
         </div>
         <div class="cat-card-name">Top Scoring Team</div>
-        <div class="cat-card-value"><span class="cat-card-pts" id="card-pts-tst">25</span><span class="cat-card-ptslabel">pts today</span></div>
+        <div class="cat-card-value"><span class="cat-card-pts" id="card-pts-tst">Locked</span><span class="cat-card-ptslabel"></span></div>
         <div class="cat-card-hint">Argentina leads with 8 picks</div>
         <div class="cat-card-cta">Explore picks →</div>
       </div>
@@ -364,7 +364,7 @@ document.addEventListener("DOMContentLoaded", function() {
           <span class="cat-card-arrow">→</span>
         </div>
         <div class="cat-card-name">Most Assists</div>
-        <div class="cat-card-value"><span class="cat-card-pts" id="card-pts-ast">25</span><span class="cat-card-ptslabel">pts today</span></div>
+        <div class="cat-card-value"><span class="cat-card-pts" id="card-pts-ast">Locked</span><span class="cat-card-ptslabel"></span></div>
         <div class="cat-card-hint">Olise leads with 12 picks</div>
         <div class="cat-card-cta">Explore picks →</div>
       </div>
@@ -375,7 +375,7 @@ document.addEventListener("DOMContentLoaded", function() {
           <span class="cat-card-arrow">→</span>
         </div>
         <div class="cat-card-name">Golden Boot</div>
-        <div class="cat-card-value"><span class="cat-card-pts" id="card-pts-gbt">25</span><span class="cat-card-ptslabel">pts today</span></div>
+        <div class="cat-card-value"><span class="cat-card-pts" id="card-pts-gbt">Locked</span><span class="cat-card-ptslabel"></span></div>
         <div class="cat-card-hint">Mbappé leads with 8 picks</div>
         <div class="cat-card-cta">Explore picks →</div>
       </div>
@@ -386,7 +386,7 @@ document.addEventListener("DOMContentLoaded", function() {
           <span class="cat-card-arrow">→</span>
         </div>
         <div class="cat-card-name">World Cup Winners</div>
-        <div class="cat-card-value"><span class="cat-card-pts" id="card-pts-wcw">50</span><span class="cat-card-ptslabel">pts today</span></div>
+        <div class="cat-card-value"><span class="cat-card-pts" id="card-pts-wcw">Locked</span><span class="cat-card-ptslabel"></span></div>
         <div class="cat-card-hint">Spain leads with 9 picks</div>
         <div class="cat-card-cta">Explore picks →</div>
       </div>
@@ -1051,12 +1051,11 @@ document.addEventListener("DOMContentLoaded", function() {
           <div class="cat-page-icon" style="background:transparent;border:none;display:flex;align-items:center;justify-content:center"><img src="data:image/png;base64,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" style="height:44px;width:auto;object-fit:contain" alt=""></div>
           <div><div class="cat-page-title">Top Scoring Team</div><div class="cat-page-subtitle">Most goals across the tournament</div></div>
         </div>
-        <div class="cat-page-value"><div class="cat-page-pts" id="page-pts-tst">25</div><div class="cat-page-ptslabel">pts today</div></div>
+        <div class="cat-page-value"><div class="cat-page-pts" id="page-pts-tst">Locked</div><div class="cat-page-ptslabel">pts today</div></div>
       </div>
     </div>
   </div>
   <div class="cat-page-body">
-    <div style="text-align:center;margin-bottom:28px"><a href="https://forms.gle/rYU8MSXeTPju6Vz59" target="_blank" rel="noopener" style="display:inline-block;background:var(--yellow);color:#000000;font-family:'Anton','Arial Black',sans-serif;font-size:15px;letter-spacing:2px;text-transform:uppercase;padding:14px 40px;text-decoration:none;">Jerk Now</a></div>
     <div class="cat-detail-grid">
       <div class="cat-panel">
         <h3>Pick distribution</h3>
@@ -1070,6 +1069,7 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="cat-panel">
         <h3>Recent trends</h3>
+        <p style="font-size:11px;color:var(--red);text-align:center;padding:4px 0 2px;font-weight:700">This category is now locked</p>
                 <div class="trend-wrap" style="height:300px;border-top:2px solid #F0C020;padding:12px 8px 8px;overflow-x:auto">
           <svg viewBox="0 0 620 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
           <defs>
@@ -1244,12 +1244,11 @@ document.addEventListener("DOMContentLoaded", function() {
           <div class="cat-page-icon" style="background:transparent;border:none;display:flex;align-items:center;justify-content:center"><svg width="44" height="44" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="#F0C020"><path d="M254.3,107.91,228.78,56.85a16,16,0,0,0-21.47-7.15L182.44,62.13,130.05,48.27a8.14,8.14,0,0,0-4.1,0L73.56,62.13,48.69,49.7a16,16,0,0,0-21.47,7.15L1.7,107.9a16,16,0,0,0,7.15,21.47l27,13.51,55.49,39.63a8.06,8.06,0,0,0,2.71,1.25l64,16a8,8,0,0,0,7.6-2.1l40-40,15.08-15.08,26.42-13.21a16,16,0,0,0,7.15-21.46Zm-54.89,33.37L165,113.72a8,8,0,0,0-10.68.61C136.51,132.27,116.66,130,104,122L147.24,80h31.81l27.21,54.41Zm-41.87,41.86L99.42,168.61l-49.2-35.14,28-56L128,64.28l9.8,2.59-45,43.68-.08.09a16,16,0,0,0,2.72,24.81c20.56,13.13,45.37,11,64.91-5L188,152.66Zm-25.72,34.8a8,8,0,0,1-7.75,6.06,8.13,8.13,0,0,1-1.95-.24L80.41,213.33a7.89,7.89,0,0,1-2.71-1.25L51.35,193.26a8,8,0,0,1,9.3-13l25.11,17.94L126,208.24A8,8,0,0,1,131.82,217.94Z"/></svg></div>
           <div><div class="cat-page-title">Most Assists</div><div class="cat-page-subtitle">Most goal assists across the tournament</div></div>
         </div>
-        <div class="cat-page-value"><div class="cat-page-pts" id="page-pts-ast">25</div><div class="cat-page-ptslabel">pts today</div></div>
+        <div class="cat-page-value"><div class="cat-page-pts" id="page-pts-ast">Locked</div><div class="cat-page-ptslabel">pts today</div></div>
       </div>
     </div>
   </div>
   <div class="cat-page-body">
-    <div style="text-align:center;margin-bottom:28px"><a href="https://forms.gle/kMndJFV1HCJCSEvk7" target="_blank" rel="noopener" style="display:inline-block;background:var(--yellow);color:#000000;font-family:'Anton','Arial Black',sans-serif;font-size:15px;letter-spacing:2px;text-transform:uppercase;padding:14px 40px;text-decoration:none;">Jerk Now</a></div>
     <div class="cat-detail-grid">
       <div class="cat-panel">
         <h3>Pick distribution</h3>
@@ -1262,6 +1261,7 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="cat-panel">
         <h3>Recent trends</h3>
+        <p style="font-size:11px;color:var(--red);text-align:center;padding:4px 0 2px;font-weight:700">This category is now locked</p>
                 <div class="trend-wrap" style="height:300px;border-top:2px solid #F0C020;padding:12px 8px 8px;overflow-x:auto">
           <svg viewBox="0 0 620 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
           <defs>
@@ -1414,12 +1414,11 @@ document.addEventListener("DOMContentLoaded", function() {
           <div class="cat-page-icon" style="background:transparent;border:none;display:flex;align-items:center;justify-content:center"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAAA4CAYAAABE814IAAAIeUlEQVR4nO2ZbYxcVRnH/89z7rzv7Myu29a17c7sgggVLAn4AaHsDrWBNKGGSBtDTPSDERJBo5LCtxVDMESNiUpsoomkYDBbBIMF2gV3ZigvkhAEsaUoL7tLl6XddvfOzO683vM8fpjZdgsNLduFRXJ/yf0wd27Oec7/POd/nnsu4OPj4+Pj4+Pj4+Pj4+NzpqiCVEHLHccngoVC6BDMcsay7MyLMfFId9Td19PRusef1Gzhj7JxHWy27+5Z0xlPBJ8LEr/q5lI3EEGIoJ/6bHmvT6g2BZkeSe3SF/u0mE+r93yvzu5L/+6lnatiAKBZOMsV76lY0gwhghJBASCbhUMEmcmmvt2RMNe7BVu3Ai2V1caifNPn+yLPTmX7LqUMPFVwNgtnPqOWkyWZHVUQEXRyb9/KSNRrJK4Yd5HrB5AHgywAGENBz8Iywbgl8WJh/lKM9Ck3m76NaPQ3AKTVFgMnhP24WdIZiYTssHr0MyIoVuRZB8GJzOh90669wTE4loixUYUwwZmtiDQ8jSTi/Gs3l36wvC+97fCeNecu9Bcd/PjNd0k6m88QN5f+Nxt0vFty+s7b/HpNh2D2Y525cNuB+lQ2dX7EwQ5m7q/VVYjAqlAFtC1CbJhQb2i55smPVfDnjsyYe7z9LBxMQWkb7FLE+0GctSCqIOxfF6ALD9TdXGpXosu5vnTM/g2i29szYwff+3xxX/rxoKGrq3UV4PguY1VVmMkwg5kw1WjgvpAj94Q9eocyY9XjfeX6DQbyQtRcYkvNkqWjDsEUVvVeEmB9MtrlxItHPBHRfar0KpMWlagdwMVMuAhATBU6378INBwkCocIlZqCCTAGqNa0TMAhJdrpEOWjG958+nh/g2AM9PNSi7NoQeaXydHs6jXMZn1n//ijADCxJ3V+Ms63W6tfjYZ4tQkT4DX90fOASk0gC8IXgcRjxLMVeY2UnjEGGRGsVCAaizBZUYQChIYHVKrygOPoPs/DS4mBsecWxMK5HHhgoOk/wOINedGCZLNwMhl4M7nUdcmE81CxaB804Htj3fwknfd6DQD0n6lkqahfdwK8o1ZTJSLGiWUCVUjAISLSadvQK9ozYwf1sXNDcwnvaQZdUKvry0y4VAksAu5IMEOA0pwAhEcDBv+qNPiBzoE3X1kY27znYOtxgT56QTTb71Am701nU7d3tJu76nUlIqBclSMAXoXiNQUqAAaCAV5fb6gSnVS0qTEQx0BqVbmmY+P4CAC42dTd7Ulnu3u0cW3npvHd5fw5axvq3R8K8ZXVqoyHQtyjCjgGCIQYxZKtkuowCHuI5Kn4hrf3nxTnEMyHMeOzqEPyAAAiSgGgck1qUAoEA7wyFKSVxqAfBNRrinJVsVAMACCGjYXZmZmz3+maF2MkfWOi29k+80795s5N47sBoOx5X04kzZVzJbldPLNDjVxcF9xJTJfNuZ5lpnAsYrYwY0txjqSY732FWUdgdHj0UGyEth2o6yCY7jgznzn7wkw12hqiIQLXG6p1TwUn1jETva/eaSTiHHBn7E+7No7dCwDHhtNXJ7rMjsJh75edV43fAwDH9vZc3vkZ5y/Fov1DcmD0bgA48kTvZFtEe70GGCAWgRbLIqoAE0w4hPXBAK9vWPywb3X5wPRIz1101fif5j3vdMNZdGGWWyDJwvtEIAIMAU7rOqkPEfUS7RwoFOzOjo1jgwAwuXfNhdEk7Z4t2oeT/aO3AsC7u3v6ogmzd27OPtG+YfS7ADD9RF9PLIKccWi1Z5tLcL4/JhgAWq6quLPizZZFCLSuI+ncPz2S/sGZvkwuWpAB9M8rMHkKXU6JCKQjaZxiSZ6eAW4EgMm9q1YmE4Fh8fDK0YbeAABvDPUl2rvMsKpOvFNwrieCHs6uaAuE5aFQkLrnKmpPkXXNaAhMgMMErjbUq9XUY9IfzXuJnsY3z6J0b3oIFG8CkNP5syokEiaanbPPt4+M9vdmxqpv/TEVbo9HH1NFoOLWt/Rmxqo6BLNqtf6VCKsKR+Sa8za/XlSAwhzb2RbhS0qz4rWy4XT9KaA2FCYHoP9iK0QHwXSamVu0h+yaajZMKi9aywxAVWGpFawCclLXBFEA1vJ4MZP+ZnGjvKGK7xuHLpg6XLt47bUThwCg1J3+fTCADbMzenn318bfAgA3m/pVMs7XzbjiMb8/ZlUc38FaBZ84Dpm2NhMqz9n/AOamMx3X2VSqpApg17qAu6L8cDLOmz0LzJYFREAoSDAL8o8IEAGCMQYCBFQEIILr2jIznhGrB0EIxuPmxlJBtndsHP05ALj5nu8lYs5vC3PiqYBBKgtCJ2otE2nKT44BImFGtSpHwPRAYbp65+otk0fP1FTPqnTXZkCqQzBzn01tAtG3APqGtaoCvEGKEpozJwoIQa0qqkSk2tydQgRaSYzu9jYGHIKtKqp1hWe1rKpvxyL8hUpNxVpQNEwUCp0IWSxQ9xTVmjQCDgcUqiqYIeZb1KsMt2cmjwLNMv9Mt90lf7V2c6mDAJKJoO2lrxyqnO75iUe6o/E4okCwy7J+Dha9IO4E6VpSRBXUHQzQZgBoePKygEZY9QiAAoiOMeFd8eyEsrku2WXuLhz1fpHMjN0GtA60F1GtLgk6hKAqyM2mX5jJpsaAEwfM2lxezWsQPPghzzkKufTjlWd7G+7f157zQc+Vn+nV6VxqlyqMvoDAYsaxdOeZW9EgghZyeosCYVUQfgICoAQsHL4CwB13tH6c+IewC4QVILS29LdDtcDay/5RdXN4MRzlaxpeqKjZfmf/VJ6/uKJfcshjoGXu2AopPGVvdpgmiGBb5vrpYv6MtZTru6iQT9+qL1yyqFlfVlTBy/V5QRVm6NP+aQNoZson7XOFj4+Pj4+Pj4+Pj4+Pj4/P/y3/AzwHIUETQhIrAAAAAElFTkSuQmCC" style="height:44px;width:auto;object-fit:contain" alt=""></div>
           <div><div class="cat-page-title">Golden Boot</div><div class="cat-page-subtitle">Top goalscorer of the tournament</div></div>
         </div>
-        <div class="cat-page-value"><div class="cat-page-pts" id="page-pts-gbt">25</div><div class="cat-page-ptslabel">pts today</div></div>
+        <div class="cat-page-value"><div class="cat-page-pts" id="page-pts-gbt">Locked</div><div class="cat-page-ptslabel">pts today</div></div>
       </div>
     </div>
   </div>
   <div class="cat-page-body">
-    <div style="text-align:center;margin-bottom:28px"><a href="https://forms.gle/La7R8SuQ6xtfN7cV8" target="_blank" rel="noopener" style="display:inline-block;background:var(--yellow);color:#000000;font-family:'Anton','Arial Black',sans-serif;font-size:15px;letter-spacing:2px;text-transform:uppercase;padding:14px 40px;text-decoration:none;">Jerk Now</a></div>
     <div class="cat-detail-grid">
       <div class="cat-panel">
         <h3>Pick distribution</h3>
@@ -1433,6 +1432,7 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="cat-panel">
         <h3>Recent trends</h3>
+        <p style="font-size:11px;color:var(--red);text-align:center;padding:4px 0 2px;font-weight:700">This category is now locked</p>
                 <div class="trend-wrap" style="height:300px;border-top:2px solid #F0C020;padding:12px 8px 8px;overflow-x:auto">
           <svg viewBox="0 0 620 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
           <defs>
@@ -1600,7 +1600,6 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
   </div>
   <div class="cat-page-body">
-    <div style="text-align:center;margin-bottom:28px"><a href="https://forms.gle/Ru8WN61QX6jSurAF8" target="_blank" rel="noopener" style="display:inline-block;background:var(--yellow);color:#000000;font-family:'Anton','Arial Black',sans-serif;font-size:15px;letter-spacing:2px;text-transform:uppercase;padding:14px 40px;text-decoration:none;">Jerk Now</a></div>
     <div class="cat-detail-grid">
       <div class="cat-panel">
         <h3>Pick distribution</h3>
@@ -1614,6 +1613,7 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="cat-panel">
         <h3>Recent trends</h3>
+        <p style="font-size:11px;color:var(--red);text-align:center;padding:4px 0 2px;font-weight:700">This category is now locked</p>
                 <div class="trend-wrap" style="height:300px;border-top:2px solid #F0C020;padding:12px 8px 8px;overflow-x:auto">
           <svg viewBox="0 0 620 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
           <defs>
@@ -1836,7 +1836,7 @@ document.addEventListener("DOMContentLoaded", function() {
     gbt:  PTS_GBT,
     wcw:  PTS_WCW
   };
-  var lockedCats = ["mgsp", "lgsp"];
+  var lockedCats = ["mgsp", "lgsp", "tst", "ast", "gbt", "wcw"];
   Object.keys(pts).forEach(function(cat) {
     if (lockedCats.indexOf(cat) !== -1) return;
     var card = document.getElementById("card-pts-" + cat);
