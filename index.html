@@ -272,8 +272,8 @@ document.addEventListener("DOMContentLoaded", function() {
   var PTS_GBT  = 1;  // Golden Boot              (max 39, -1/day, min 1)
   var PTS_WCW  = 2;  // World Cup Winners        (max 78, -2/day, min 2)
   var LAST_UPDATED = "Not yet updated";
-  var LAST_SUNDAY  = "Sun 19 Jul, 09:00 BST";
-  var NEXT_SUNDAY  = "Season complete";
+  var LAST_SUNDAY  = "Not yet updated";
+  var NEXT_SUNDAY  = "Not yet updated";
 </script>
 <!-- ============================================================ -->
 </head>
@@ -504,21 +504,21 @@ document.addEventListener("DOMContentLoaded", function() {
       <button class="lc-tab" onclick="showLcTab(this,'lc-wcw')">WC Winners</button>
     </div>
     <div id="lc-mgsp" class="lc-panel active">
-      <p>Changes made in the last 7 days · Updated every Sunday at 09:00 BST</p>
+      <p>Last updated 19 Jul</p>
       <table class="picks-table"><thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
       <tbody>
         <tr><td colspan="4" style="color:var(--muted);font-style:italic;text-align:center;padding:18px">No changes this week</td></tr>
       </tbody></table>
     </div>
     <div id="lc-lgsp" class="lc-panel">
-      <p>Changes made in the last 7 days · Updated every Sunday at 09:00 BST</p>
+      <p>Last updated 19 Jul</p>
       <table class="picks-table"><thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
       <tbody>
         <tr><td colspan="4" style="color:var(--muted);font-style:italic;text-align:center;padding:18px">No changes this week</td></tr>
       </tbody></table>
     </div>
     <div id="lc-tst" class="lc-panel">
-      <p>Changes made in the last 7 days · Updated every Sunday at 09:00 BST</p>
+      <p>Last updated 19 Jul</p>
       <table class="picks-table"><thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
       <tbody>
         <tr><td>Adam B</td><td class="pick">France</td><td class="pick">Argentina</td><td style="color:var(--muted)">14 Jul</td></tr>
@@ -530,14 +530,14 @@ document.addEventListener("DOMContentLoaded", function() {
       </tbody></table>
     </div>
     <div id="lc-ast" class="lc-panel">
-      <p>Changes made in the last 7 days · Updated every Sunday at 09:00 BST</p>
+      <p>Last updated 19 Jul</p>
       <table class="picks-table"><thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
       <tbody>
         <tr><td colspan="4" style="color:var(--muted);font-style:italic;text-align:center;padding:18px">No changes this week</td></tr>
       </tbody></table>
     </div>
     <div id="lc-gbt" class="lc-panel">
-      <p>Changes made in the last 7 days · Updated every Sunday at 09:00 BST</p>
+      <p>Last updated 19 Jul</p>
       <table class="picks-table"><thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
       <tbody>
         <tr><td>Adam B</td><td class="pick">Mbappé</td><td class="pick">Messi</td><td style="color:var(--muted)">14 Jul</td></tr>
@@ -546,9 +546,12 @@ document.addEventListener("DOMContentLoaded", function() {
       </tbody></table>
     </div>
     <div id="lc-wcw" class="lc-panel">
-      <p>Changes made in the last 7 days · Updated every Sunday at 09:00 BST</p>
+      <p>Last updated 19 Jul</p>
       <table class="picks-table"><thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
       <tbody>
+        <tr><td>Craig M</td><td class="pick">France</td><td class="pick">Spain</td><td style="color:var(--muted)">15 Jul</td></tr>
+        <tr><td>Simon W</td><td class="pick">England</td><td class="pick">Spain</td><td style="color:var(--muted)">15 Jul</td></tr>
+        <tr><td>Matt B</td><td class="pick">England</td><td class="pick">Argentina</td><td style="color:var(--muted)">15 Jul</td></tr>
         <tr><td>Fabio K</td><td class="pick">France</td><td class="pick">Argentina</td><td style="color:var(--muted)">16 Jul</td></tr>
         <tr><td>Nicola B</td><td class="pick">France</td><td class="pick">Argentina</td><td style="color:var(--muted)">18 Jul</td></tr>
       </tbody></table>
@@ -811,7 +814,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     <div class="cat-panel" style="margin-top:24px">
       <h3>Latest Changes</h3>
-      <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Changes made in the last 7 days · Updated every Sunday at 09:00 BST</p>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Last updated 19 Jul</p>
       <table class="picks-table">
         <thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
         <tbody>
@@ -1026,7 +1029,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     <div class="cat-panel" style="margin-top:24px">
       <h3>Latest Changes</h3>
-      <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Changes made in the last 7 days · Updated every Sunday at 09:00 BST</p>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Last updated 19 Jul</p>
       <table class="picks-table">
         <thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
         <tbody>
@@ -1214,7 +1217,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     <div class="cat-panel" style="margin-top:24px">
       <h3>Latest Changes</h3>
-      <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Changes made in the last 7 days · Updated every Sunday at 09:00 BST</p>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Last updated 19 Jul</p>
       <table class="picks-table">
         <thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
         <tbody>
@@ -1389,7 +1392,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     <div class="cat-panel" style="margin-top:24px">
       <h3>Latest Changes</h3>
-      <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Changes made in the last 7 days · Updated every Sunday at 09:00 BST</p>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Last updated 19 Jul</p>
       <table class="picks-table">
         <thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
         <tbody>
@@ -1568,7 +1571,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     <div class="cat-panel" style="margin-top:24px">
       <h3>Latest Changes</h3>
-      <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Changes made in the last 7 days · Updated every Sunday at 09:00 BST</p>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Last updated 19 Jul</p>
       <table class="picks-table">
         <thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
         <tbody>
@@ -1740,7 +1743,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     <div class="cat-panel" style="margin-top:24px">
       <h3>Latest Changes</h3>
-      <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Changes made in the last 7 days · Updated every Sunday at 09:00 BST</p>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Last updated 19 Jul</p>
       <table class="picks-table">
         <thead><tr><th>Manager</th><th>Previous Pick</th><th>New Pick</th><th>Date Changed</th></tr></thead>
         <tbody>
@@ -1758,7 +1761,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <footer>
   <strong>KNEEJERK</strong><br>
-  <span>The football prediction game that lets you change your mind · Private league · Dashboard refreshes Sunday 09:00 BST</span><br>
+  <span>The football prediction game that lets you change your mind · Private league · Last updated 19 Jul</span><br>
   <span style="display:inline-block;margin-top:8px">© KneeJerk 2026. Created by David Hodgson. All rights reserved. · <button class="footer-terms-link" onclick="document.getElementById('termsOverlay').classList.add('open')">Terms</button></span>
 </footer>
 
